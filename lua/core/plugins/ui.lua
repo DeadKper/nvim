@@ -23,7 +23,7 @@ return {
       options = {
         icons_enabled = false,
         theme = 'onedark',
-        component_separators = '|',
+        component_separators = '▏',
         section_separators = '',
       },
     },
@@ -35,6 +35,24 @@ return {
     -- Enable `lukas-reineke/indent-blankline.nvim`
     -- See `:help ibl`
     main = 'ibl',
-    opts = {},
+    opts = {
+      indent = {
+        char = "▏",
+        tab_char = "▏",
+      },
+      scope = { enabled = false },
+    },
+  },
+
+  {
+    -- Add animation to indentation guide
+    "echasnovski/mini.indentscope",
+    opts = {
+      symbol = "▏",
+      options = { try_as_border = true },
+      draw = {
+        delay = 50,
+      },
+    },
   },
 }
