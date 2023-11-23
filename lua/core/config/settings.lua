@@ -12,9 +12,8 @@ vim.wo.number = true
 vim.o.mouse = 'a'
 
 -- Sync clipboard between OS and Neovim.
---  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
-vim.o.clipboard = 'unnamedplus'
+--vim.o.clipboard = 'unnamedplus'
 
 -- Enable break indent
 vim.o.breakindent = true
@@ -49,3 +48,15 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = highlight_group,
   pattern = '*',
 })
+
+-- [[ Custom settings ]]
+
+-- Keep 8 lines of padding during scroll
+vim.o.scrolloff = 8
+
+-- Indent conf
+vim.o.smartindent = true
+vim.opt.breakindentopt = { 'shift:2', 'sbr' }
+
+-- Relative line numbers
+--vim.o.relativenumber = true
