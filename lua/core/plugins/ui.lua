@@ -4,7 +4,14 @@ return {
     'navarasu/onedark.nvim',
     priority = 1000,
     config = function()
-      require('onedark').load()
+      local theme = require('onedark')
+      theme.setup({
+        transparent = true,
+        lualine = {
+          transparent = true,
+        },
+      })
+      theme.load()
     end,
   },
 
