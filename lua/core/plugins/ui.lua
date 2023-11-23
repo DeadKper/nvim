@@ -55,4 +55,7 @@ return {
       },
     },
   },
+
+  -- Icons
+  { "nvim-tree/nvim-web-devicons", lazy = true },
 }
