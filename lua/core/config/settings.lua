@@ -8,6 +8,9 @@ vim.o.hlsearch = false
 -- Make line numbers default
 vim.wo.number = true
 
+-- Make line numbers relative
+vim.wo.relativenumber = true
+
 -- Enable mouse mode
 vim.o.mouse = 'a'
 
@@ -66,4 +69,16 @@ vim.opt.swapfile = false
 
 -- Make cursor blink and make it blue
 vim.opt.guicursor = 'n-v-c:block-Cursor,i-ci-ve:ver25-Cursor,r-cr-o:hor20-Cursor,a:blinkon100'
-vim.api.nvim_set_hl(0, "Cursor", { bg='#61afef' })
+vim.api.nvim_set_hl(0, "Cursor", { bg = '#61afef' })
+
+-- Remove relative line numbers on insert mode
+vim.api.nvim_create_autocmd('InsertEnter', {
+  callback = function()
+    vim.wo.relativenumber = false
+  end
+})
+vim.api.nvim_create_autocmd('InsertLeave', {
+  callback = function()
+    vim.wo.relativenumber = true
+  end
+})
