@@ -10,6 +10,11 @@ return {
       lualine = {
         transparent = true,
       },
+      diagnostics = {
+        darker = false,
+        undercurl = true,
+        background = false,
+      },
     },
   },
 
