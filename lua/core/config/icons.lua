@@ -1,6 +1,6 @@
 return {
   misc = {
-    Indent = '▏',
+    indent = '▏',
   },
   dap = {
     Stopped             = { " ", "DiagnosticWarn", "DapStoppedLine" },
@@ -10,10 +10,10 @@ return {
     LogPoint            = ".>",
   },
   diagnostics = {
-    Error = " ",
-    Warn  = " ",
-    Hint  = " ",
-    Info  = " ",
+    error = " ",
+    warn  = " ",
+    hint  = " ",
+    info  = " ",
   },
   git = {
     add          = { text = '│' },
