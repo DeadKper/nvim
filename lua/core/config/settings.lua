@@ -63,3 +63,7 @@ vim.opt.breakindentopt = { 'shift:2', 'sbr' }
 
 -- Remove swapfile
 vim.opt.swapfile = false
+
+-- Make cursor blink and make it blue
+vim.opt.guicursor = 'n-v-c:block-Cursor,i-ci-ve:ver25-Cursor,r-cr-o:hor20-Cursor,a:blinkon100'
+vim.api.nvim_set_hl(0, "Cursor", { bg='#61afef' })
