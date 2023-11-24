@@ -17,3 +17,5 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup('core.plugins')
+
+require('onedark').load()

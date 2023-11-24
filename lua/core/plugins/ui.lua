@@ -5,16 +5,12 @@ return {
     -- Theme inspired by Atom
     'navarasu/onedark.nvim',
     priority = 1000,
-    config = function()
-      local theme = require('onedark')
-      theme.setup({
+    opts = {
+      transparent = true,
+      lualine = {
         transparent = true,
-        lualine = {
-          transparent = true,
-        },
-      })
-      theme.load()
-    end,
+      },
+    },
   },
 
   {
