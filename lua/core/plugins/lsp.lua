@@ -13,6 +13,13 @@ return {
     -- Additional lua configuration, makes nvim stuff amazing!
     'folke/neodev.nvim',
   },
+  opts = {
+    diagnostics = {
+      underline = true,
+      update_in_insert = false,
+      severity_sort = true,
+    },
+  },
   config = function()
     -- [[ Configure LSP ]]
     --  This function gets run when an LSP connects to a particular buffer.
@@ -58,6 +65,12 @@ return {
       vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
         vim.lsp.buf.format()
       end, { desc = 'Format current buffer with LSP' })
+
+      -- Set diagnostics icons
+      for name, icon in pairs(require('core.config.icons').diagnostics) do
+        name = "DiagnosticSign" .. name
+        vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
+      end
     end
 
 

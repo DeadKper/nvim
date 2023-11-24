@@ -1,3 +1,5 @@
+local indent = require('core.config.icons').misc.Indent
+
 return {
   {
     -- Theme inspired by Atom
@@ -23,7 +25,7 @@ return {
       options = {
         icons_enabled = false,
         theme = 'onedark',
-        component_separators = '▏',
+        component_separators = indent,
         section_separators = '',
       },
     },
@@ -37,8 +39,8 @@ return {
     main = 'ibl',
     opts = {
       indent = {
-        char = "▏",
-        tab_char = "▏",
+        char = indent,
+        tab_char = indent,
       },
       scope = { enabled = false },
     },
@@ -48,7 +50,7 @@ return {
     -- Add animation to indentation guide
     "echasnovski/mini.indentscope",
     opts = {
-      symbol = "▏",
+      symbol = indent,
       options = { try_as_border = true },
       draw = {
         delay = 50,
