@@ -60,3 +60,6 @@ vim.opt.breakindentopt = { 'shift:2', 'sbr' }
 
 -- Relative line numbers
 --vim.o.relativenumber = true
+
+-- Remove swapfile
+vim.opt.swapfile = false
