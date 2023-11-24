@@ -21,6 +21,12 @@ map('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list
 -- File explorer
 map('n', '<leader>fe', vim.cmd.Ex, { desc = '[F]ile [E]xplorer' })
 
+-- Previous buffer
+map('n', '<leader>fp', ':bprevious<CR>', { desc = '[F]ile [P]revious' })
+
+-- Close current buffer
+map('n', '<leader>fq', ':bdelete<CR>', { desc = '[F]ile [Q]uit' })
+
 -- Move selection
 map('v', 'J', ":m '>+1<CR>gv=gv")
 map('v', 'K', ":m '>-2<CR>gv=gv")
@@ -35,9 +41,6 @@ map('n', '<C-u>', '<C-u>zz')
 -- Jump search with cursor in the middle
 map('n', 'n', 'nzzzv')
 map('n', 'N', 'Nzzzv')
-
--- Previous buffer
-map('n', '<C-b>', ':bprevious<CR>', { desc = 'Go to the previous buffer' })
 
 -- Paste in insert mode
 map('i', '<C-k>', '<C-r>"', { desc = 'Paste from yanked/deleted text' })
