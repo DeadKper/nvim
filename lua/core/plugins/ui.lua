@@ -61,10 +61,6 @@ return {
   {
     -- Add animation to indentation guide
     'echasnovski/mini.indentscope',
-    opts = {
-      symbol = icons.misc.indent,
-      options = { try_as_border = true },
-    },
     init = function()
       -- Disable indentscope for the following file types
       vim.api.nvim_create_autocmd('FileType', {
@@ -86,10 +82,21 @@ return {
         end,
       })
 
-      -- Change indentscope color
+      -- Apply settings on ui attachment
       vim.api.nvim_create_autocmd('UIEnter', {
         callback = function()
+          -- Set color
           vim.api.nvim_set_hl(0, 'MiniIndentscopeSymbol', { fg = '#a0a8b7' })
+          -- Config indentscope
+          local indentscope = require('mini.indentscope')
+          indentscope.setup({
+            symbol = icons.misc.indent,
+            options = { try_as_border = true },
+            draw = {
+              animation = indentscope.gen_animation.none(),
+              delay = 50,
+            },
+          })
         end,
       })
     end,
