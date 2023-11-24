@@ -64,11 +64,9 @@ return {
     opts = {
       symbol = icons.misc.indent,
       options = { try_as_border = true },
-      draw = {
-        delay = 50,
-      },
     },
     init = function()
+      -- Disable indentscope for the following file types
       vim.api.nvim_create_autocmd("FileType", {
         pattern = {
           "help",
@@ -85,6 +83,13 @@ return {
         },
         callback = function()
           vim.b.miniindentscope_disable = true
+        end,
+      })
+
+      -- Change indentscope color
+      vim.api.nvim_create_autocmd("UIEnter", {
+        callback = function()
+          vim.api.nvim_set_hl(0, 'MiniIndentscopeSymbol', { fg = '#a0a8b7' })
         end,
       })
     end,
