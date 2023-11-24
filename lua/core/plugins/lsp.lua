@@ -68,8 +68,8 @@ return {
 
       -- Set diagnostics icons
       for name, icon in pairs(require('core.config.icons').diagnostics) do
-        name = "DiagnosticSign" .. name:sub(1,1):upper() .. name:sub(2) -- Capitalize
-        vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
+        name = 'DiagnosticSign' .. name:sub(1,1):upper() .. name:sub(2) -- Capitalize
+        vim.fn.sign_define(name, { text = icon, texthl = name, numhl = '' })
       end
     end
 

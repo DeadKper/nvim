@@ -22,6 +22,6 @@ return {
     end
   },
 
-  -- "gc" to comment visual regions/lines
+  -- 'gc' to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
 }
