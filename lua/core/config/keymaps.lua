@@ -20,7 +20,7 @@ map('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list
 -- [[ Custom Keymaps ]]
 
 -- File explorer
-map('n', '<leader>fe', vim.cmd.Ex, { desc = 'Open [F]ile [E]xplorer' })
+map('n', '<leader>fe', vim.cmd.Ex, { desc = '[F]ile [E]xplorer' })
 
 -- Move selection
 map('v', 'J', ":m '>+1<CR>gv=gv")
