@@ -89,10 +89,16 @@ return {
     local servers = {
       -- clangd = {},
       -- gopls = {},
-      -- pyright = {},
-      -- rust_analyzer = {},
+      pyright = {}, -- Python
+      rust_analyzer = {},
+      biome = {}, -- Javascript, Typescript, Json
       -- tsserver = {},
-      -- html = { filetypes = { 'html', 'twig', 'hbs'} },
+      html = { filetypes = { 'html', 'twig', 'hbs'} },
+      tailwindcss = {},
+      taplo = {}, -- Toml
+      yamlls = {}, -- Yaml
+      rnix = {}, -- Nix
+      zls = {}, -- Zig
 
       lua_ls = {
         Lua = {
