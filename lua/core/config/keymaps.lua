@@ -45,7 +45,7 @@ map('n', 'N', 'Nzzzv')
 
 -- Paste in insert mode
 map('i', '<C-k>', '<C-r>"', { desc = 'Paste from yanked/deleted text' })
-map('i', '<C-j>', '<C-r>+', { desc = 'Paste from clipboard' })
+map('i', '<C-v>', '<C-r>+', { desc = 'Paste from clipboard' })
 
 -- Yank + copy to clipboard
 map({'n', 'v'}, '<leader>y', [["+y]])
