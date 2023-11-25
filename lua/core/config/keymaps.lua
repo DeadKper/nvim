@@ -22,10 +22,10 @@ map('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list
 map('n', '<leader>fe', vim.cmd.Ex, { desc = '[F]ile [E]xplorer' })
 
 -- Previous buffer
-map('n', '<leader>fp', ':bprevious<CR>', { desc = '[F]ile [P]revious' })
+map('n', '<leader>fp', ':bprevious<CR>', { desc = '[F]ile [P]revious', silent = true })
 
 -- Close current buffer
-map('n', '<leader>fq', ':bdelete<CR>', { desc = '[F]ile [Q]uit' })
+map('n', '<leader>fq', ':bdelete<CR>', { desc = '[F]ile [Q]uit', silent = true })
 
 -- Move selection
 map('v', 'J', ":m '>+1<CR>gv=gv")
