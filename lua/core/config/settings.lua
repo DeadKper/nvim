@@ -57,6 +57,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- Set tab size to 4 by default
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
+vim.o.softtabstop = 4
 
 -- Keep 8 lines of padding during scroll
 vim.o.scrolloff = 8
@@ -67,6 +68,9 @@ vim.opt.breakindentopt = { 'shift:2', 'sbr' }
 
 -- Remove swapfile
 vim.opt.swapfile = false
+
+-- Incremental search
+vim.opt.incsearch = true
 
 -- Execute on ui attachment
 vim.api.nvim_create_autocmd('UIEnter', {
