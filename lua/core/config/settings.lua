@@ -72,6 +72,17 @@ vim.opt.swapfile = false
 -- Incremental search
 vim.opt.incsearch = true
 
+-- Undo directory
+local undodir = vim.fn.stdpath('data') .. '/undo'
+if not vim.loop.fs_stat(undodir) then -- Create if doesn't exist
+  vim.fn.system {
+    'mkdir',
+    '-p',
+    undodir,
+  }
+end
+vim.o.undodir = undodir
+
 -- Execute on ui attachment
 vim.api.nvim_create_autocmd('UIEnter', {
   callback = function()
