@@ -8,8 +8,8 @@ vim.o.hlsearch = false
 -- Make line numbers default
 vim.wo.number = true
 
--- Make line numbers relative
-vim.wo.relativenumber = true
+-- Relative line numbers
+vim.o.relativenumber = true
 
 -- Enable mouse mode
 vim.o.mouse = 'a'
@@ -64,9 +64,6 @@ vim.o.scrolloff = 8
 -- Indent conf
 vim.o.smartindent = true
 vim.opt.breakindentopt = { 'shift:2', 'sbr' }
-
--- Relative line numbers
---vim.o.relativenumber = true
 
 -- Remove swapfile
 vim.opt.swapfile = false
