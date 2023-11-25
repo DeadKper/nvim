@@ -81,11 +81,15 @@ vim.api.nvim_create_autocmd('UIEnter', {
 -- Remove relative line numbers on insert mode
 vim.api.nvim_create_autocmd('InsertEnter', {
   callback = function()
-    vim.wo.relativenumber = false
+    if vim.wo.number then
+      vim.opt_local.relativenumber = false
+    end
   end
 })
 vim.api.nvim_create_autocmd('InsertLeave', {
   callback = function()
-    vim.wo.relativenumber = true
+    if vim.wo.number then
+      vim.opt_local.relativenumber = true
+    end
   end
 })
