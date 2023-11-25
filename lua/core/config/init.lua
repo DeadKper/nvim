@@ -7,4 +7,6 @@ vim.g.maplocalleader = ' '
 
 require('core.config.settings')
 require('core.config.keymaps')
-require('core.config.lazy')
+if not vim.g.vscode then
+  require('core.config.lazy')
+end
