@@ -30,7 +30,7 @@ map('n', '<leader>fQ', ':bdelete!<CR>', { desc = '[F]ile force [Q]uit', silent =
 
 -- Move selection
 map('v', 'J', ":m '>+1<CR>gv=gv")
-map('v', 'K', ":m '>-2<CR>gv=gv")
+map('v', 'K', ":m '<-2<CR>gv=gv")
 
 -- Append line below to current
 map('n', 'J', 'mzJ`z')
