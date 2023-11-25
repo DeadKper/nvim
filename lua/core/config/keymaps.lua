@@ -26,6 +26,7 @@ map('n', '<leader>fp', ':bprevious<CR>', { desc = '[F]ile [P]revious', silent = 
 
 -- Close current buffer
 map('n', '<leader>fq', ':bdelete<CR>', { desc = '[F]ile [Q]uit', silent = true })
+map('n', '<leader>fQ', ':bdelete!<CR>', { desc = '[F]ile force [Q]uit', silent = true })
 
 -- Move selection
 map('v', 'J', ":m '>+1<CR>gv=gv")
