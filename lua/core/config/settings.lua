@@ -75,6 +75,10 @@ vim.api.nvim_create_autocmd('UIEnter', {
     vim.api.nvim_set_hl(0, "Cursor", { bg = '#61afef' })
     -- Make cursor blink
     vim.opt.guicursor = 'n-v-c:block-Cursor,i-ci-ve:ver25-Cursor,r-cr-o:hor20-Cursor,a:blinkon100'
+    -- Close [No Name] buffer when opening folder
+    if vim.api.nvim_buf_get_name(0) .. vim.api.nvim_buf_get_number(0) == '3' then
+      vim.api.nvim_buf_delete(1, {})
+    end
   end
 })
 
