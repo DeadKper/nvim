@@ -64,4 +64,21 @@ map('n', 'Q', '<Nop>')
 map('n', '<leader>s', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = 'Replace word in cursor' })
 
 -- Open proyect in new session
-map('n', '<leader>po', "<cmd>silent !tmux neww proyect-selector<CR>", { desc = '[P]royect [O]pen' })
+map('n', '<leader>po', '<cmd>silent !tmux neww proyect-selector<CR>', { desc = '[P]royect [O]pen' })
+
+function BdeleteAll(keep_current, force)
+  local suffix = ''
+  if force then
+    suffix = '!'
+  end
+  vim.api.nvim_command(':1,$bd' .. suffix)
+  local empty = vim.api.nvim_buf_get_number(0)
+  if keep_current then
+    vim.api.nvim_command(':e#')
+  else
+    vim.api.nvim_command(':Ex')
+  end
+  vim.api.nvim_command(':bd ' .. empty)
+end
+
+map('n', '<leader>fc', function () BdeleteAll(false, false) end, { desc = '[F]iles [C]lose' })
