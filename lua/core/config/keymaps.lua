@@ -82,3 +82,4 @@ function BdeleteAll(keep_current, force)
 end
 
 map('n', '<leader>fc', function () BdeleteAll(false, false) end, { desc = '[F]iles [C]lose' })
+map('n', '<leader>fC', function () BdeleteAll(false, true) end, { desc = '[F]iles force [C]lose' })
