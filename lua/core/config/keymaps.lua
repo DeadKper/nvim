@@ -21,8 +21,9 @@ map('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list
 -- File explorer
 map('n', '<leader>fe', vim.cmd.Ex, { desc = '[F]ile [E]xplorer' })
 
--- Previous buffer
+-- Switch buffer
 map('n', '<leader>fp', ':bprevious<CR>', { desc = '[F]ile [P]revious', silent = true })
+map('n', '<leader>fn', ':bnext<CR>', { desc = '[F]ile [N]ext', silent = true })
 
 -- Close current buffer
 map('n', '<leader>fq', ':bdelete<CR>', { desc = '[F]ile [Q]uit', silent = true })
@@ -81,5 +82,9 @@ function BdeleteAll(keep_current, force)
   vim.api.nvim_command(':bd ' .. empty)
 end
 
+-- Close buffers
 map('n', '<leader>fc', function () BdeleteAll(false, false) end, { desc = '[F]iles [C]lose' })
 map('n', '<leader>fC', function () BdeleteAll(false, true) end, { desc = '[F]iles force [C]lose' })
+
+-- Find in file
+map('n', '<leader>fs', [[/<C-r><C-w><CR>]], { desc = '[F]ile [S]earch word' })
