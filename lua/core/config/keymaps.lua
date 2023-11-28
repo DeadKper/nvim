@@ -22,8 +22,8 @@ map('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list
 map('n', '<leader>fe', vim.cmd.Ex, { desc = '[F]ile [E]xplorer' })
 
 -- Switch buffer
-map('n', '<leader>fp', ':bprevious<CR>', { desc = '[F]ile [P]revious', silent = true })
-map('n', '<leader>fn', ':bnext<CR>', { desc = '[F]ile [N]ext', silent = true })
+map('n', '<C-p>', ':bprevious<CR>', { desc = 'Previous buffer', silent = true })
+map('n', '<C-n>', ':bnext<CR>', { desc = 'Next buffer', silent = true })
 
 -- Close current buffer
 map('n', '<leader>fq', ':bdelete<CR>', { desc = '[F]ile [Q]uit', silent = true })
