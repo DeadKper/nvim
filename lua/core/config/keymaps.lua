@@ -25,10 +25,6 @@ map('n', '<leader>fe', vim.cmd.Ex, { desc = '[F]ile [E]xplorer' })
 map('n', '<C-p>', ':bprevious<CR>', { desc = 'Previous buffer', silent = true })
 map('n', '<C-n>', ':bnext<CR>', { desc = 'Next buffer', silent = true })
 
--- Close current buffer
-map('n', '<leader>fq', ':bdelete<CR>', { desc = '[F]ile [Q]uit', silent = true })
-map('n', '<leader>fQ', ':bdelete!<CR>', { desc = '[F]ile force [Q]uit', silent = true })
-
 -- Move selection
 map('v', 'J', ":m '>+1<CR>gv=gv")
 map('v', 'K', ":m '<-2<CR>gv=gv")
@@ -83,8 +79,8 @@ function BdeleteAll(keep_current, force)
 end
 
 -- Close buffers
-map('n', '<leader>fc', function () BdeleteAll(false, false) end, { desc = '[F]iles [C]lose' })
-map('n', '<leader>fC', function () BdeleteAll(false, true) end, { desc = '[F]iles force [C]lose' })
+map('n', '<leader>fq', function () BdeleteAll(false, false) end, { desc = 'Close all buffers' })
+map('n', '<leader>fQ', function () BdeleteAll(false, true) end, { desc = 'Force close all buffers' })
 
 -- Find in file
-map('n', '<leader>fs', [[/<C-r><C-w><CR>]], { desc = '[F]ile [S]earch word' })
+map('n', '<leader>fs', [[/<C-r><C-w><CR>]], { desc = '[F]ile [S]earch word in cursor' })
