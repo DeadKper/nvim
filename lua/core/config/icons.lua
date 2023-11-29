@@ -1,6 +1,9 @@
 return {
   misc = {
-    indent = '▏',
+    indents = {
+      left = '▏',
+      center = '│',
+    },
   },
   dap = {
     Stopped             = { ' ', 'DiagnosticWarn', 'DapStoppedLine' },
@@ -21,6 +24,6 @@ return {
     delete       = { text = '│' },
     topdelete    = { text = '│' },
     changedelete = { text = '│' },
-    untracked    = { text = '┆' },
+    untracked    = { text = '╎' },
   },
 }

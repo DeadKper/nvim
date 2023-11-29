@@ -27,7 +27,7 @@ return {
       options = {
         icons_enabled = true,
         theme = 'onedark',
-        component_separators = icons.misc.indent,
+        component_separators = icons.misc.indents.center,
         section_separators = '',
       },
       sections = {
@@ -51,8 +51,8 @@ return {
     main = 'ibl',
     opts = {
       indent = {
-        char = icons.misc.indent,
-        tab_char = icons.misc.indent,
+        char = icons.misc.indents.center,
+        tab_char = icons.misc.indents.center,
       },
       scope = { enabled = false },
     },
@@ -61,6 +61,8 @@ return {
   {
     -- Add animation to indentation guide
     'echasnovski/mini.indentscope',
+    opts = {
+    },
     init = function()
       -- Disable indentscope for the following file types
       vim.api.nvim_create_autocmd('FileType', {
@@ -90,7 +92,7 @@ return {
           -- Config indentscope
           local indentscope = require('mini.indentscope')
           indentscope.setup({
-            symbol = icons.misc.indent,
+            symbol = icons.misc.indents.center,
             options = { try_as_border = true },
             draw = {
               animation = indentscope.gen_animation.none(),
