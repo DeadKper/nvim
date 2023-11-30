@@ -48,7 +48,7 @@ map('i', '<C-v>', '<C-r>+', { desc = 'Paste from clipboard' })
 map({'n', 'v'}, '<leader>y', [["+y]])
 
 -- Yank all file to clipboard
-map('n', '<leader>ya', [[G$vgg^"+y<C-o><C-o>zz]], { desc = 'Yank file to clipboard' } )
+map('n', '<leader>ya', [[G$vgg^"+yzz]], { desc = 'Yank file to clipboard' } )
 
 -- Delete/paste without yank
 map({'n', 'v'}, '<leader>d', [["_d]])
