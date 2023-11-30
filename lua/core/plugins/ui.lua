@@ -1,4 +1,20 @@
 local icons = require('core.config.icons')
+local disabled = {
+  '',
+  'text',
+  'markdown',
+  'help',
+  'alpha',
+  'dashboard',
+  'neo-tree',
+  'Trouble',
+  'trouble',
+  'lazy',
+  'mason',
+  'notify',
+  'toggleterm',
+  'lazyterm',
+}
 
 return {
   {
@@ -75,28 +91,18 @@ return {
     end,
     init = function()
       -- Disable indentscope for the following file types
-      vim.api.nvim_create_autocmd('FileType', {
-        pattern = {
-          'help',
-          'alpha',
-          'dashboard',
-          'neo-tree',
-          'Trouble',
-          'trouble',
-          'lazy',
-          'mason',
-          'notify',
-          'toggleterm',
-          'lazyterm',
-        },
+      vim.api.nvim_create_autocmd('BufEnter', {
+        pattern = '*',
         callback = function()
-          vim.b.miniindentscope_disable = true
+          if (vim.tbl_contains(disabled, vim.o.filetype)) then
+            vim.b.miniindentscope_disable = true
+          end
         end,
       })
 
       -- Apply settings on ui attachment
       vim.api.nvim_create_autocmd('UIEnter', {
-        callback = function ()
+        callback = function()
           -- Set color
           vim.api.nvim_set_hl(0, 'MiniIndentscopeSymbol', { fg = '#a0a8b7' })
         end,
@@ -108,6 +114,9 @@ return {
   {
     "lukas-reineke/virt-column.nvim",
     opts = {
+      exclude = {
+        filetypes = disabled,
+      },
       char = icons.misc.indents.center,
       virtcolumn = '80',
     },
