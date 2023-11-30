@@ -1,19 +1,38 @@
 local icons = require('core.config.icons')
 local disabled = {
-  '',
-  'text',
-  'markdown',
-  'help',
-  'alpha',
-  'dashboard',
-  'neo-tree',
-  'Trouble',
-  'trouble',
-  'lazy',
-  'mason',
-  'notify',
-  'toggleterm',
-  'lazyterm',
+  files = {
+    -- virt-column default
+    'lspinfo',
+    'packer',
+    'checkhealth',
+    'help',
+    'man',
+    'gitcommit',
+    'TelescopePrompt',
+    'TelescopeResults',
+    -- LazyVim mini.indentscope default
+    'help',
+    'alpha',
+    'dashboard',
+    'neo-tree',
+    'Trouble',
+    'trouble',
+    'lazy',
+    'mason',
+    'notify',
+    'toggleterm',
+    'lazyterm',
+    -- Text
+    '',
+    'text',
+    'markdown',
+  },
+  buffers = {
+    'terminal',
+    'nofile',
+    'quickfix',
+    'prompt',
+  },
 }
 
 return {
@@ -94,7 +113,7 @@ return {
       vim.api.nvim_create_autocmd('BufEnter', {
         pattern = '*',
         callback = function()
-          if (vim.tbl_contains(disabled, vim.o.filetype)) then
+          if (vim.tbl_contains(disabled.files, vim.o.filetype)) then
             vim.b.miniindentscope_disable = true
           end
         end,
@@ -115,7 +134,7 @@ return {
     "lukas-reineke/virt-column.nvim",
     opts = {
       exclude = {
-        filetypes = disabled,
+        filetypes = disabled.files,
       },
       char = icons.misc.indents.center,
       virtcolumn = '80',
