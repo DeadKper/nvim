@@ -87,3 +87,6 @@ map('n', '<leader>fQ', function() BdeleteAll(false, true) end, { desc = 'Force c
 
 -- Find in file
 map('n', '<leader>fs', [[/<C-r><C-w><CR>]], { desc = '[F]ile [S]earch word in cursor' })
+
+-- Make current file executable
+map('n', '<leader>fx', [[<cmd>!chmod +x %<CR>]], { desc = 'Grant current [F]ile e[X]ecution perm', silent = true })
