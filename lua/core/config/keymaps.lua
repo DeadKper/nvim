@@ -47,6 +47,9 @@ map('i', '<C-v>', '<C-r>+', { desc = 'Paste from clipboard' })
 -- Yank + copy to clipboard
 map({'n', 'v'}, '<leader>y', [["+y]])
 
+-- Yank all file to clipboard
+map('n', '<leader>ya', [[G$vgg^"+y<C-o><C-o>zz]], { desc = 'Yank file to clipboard' } )
+
 -- Delete/paste without yank
 map({'n', 'v'}, '<leader>d', [["_d]])
 map('x', '<leader>p', [["_dP]])
@@ -61,7 +64,7 @@ map('n', 'Q', '<Nop>')
 map('n', '<leader>s', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = 'Replace word in cursor' })
 
 -- Open proyect in new session
-map('n', '<leader>po', '<cmd>silent !tmux neww proyect-selector<CR>', { desc = '[P]royect [O]pen' })
+map('n', '<leader>po', "<cmd>silent !tmux-windowizer proyect-selector Enter<CR>", { desc = '[P]royect [O]pen' })
 
 function BdeleteAll(keep_current, force)
   local suffix = ''
