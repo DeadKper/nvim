@@ -48,7 +48,7 @@ map('i', '<C-v>', [[<C-r>+]], { desc = 'Paste from clipboard' })
 map({ 'n', 'v' }, '<leader>y', [["+y]])
 
 -- Yank all file to clipboard
-map('n', '<leader>ya', [[G$vgg^"+y<C-o><C-o>zz]], { desc = 'Yank file to clipboard' })
+map('n', '<leader>ya', [[mzG$vgg^"+y`z]], { desc = 'Yank file to clipboard' })
 
 -- Delete/paste without yank
 map({ 'n', 'v' }, '<leader>d', [["_d]])
@@ -92,4 +92,4 @@ map('n', '<leader>fs', [[/<C-r><C-w><CR>]], { desc = '[F]ile [S]earch word in cu
 map('n', '<leader>fx', [[<cmd>!chmod +x %<CR>]], { desc = 'Grant current [F]ile e[X]ecution perm', silent = true })
 
 -- Format file without lsp
-map('n', '<leader>ff', [[gg=G``zz]], { desc = '[F]ormat [F]ile indent' })
+map('n', '<leader>ff', [[mzgg=G`z]], { desc = '[F]ormat [F]ile indent' })
