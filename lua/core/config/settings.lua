@@ -54,11 +54,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 -- [[ Custom settings ]]
 
--- Set tab size to 4 by default
-vim.go.tabstop = 4
-vim.go.shiftwidth = 4
-vim.go.softtabstop = 4
-
 -- Keep 8 lines of padding during scroll
 vim.o.scrolloff = 8
 
@@ -111,4 +106,16 @@ vim.api.nvim_create_autocmd('InsertLeave', {
       vim.opt_local.relativenumber = true
     end
   end
+})
+
+vim.api.nvim_create_autocmd('BufEnter', {
+  pattern = '*',
+  callback = function()
+    -- Set tab size to 4 if greater than 4, should work with vim-sleuth if not kill me
+    if (vim.o.tabstop > 4) then
+      vim.o.tabstop = 4
+      vim.o.shiftwidth = 4
+      vim.o.softtabstop = 4
+    end
+  end,
 })
