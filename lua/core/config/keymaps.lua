@@ -92,4 +92,4 @@ map('n', '<leader>fs', [[/<C-r><C-w><CR>]], { desc = '[F]ile [S]earch word in cu
 map('n', '<leader>fx', [[<cmd>!chmod +x %<CR>]], { desc = 'Grant current [F]ile e[X]ecution perm', silent = true })
 
 -- Format file without lsp
-map('n', '<leader>ff', [[gg=G<C-o><C-o>]], { desc = '[F]ormat [F]ile indent' })
+map('n', '<leader>ff', [[gg=G``zz]], { desc = '[F]ormat [F]ile indent' })
