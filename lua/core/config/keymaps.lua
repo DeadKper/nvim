@@ -71,14 +71,14 @@ function BdeleteAll(keep_current, force)
   if force then
     suffix = '!'
   end
-  vim.api.nvim_command([[:1,$bd]] .. suffix)
+  vim.cmd([[1,$bd]] .. suffix)
   local empty = vim.api.nvim_buf_get_number(0)
   if keep_current then
-    vim.api.nvim_command([[:e#]])
+    vim.cmd([[e#]])
   else
-    vim.api.nvim_command([[:Ex]])
+    vim.cmd.Ex()
   end
-  vim.api.nvim_command([[:bd ]] .. empty)
+  vim.cmd([[bd ]] .. empty)
 end
 
 -- Close buffers
