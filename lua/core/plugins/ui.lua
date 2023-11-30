@@ -35,22 +35,30 @@ local disabled = {
   },
 }
 
+local function colorscheme(theme, opts)
+  local color = require(theme)
+  color.setup(opts)
+  color.load()
+end
+
 return {
   {
     -- Theme inspired by Atom
     'navarasu/onedark.nvim',
     priority = 1000,
-    opts = {
-      transparent = true,
-      lualine = {
+    config = function()
+      colorscheme('onedark', {
         transparent = true,
-      },
-      diagnostics = {
-        darker = false,
-        undercurl = true,
-        background = false,
-      },
-    },
+        lualine = {
+          transparent = true,
+        },
+        diagnostics = {
+          darker = false,
+          undercurl = true,
+          background = false,
+        },
+      })
+    end
   },
 
   {
