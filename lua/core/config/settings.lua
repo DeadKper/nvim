@@ -122,7 +122,7 @@ vim.api.nvim_create_autocmd('BufEnter', {
 })
 
 -- Auto indent
-local indent_on_save = true
+local indent_on_save = false
 vim.api.nvim_create_user_command('AutoIndentToggle', function()
   indent_on_save = not indent_on_save
   print('Setting autoindent to: ' .. tostring(indent_on_save))
