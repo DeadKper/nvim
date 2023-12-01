@@ -1,3 +1,4 @@
+local send_keys = require('core.config.functions').send_keys
 -- [[ Setting options ]]
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
@@ -116,6 +117,21 @@ vim.api.nvim_create_autocmd('BufEnter', {
       vim.o.tabstop = 4
       vim.o.shiftwidth = 4
       vim.o.softtabstop = 4
+    end
+  end,
+})
+
+-- Auto indent
+local indent_on_save = true
+vim.api.nvim_create_user_command('AutoIndentToggle', function()
+  indent_on_save = not indent_on_save
+  print('Setting autoindent to: ' .. tostring(indent_on_save))
+end, {})
+
+vim.api.nvim_create_autocmd('BufWritePre', {
+  callback = function()
+    if indent_on_save then
+      send_keys([[mzgg=G`z]], 'n')
     end
   end,
 })

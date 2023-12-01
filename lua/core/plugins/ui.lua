@@ -1,4 +1,5 @@
 local icons = require('core.config.icons')
+local colorscheme = require('core.config.functions').colorscheme
 local disabled = {
   files = {
     -- virt-column default
@@ -34,12 +35,6 @@ local disabled = {
     'prompt',
   },
 }
-
-local function colorscheme(theme, opts)
-  local color = require(theme)
-  color.setup(opts)
-  color.load()
-end
 
 return {
   {
