@@ -10,6 +10,12 @@ local map = vim.keymap.set
 map({ 'n', 'v' }, 'k', [[v:count == 0 ? 'gk' : 'k']], { expr = true, silent = true })
 map({ 'n', 'v' }, 'j', [[v:count == 0 ? 'gj' : 'j']], { expr = true, silent = true })
 
+-- Remap to move in insert mode
+map('i', '<C-k>', [[<C-o>gk]], { silent = true })
+map('i', '<C-j>', [[<C-o>gj]], { silent = true })
+map('i', '<C-h>', [[<Left>]], { silent = true })
+map('i', '<C-l>', [[<Right>]], { silent = true })
+
 -- Diagnostic keymaps
 map('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
 map('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
