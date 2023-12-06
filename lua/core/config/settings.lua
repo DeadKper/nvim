@@ -69,7 +69,7 @@ vim.opt.swapfile = false
 vim.opt.incsearch = true
 
 -- Undo directory
-local undodir = vim.fn.stdpath('data') .. '/undo'
+local undodir = vim.fn.stdpath('state') .. '/undo'
 if not vim.loop.fs_stat(undodir) then -- Create if doesn't exist
   vim.fn.system {
     'mkdir',
