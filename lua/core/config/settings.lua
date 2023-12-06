@@ -19,7 +19,8 @@ vim.o.mouse = 'a'
 --  See `:help 'clipboard'`
 --vim.o.clipboard = 'unnamedplus'
 
--- Enable break indent
+-- Enable wordwrap and break indent
+vim.o.linebreak = true
 vim.o.breakindent = true
 
 -- Save undo history
