@@ -110,15 +110,20 @@ vim.api.nvim_create_autocmd('InsertLeave', {
   end
 })
 
+-- Set defaults for vim-sleuth
+vim.go.tabstop = 4
+vim.go.shiftwidth = 4
+vim.go.softtabstop = -1
+
 vim.api.nvim_create_autocmd('BufEnter', {
   pattern = '*',
   callback = function()
-    -- Set tab size to 4 if greater than 4, should work with vim-sleuth if not kill me
-    if (vim.o.tabstop > 4) then
-      vim.o.tabstop = 4
-      vim.o.shiftwidth = 4
-      vim.o.softtabstop = 4
+    -- Adjust shiftwidth to not exceed 4 after vim-sleuth sets it
+    if (vim.bo.shiftwidth > 4) then
+      vim.bo.shiftwidth = 4
     end
+    -- Make tabstop equal to shiftwidth
+    vim.bo.tabstop = vim.bo.shiftwidth
   end,
 })
 
