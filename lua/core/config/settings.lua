@@ -115,15 +115,30 @@ vim.go.tabstop = 4
 vim.go.shiftwidth = 4
 vim.go.softtabstop = -1
 
+local indent = {
+  shiftwidth = {
+    valid = { 0, 2, 4 },
+    default = 4,
+  },
+
+  tabstop = {
+    valid = { 2, 4 },
+    default = 4,
+  },
+}
+
 vim.api.nvim_create_autocmd('BufEnter', {
-  pattern = '*',
   callback = function()
-    -- Adjust shiftwidth to not exceed 4 after vim-sleuth sets it
-    if (vim.bo.shiftwidth > 4) then
-      vim.bo.shiftwidth = 4
+    -- Adjust shiftwidth to a valid config after vim-sleuth sets it
+    if (not vim.tbl_contains(indent.shiftwidth.valid, vim.bo.shiftwidth)) then
+      vim.bo.shiftwidth = indent.shiftwidth.default
     end
-    -- Make tabstop equal to shiftwidth
-    vim.bo.tabstop = vim.bo.shiftwidth
+    -- Adjust tabstop to be equal to shiftwidth when possible
+    if (vim.tbl_contains(indent.tabstop.valid, vim.bo.shiftwidth)) then
+      vim.bo.tabstop = vim.bo.shiftwidth
+    else
+      vim.bo.tabstop = indent.tabstop.default
+    end
   end,
 })
 
