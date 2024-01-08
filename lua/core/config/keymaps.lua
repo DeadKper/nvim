@@ -70,9 +70,8 @@ map('n', 'Q', [[<Nop>]])
 map('n', '<leader>s', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = 'Replace word in cursor' })
 
 -- Open proyect in new session
-map('n', '<leader>pw', [[<cmd>silent !tmux-selectorizer 'w'<CR>]], { desc = 'Open [P]royect in tmux [W]indow' })
-map('n', '<leader>ps', [[<cmd>silent !tmux-selectorizer 's'<CR>]], { desc = 'Open [P]royect in tmux [S]ession' })
-map('n', '<leader>pn', [[<cmd>silent !tmux-selector 'w' 'nvim' ']] .. vim.fn.getcwd() .. [['<CR>]], { desc = 'Open current [P]royect [N]ew tmux window' })
+map('n', '<leader>pw', [[<cmd>silent !ps -t w<CR>]], { desc = 'Open [P]royect in tmux [W]indow' })
+map('n', '<leader>ps', [[<cmd>silent !ps -t s<CR>]], { desc = 'Open [P]royect in tmux [S]ession' })
 
 function BdeleteAll(keep_current, force)
   local suffix = ''
