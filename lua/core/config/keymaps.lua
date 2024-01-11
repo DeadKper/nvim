@@ -100,3 +100,7 @@ map('n', '<leader>fx', [[<cmd>!chmod +x %<CR>]], { desc = 'Grant current [F]ile 
 
 -- Format file without lsp
 map('n', '<leader>ff', [[mzgg=G`z]], { desc = '[F]ormat [F]ile indent' })
+
+-- Indent with tab
+map('v', '<tab>', [[>gv]])
+map('v', '<S-tab>', [[<gv]])
