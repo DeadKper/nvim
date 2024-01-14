@@ -1,24 +1,37 @@
 return {
   {
-    'simrat39/rust-tools.nvim',
+    'mrcjkb/rustaceanvim',
+    version = '^3', -- Recommended
+    ft = { 'rust' },
+
     dependencies = {
       'neovim/nvim-lspconfig',
       'nvim-lua/plenary.nvim',
       'mfussenegger/nvim-dap',
+      {
+        "lvimuser/lsp-inlayhints.nvim",
+        opts = {}
+      },
     },
-    config = function()
-      local rt = require('rust-tools')
 
-      rt.setup({
-        server = {
-          on_attach = function(_, bufnr)
-            -- Hover actions
-            vim.keymap.set('n', '<C-space>', rt.hover_actions.hover_actions, { buffer = bufnr })
-            -- Code action groups
-            vim.keymap.set('n', '<Leader>a', rt.code_action_group.code_action_group, { buffer = bufnr })
-          end,
+    config = function()
+      vim.g.rustaceanvim = {
+        -- inlay_hints = {
+          -- highlight = "NonText",
+        -- },
+        tools = {
+          hover_actions = {
+            auto_focus = true,
+          },
         },
-      })
+        server = {
+          on_attach = function(client, bufnr)
+            require("lsp-inlayhints").on_attach(client, bufnr)
+            vim.keymap.set('n', '<leader>a', function() vim.cmd.RustLsp('codeAction') end,
+              { silent = true, buffer = bufnr, description = "code action" })
+          end
+        }
+      }
     end
   },
 }

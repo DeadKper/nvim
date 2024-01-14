@@ -91,6 +91,8 @@ vim.api.nvim_create_autocmd('UIEnter', {
     if vim.api.nvim_buf_get_name(0) .. vim.api.nvim_buf_get_number(0) == '3' then
       vim.api.nvim_buf_delete(1, {})
     end
+    -- Add custom inlay hints colors
+    vim.cmd.hi('LspInlayHint guibg=#00000000 guifg=#d8d8d8')
   end
 })
 
