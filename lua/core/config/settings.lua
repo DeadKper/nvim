@@ -92,7 +92,7 @@ vim.api.nvim_create_autocmd('UIEnter', {
       vim.api.nvim_buf_delete(1, {})
     end
     -- Add custom inlay hints colors
-    vim.cmd.hi('LspInlayHint guibg=#00000000 guifg=#d8d8d8')
+    vim.cmd.hi('LspInlayHint guibg=#00000000 guifg=#d8d8d8 gui=italic')
   end
 })
 
