@@ -104,3 +104,6 @@ map('n', '<leader>ff', [[mzgg=G`z]], { desc = '[F]ormat [F]ile indent' })
 -- Indent with tab
 map('v', '<tab>', [[>gv]])
 map('v', '<S-tab>', [[<gv]])
+
+-- Delete everything in the file
+map('n', '<leader>fd', [[ggdG]], { desc = '[F]ile [D]elete' })
