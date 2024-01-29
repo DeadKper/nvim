@@ -68,6 +68,7 @@ map('n', 'Q', [[<Nop>]])
 
 -- Replace text
 map('n', '<leader>s', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = 'Replace word in cursor' })
+map('v', '<leader>s', [[:<C-u>'<,'>s/]], { desc = 'Replace in selection', noremap = true })
 
 -- Open proyect in new session
 map('n', '<leader>pw', [[<cmd>silent !ps -t w<CR>]], { desc = 'Open [P]royect in tmux [W]indow' })
