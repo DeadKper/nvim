@@ -153,6 +153,7 @@ return {
     local servers = {
       -- clangd = {},
       -- gopls = {},
+      jdtls = {},
       pyright = {}, -- Python
       rust_analyzer = {},
       biome = {},   -- Javascript, Typescript, Json
