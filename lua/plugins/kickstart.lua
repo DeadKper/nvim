@@ -32,4 +32,7 @@ return {
       --  Check out: https://github.com/echasnovski/mini.nvim
     end,
   },
+
+  -- Add more icons
+  { 'nvim-tree/nvim-web-devicons', lazy = true },
 }
