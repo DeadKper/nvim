@@ -18,7 +18,6 @@ return {
         'diff',
         {
           'diagnostics',
-
           symbols = icons.diagnostics,
         },
       },
