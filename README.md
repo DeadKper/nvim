@@ -1,5 +1,10 @@
 # kickstart.nvim
 
+## Disclaimer
+
+This is a fork o kickstart.nvim heavily changed to suit my needs.
+Would recommend to checkout [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) to make your own version
+
 ## Introduction
 
 A starting point for Neovim that is:
@@ -47,15 +52,13 @@ Neovim's configurations are located under the following paths, depending on your
 
 Clone kickstart.nvim:
 
-<details><summary> Linux and Mac </summary>
+<summary> Linux and Mac </summary>
 
 ```sh
-git clone https://github.com/nvim-lua/kickstart.nvim.git "${XDG_CONFIG_HOME:-$HOME/.config}"/nvim
+sh -c 'git clone https://github.com/nvim-lua/kickstart.nvim.git "${XDG_CONFIG_HOME:-$HOME/.config}"/nvim'
 ```
 
-</details>
-
-<details><summary> Windows </summary>
+<summary> Windows </summary>
 
 If you're using `cmd.exe`:
 
@@ -68,8 +71,6 @@ If you're using `powershell.exe`
 ```
 git clone https://github.com/nvim-lua/kickstart.nvim.git $env:USERPROFILE\AppData\Local\nvim\ 
 ```
-
-</details>
 
 ### Post Installation
 
