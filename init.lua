@@ -1,0 +1,2 @@
+-- [[ Require config ]]
+require 'config'
