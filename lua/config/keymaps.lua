@@ -79,7 +79,7 @@ map('n', 'N', [[Nzzzv]])
 -- map({ 'n', 'v' }, '<leader>y', [["+y]])
 
 -- Yank all file to clipboard
-map('n', '<leader>ya', [[mzG$vgg^"+y`z]], { desc = 'Yank file to clipboard' })
+map('n', '<leader>fya', [[mzG$vgg^"+y`z]], { desc = '[F]ile [Y]ank [A]ll' })
 
 -- Delete/paste without yank
 map({ 'n', 'v' }, '<leader>d', [["_d]])

@@ -58,18 +58,21 @@ vim.opt.scrolloff = 8
 
 -- [[ Custom settings ]]
 
+-- Disable word highlight
+vim.opt.hlsearch = false
+
 -- Enable wordwrap and break indent
-vim.o.linebreak = true
-vim.o.breakindent = true
+vim.opt.linebreak = true
+vim.opt.breakindent = true
 
 -- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
+vim.opt.completeopt = 'menuone,noselect'
 
 -- NOTE: You should make sure your terminal supports this
-vim.o.termguicolors = true
+vim.opt.termguicolors = true
 
 -- Indent conf
-vim.o.smartindent = true
+vim.opt.smartindent = true
 vim.opt.breakindentopt = { 'shift:2', 'sbr' }
 
 -- Remove swapfile
@@ -87,7 +90,7 @@ vim.opt.incsearch = true
 --     undodir,
 --   }
 -- end
--- vim.o.undodir = undodir
+-- vim.opt.undodir = undodir
 
 -- Set defaults for vim-sleuth
 vim.go.tabstop = 4
