@@ -3,6 +3,9 @@ return {
     'neovim/nvim-lspconfig',
     event = 'VimEnter',
     dependencies = {
+      -- Add neodev to make completion available in the lsp
+      { 'folke/neodev.nvim', opts = {} },
+
       -- Automatically install LSPs and related tools to stdpath for neovim
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',

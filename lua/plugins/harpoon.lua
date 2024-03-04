@@ -8,6 +8,7 @@ return { -- harpoon
   config = function()
     local harpoon = require 'harpoon'
 
+    ---@diagnostic disable-next-line:missing-parameter
     harpoon:setup()
 
     vim.keymap.set('n', '<leader>ha', function()
