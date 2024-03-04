@@ -1,5 +1,4 @@
 -- Make remaps easier
----@type function
 local map = vim.keymap.set
 
 -- [[ Basic Keymaps ]]
