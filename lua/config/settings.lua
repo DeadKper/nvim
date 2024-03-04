@@ -103,3 +103,7 @@ vim.opt.incsearch = true
 vim.go.tabstop = 4
 vim.go.shiftwidth = 4
 vim.go.softtabstop = -1
+
+vim.opt.fillchars = {
+  eob = ' ',
+}
