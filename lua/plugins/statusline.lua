@@ -1,4 +1,4 @@
-local icons = require 'share.icons'
+local icons = require 'icons'
 
 return {
   -- Set lualine as statusline
@@ -10,7 +10,7 @@ return {
     options = {
       icons_enabled = true,
       theme = 'onedark',
-      component_separators = icons.misc.indents.center,
+      component_separators = icons.indents.center,
       section_separators = '',
     },
     sections = {
