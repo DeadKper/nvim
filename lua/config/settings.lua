@@ -104,6 +104,7 @@ vim.go.tabstop = 4
 vim.go.shiftwidth = 4
 vim.go.softtabstop = -1
 
+-- Set fold config
 vim.opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 vim.opt.foldcolumn = '1'
 vim.o.foldlevel = 99
