@@ -137,3 +137,12 @@ map('v', '<S-tab>', [[<gv]])
 
 -- Delete everything in the file
 map('n', '<leader>fd', [[ggdG]], { desc = '[F]ile [D]elete' })
+
+-- Diff open files
+map('n', '<leader>dd', function ()
+  vim.cmd 'windo diffthis'
+end, { desc = '[D]ocument [D]iff' })
+
+map('n', '<leader>do', function ()
+  vim.cmd 'windo diffoff'
+end, { desc = '[D]ocument diff [O]ff' })
