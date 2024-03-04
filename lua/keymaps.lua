@@ -72,24 +72,21 @@ map('n', 'n', [[nzzzv]])
 map('n', 'N', [[Nzzzv]])
 
 -- Paste in insert mode
--- map('i', '<M-v>', [[<C-r>"]], { desc = 'Paste from yanked/deleted text' })
--- map('i', '<C-v>', [[<C-r>+]], { desc = 'Paste from clipboard' })
-
--- Yank + copy to clipboard
--- map({ 'n', 'v' }, '<leader>y', [["+y]])
+map('i', '<C-v>', [[<C-r>+]], { desc = 'Paste from clipboard' })
+map('i', '<M-v>', [[<C-r>"]], { desc = 'Paste from unnamed register' })
 
 -- Yank all file to clipboard
 map('n', '<leader>fy', [[mzG$vgg^"+y`z]], { desc = '[F]ile [Y]ank' })
 
--- Delete/paste without yank
--- map({ 'n', 'v' }, '<leader>d', [["_d]])
--- map('x', '<leader>p', [["_dP]])
+-- Yank to system clipboard
+map({ 'n', 'v'  }, 'y', [["+y]])
+map({ 'n', 'v'  }, '<leader>y', [[y]])
 
--- Delete only deletes, don't yank
-map('x', 'd', [["_d]])
-
--- Paste without yanking to clipboard, don't know why this works but it does
-map('x', 'p', [["+P]])
+-- Paste from system clipboard
+map('n', 'p', [["+p]])
+map('v', 'p', [["+P]])
+map('n', '<leader>p', [[p]])
+map('v', '<leader>p', [[P]])
 
 -- I trust Primeagen enough
 map('i', '<C-c>', [[<Esc>]])
@@ -99,10 +96,6 @@ map('n', 'Q', [[<Nop>]])
 
 -- Replace text
 map('n', '<leader>s', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = 'Replace word in cursor' })
-
--- Open proyect in new session
-map('n', '<leader>pw', [[<cmd>silent !ps -t w<CR>]], { desc = 'Open [P]royect in tmux [W]indow' })
-map('n', '<leader>ps', [[<cmd>silent !ps -t s<CR>]], { desc = 'Open [P]royect in tmux [S]ession' })
 
 local function BdeleteAll(keep_current, force)
   local suffix = ''
