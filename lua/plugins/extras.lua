@@ -35,4 +35,6 @@ return {
 
   -- Add more icons
   { 'nvim-tree/nvim-web-devicons', lazy = true },
+
+  { 'lambdalisue/suda.vim' }
 }
