@@ -43,21 +43,6 @@ vim.api.nvim_create_autocmd('BufEnter', {
   end,
 })
 
--- Auto indent
-local indent_on_save = false
-vim.api.nvim_create_user_command('AutoIndentToggle', function()
-  indent_on_save = not indent_on_save
-  print('Setting autoindent to: ' .. tostring(indent_on_save))
-end, {})
-
-vim.api.nvim_create_autocmd('BufWritePre', {
-  callback = function()
-    if indent_on_save then
-      send_keys([[mzgg=G`z]], 'n')
-    end
-  end,
-})
-
 -- Execute on ui attachment
 vim.api.nvim_create_autocmd('UIEnter', {
   callback = function()
