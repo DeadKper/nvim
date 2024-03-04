@@ -6,9 +6,13 @@ return {
   -- See `:help gitsigns` to understand what the configuration keys do
   { -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
-    opts = {
-      signs = require('icons').git,
-    },
+    config = function()
+      local signs = {}
+      for key, value in pairs(require('icons').git) do
+        signs[key] = { text = value }
+      end
+      require('gitsigns').setup({ signs = signs })
+    end,
   },
 
   { -- Allows usage of git inside vim
