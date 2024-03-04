@@ -82,8 +82,14 @@ map('n', 'N', [[Nzzzv]])
 map('n', '<leader>fy', [[mzG$vgg^"+y`z]], { desc = '[F]ile [Y]ank' })
 
 -- Delete/paste without yank
-map({ 'n', 'v' }, '<leader>d', [["_d]])
-map('x', '<leader>p', [["_dP]])
+-- map({ 'n', 'v' }, '<leader>d', [["_d]])
+-- map('x', '<leader>p', [["_dP]])
+
+-- Delete only deletes, don't yank
+map('x', 'd', [["_d]])
+
+-- Paste without yanking to clipboard, don't know why this works but it does
+map('x', 'p', [["+P]])
 
 -- I trust Primeagen enough
 map('i', '<C-c>', [[<Esc>]])
@@ -104,6 +110,7 @@ local function BdeleteAll(keep_current, force)
     suffix = '!'
   end
   vim.cmd([[1,$bd]] .. suffix)
+  ---@diagnostic disable-next-line:undefined-field
   local empty = vim.api.nvim_buf_get_number(0)
   if keep_current then
     vim.cmd [[e#]]
@@ -138,10 +145,10 @@ map('v', '<S-tab>', [[<gv]])
 map('n', '<leader>fd', [[ggdG]], { desc = '[F]ile [D]elete' })
 
 -- Diff open files
-map('n', '<leader>dd', function ()
+map('n', '<leader>dd', function()
   vim.cmd 'windo diffthis'
 end, { desc = '[D]ocument [D]iff' })
 
-map('n', '<leader>do', function ()
+map('n', '<leader>do', function()
   vim.cmd 'windo diffoff'
 end, { desc = '[D]ocument diff [O]ff' })
