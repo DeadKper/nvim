@@ -3,6 +3,7 @@ local icons = require 'share.icons'
 return {
   -- Set lualine as statusline
   'nvim-lualine/lualine.nvim',
+  event = 'VimEnter',
   dependencies = { 'nvim-tree/nvim-web-devicons', opt = true },
   -- See `:help lualine.txt`
   opts = {

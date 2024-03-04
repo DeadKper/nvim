@@ -1,6 +1,7 @@
 return {
   { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
+    event = 'VimEnter',
     dependencies = {
       -- Automatically install LSPs and related tools to stdpath for neovim
       'williamboman/mason.nvim',
@@ -212,6 +213,7 @@ return {
 
   { -- Autoformat
     'stevearc/conform.nvim',
+    event = 'VimEnter',
     config = function()
       local conform = require 'conform'
       conform.setup {

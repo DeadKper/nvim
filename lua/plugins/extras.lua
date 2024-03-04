@@ -2,13 +2,14 @@ return {
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
   -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
+  { 'numToStr/Comment.nvim', opts = {}, event = 'VimEnter' },
 
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 
   { -- Collection of various small independent plugins/modules
     'echasnovski/mini.nvim',
+    event = 'VimEnter',
     config = function()
       -- Better Around/Inside textobjects
       --
@@ -38,6 +39,7 @@ return {
 
   { -- Allow neovim to write to protected files
     'lambdalisue/suda.vim',
+    event = 'VimEnter',
     init = function()
       vim.g.suda_smart_edit = 1
     end,

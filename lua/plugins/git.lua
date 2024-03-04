@@ -13,6 +13,7 @@ return {
 
   { -- Allows usage of git inside vim
     'tpope/vim-fugitive',
+    event = 'VimEnter',
     config = function()
       vim.keymap.set('n', '<leader>gd', [[:Gvdiff<CR>]], { desc = '[G]it [D]iff', silent = true })
     end,
