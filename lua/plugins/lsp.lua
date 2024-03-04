@@ -347,8 +347,7 @@ return {
     'mrcjkb/rustaceanvim',
     version = '^3', -- Recommended
     ft = { 'rust' },
-    event = 'VimEnter',
-
+    event = 'VeryLazy',
     dependencies = {
       'neovim/nvim-lspconfig',
       'nvim-lua/plenary.nvim',
@@ -358,7 +357,6 @@ return {
         opts = {},
       },
     },
-
     config = function()
       vim.g.rustaceanvim = {
         -- inlay_hints = {

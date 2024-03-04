@@ -58,34 +58,10 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   end,
 })
 
--- -- Execute on ui attachment
--- vim.api.nvim_create_autocmd('UIEnter', {
---   callback = function()
---     -- Make cursor blue
---     vim.api.nvim_set_hl(0, 'Cursor', { bg = '#61afef' })
---     -- Make cursor blink
---     vim.opt.guicursor = 'n-v-c:block-Cursor,i-ci-ve:ver25-Cursor,r-cr-o:hor20-Cursor,a:blinkon100'
---     -- Close [No Name] buffer when opening folder
---     if vim.api.nvim_buf_get_name(0) .. vim.api.nvim_buf_get_number(0) == '3' then
---       vim.api.nvim_buf_delete(1, {})
---     end
---     -- Add custom inlay hints colors
---     vim.cmd.hi 'LspInlayHint guibg=#00000000 guifg=#d8d8d8 gui=italic'
---   end,
--- })
---
--- -- Remove relative line numbers on insert mode
--- vim.api.nvim_create_autocmd('InsertEnter', {
---   callback = function()
---     if vim.wo.number then
---       vim.opt_local.relativenumber = false
---     end
---   end,
--- })
--- vim.api.nvim_create_autocmd('InsertLeave', {
---   callback = function()
---     if vim.wo.number then
---       vim.opt_local.relativenumber = true
---     end
---   end,
--- })
+-- Execute on ui attachment
+vim.api.nvim_create_autocmd('UIEnter', {
+  callback = function()
+    -- Add custom inlay hints colors
+    vim.cmd.hi 'LspInlayHint guibg=#00000000 guifg=#d8d8d8 gui=italic'
+  end,
+})
