@@ -36,5 +36,10 @@ return {
   -- Add more icons
   { 'nvim-tree/nvim-web-devicons', lazy = true },
 
-  { 'lambdalisue/suda.vim' }
+  { -- Allow neovim to write to protected files
+    'lambdalisue/suda.vim',
+    init = function()
+      vim.g.suda_smart_edit = 1
+    end,
+  },
 }
