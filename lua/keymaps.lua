@@ -82,6 +82,10 @@ map('n', '<leader>fy', [[mzG$vgg^"+y`z]], { desc = '[F]ile [Y]ank' })
 map({ 'n', 'v'  }, 'y', [["+y]])
 map({ 'n', 'v'  }, '<leader>y', [[y]])
 
+-- Cut to system clipboard
+map({ 'n', 'v'  }, 'x', [["+x]])
+map({ 'n', 'v'  }, '<leader>x', [[x]])
+
 -- Paste from system clipboard
 map('n', 'p', [["+p]])
 map('v', 'p', [["+P]])
