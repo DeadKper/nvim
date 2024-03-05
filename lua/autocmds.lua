@@ -1,7 +1,3 @@
-local function send_keys(keys, mode)
-  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(keys, true, true, true), mode, true)
-end
-
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
