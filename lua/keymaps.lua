@@ -48,6 +48,8 @@ map('i', '<C-k>', [[<C-o>gk]], { silent = true })
 map('i', '<C-j>', [[<C-o>gj]], { silent = true })
 map('i', '<C-h>', [[<Left>]], { silent = true })
 map('i', '<C-l>', [[<Right>]], { silent = true })
+map('i', '<C-H>', [[<C-o>b]], { silent = true })
+map('i', '<C-L>', [[<C-o>w]], { silent = true })
 
 -- File explorer
 map('n', '<leader>fe', vim.cmd.Ex, { desc = '[F]ile [E]xplorer' })
