@@ -19,9 +19,6 @@ return {
     'williamboman/mason.nvim',
     'jay-babu/mason-nvim-dap.nvim',
 
-    -- Add per project config
-    'ldelossa/nvim-dap-projects',
-
     -- Add your own debuggers here
     'leoluz/nvim-dap-go',
     'mfussenegger/nvim-jdtls',
@@ -112,7 +109,15 @@ return {
         end
       end
 
-      require('nvim-dap-projects').search_project_config()
+      for _, conf_file in ipairs({ "./.nvim-dap/nvim-dap.lua", "./.nvim-dap.lua", "./.nvim/nvim-dap.lua" }) do
+        local file = io.open(conf_file)
+        if file ~= nil then
+          file:close()
+          vim.cmd(":luafile " .. conf_file)
+          break
+        end
+      end
+
       dap.continue()
     end
 
