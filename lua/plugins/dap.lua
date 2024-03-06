@@ -9,7 +9,7 @@
 return {
   -- NOTE: Yes, you can install new plugins here!
   'mfussenegger/nvim-dap',
-  event = 'VimEnter',
+  ft = { 'java', 'go' },
   -- NOTE: And you can specify dependencies as well
   dependencies = {
     -- Creates a beautiful debugger UI
@@ -19,11 +19,12 @@ return {
     'williamboman/mason.nvim',
     'jay-babu/mason-nvim-dap.nvim',
 
-    -- Add your own debuggers here
-    'leoluz/nvim-dap-go',
-
     -- Add per project config
     'ldelossa/nvim-dap-projects',
+
+    -- Add your own debuggers here
+    'leoluz/nvim-dap-go',
+    'mfussenegger/nvim-jdtls',
   },
   config = function()
     local dap = require 'dap'
@@ -105,14 +106,13 @@ return {
                 vim.fn.stdpath 'config' .. '/lua/debug/' .. value .. '.lua',
                 root .. '/.nvim/nvim-dap.lua',
               }
-
-              require('nvim-dap-projects').search_project_config()
               break
             end
           end
         end
       end
 
+      require('nvim-dap-projects').search_project_config()
       dap.continue()
     end
 
