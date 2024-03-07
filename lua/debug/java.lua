@@ -1,10 +1,10 @@
 local dap = require 'dap'
 
 ---@diagnostic disable-next-line:param-type-mismatch
-local name = vim.fs.basename(vim.loop.cwd())
+local name = require('utils').find_root 'java'
 local main = vim.fn.system { 'rg', '-Fl', 'public static void main' }
 ---@diagnostic disable-next-line:need-check-nil
-main = main:match('(.+[.]java)')
+main = main:match '(.+[.]java)'
 local package = vim.fn.system { 'rg', '^package [\\w.]+;', main }
 
 dap.configurations.java = {
@@ -18,7 +18,7 @@ dap.configurations.java = {
 
     javaExec = vim.fn.system { 'which', 'java' },
     ---@diagnostic disable-next-line:need-check-nil
-    mainClass = package:match("^package (.+);") .. '.' .. vim.fs.basename(main):match("(.+)[.]java$"),
+    mainClass = package:match '^package (.+);' .. '.' .. vim.fs.basename(main):match '(.+)[.]java$',
 
     -- If using the JDK9+ module system, this needs to be extended
     -- `nvim-jdtls` would automatically populate this property
