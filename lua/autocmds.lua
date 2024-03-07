@@ -12,33 +12,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
-local indent = {
-  shiftwidth = {
-    valid = { 0, 2, 4 },
-    default = 4,
-  },
-
-  tabstop = {
-    valid = { 2, 4 },
-    default = 4,
-  },
-}
-
-vim.api.nvim_create_autocmd('BufEnter', {
-  callback = function()
-    -- Adjust shiftwidth to a valid config after vim-sleuth sets it
-    if not vim.tbl_contains(indent.shiftwidth.valid, vim.bo.shiftwidth) then
-      vim.bo.shiftwidth = indent.shiftwidth.default
-    end
-    -- Adjust tabstop to be equal to shiftwidth when possible
-    if vim.tbl_contains(indent.tabstop.valid, vim.bo.shiftwidth) then
-      vim.bo.tabstop = vim.bo.shiftwidth
-    else
-      vim.bo.tabstop = indent.tabstop.default
-    end
-  end,
-})
-
 -- Execute on ui attachment
 vim.api.nvim_create_autocmd('UIEnter', {
   callback = function()
