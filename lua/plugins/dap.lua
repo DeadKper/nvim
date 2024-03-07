@@ -46,52 +46,25 @@ return {
     }
 
     local function start()
-      local conf = vim.fs.find({ '.nvim-dap.lua', '.nvim-dap', '.nvim' }, {
-        upward = true,
-        stop = vim.loop.os_homedir(),
-        path = vim.fs.dirname(vim.api.nvim_buf_get_name(0)),
-      })
+      local utils = require 'utils'
+      local conf_file = utils.find_config()
 
-      if next(conf) == nil then
+      if conf_file == nil then
+        _, conf_file = next(utils.conf_files)
+
         local types = {}
         for _, value in pairs(vim.lsp.get_active_clients()) do
-          for _, v in pairs(value.config.filetypes) do
-            table.insert(types, v)
+          if value.config.filetypes ~= nil then
+            for _, v in pairs(value.config.filetypes) do
+              table.insert(types, v)
+            end
           end
         end
 
         if next(types) ~= nil then
-          local root_markers = {
-            ['java'] = {
-              'settings.gradle',
-              'settings.gradle.kts',
-              'pom.xml',
-              'build.gradle',
-              'build.gradle.kts',
-              'mvnw',
-              'gradlew',
-              '.git',
-            },
-          }
-
           for _, value in pairs(types) do
-            if root_markers[value] ~= nil then
-              ---@type table|string
-              local root = vim.fs.find(root_markers[value], {
-                upward = true,
-                stop = vim.loop.os_homedir(),
-                path = vim.fs.dirname(vim.api.nvim_buf_get_name(0)),
-              })
-
-              ---@diagnostic disable-next-line:param-type-mismatch
-              if next(root) == nil then
-                local res = vim.loop.cwd()
-                if res ~= nil then
-                  root = res
-                end
-              else
-                root = vim.fs.dirname(root[1])
-              end
+            if utils.root_markers[value] ~= nil then
+              local root = utils.find_root(utils.root_markers[value])
 
               vim.fn.system {
                 'mkdir',
@@ -101,7 +74,7 @@ return {
               vim.fn.system {
                 'cp',
                 vim.fn.stdpath 'config' .. '/lua/debug/' .. value .. '.lua',
-                root .. '/.nvim/nvim-dap.lua',
+                root .. '/' .. conf_file,
               }
               break
             end
@@ -109,15 +82,9 @@ return {
         end
       end
 
-      for _, conf_file in ipairs({ "./.nvim-dap/nvim-dap.lua", "./.nvim-dap.lua", "./.nvim/nvim-dap.lua" }) do
-        local file = io.open(conf_file)
-        if file ~= nil then
-          file:close()
-          vim.cmd(":luafile " .. conf_file)
-          break
-        end
+      if conf_file ~= nil then
+        vim.cmd(':luafile ' .. conf_file)
       end
-
       dap.continue()
     end
 
