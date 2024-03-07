@@ -92,13 +92,8 @@ vim.opt.incsearch = true
 -- end
 -- vim.opt.undodir = undodir
 
--- Set defaults for vim-sleuth
-vim.go.tabstop = 4
-vim.go.shiftwidth = 4
-vim.go.softtabstop = -1
-
 -- Disable eob fill chars
 vim.opt.fillchars = { eob = ' ' }
 
 -- Disable autofolding
-vim.opt.foldenable = true
+vim.opt.foldenable = false
