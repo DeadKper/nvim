@@ -1,6 +1,6 @@
 return {
   'kevinhwang91/nvim-ufo',
-  event = 'VimEnter',
+  event = 'BufReadPost',
   dependencies = {
     'kevinhwang91/promise-async',
     'nvim-treesitter/nvim-treesitter',
@@ -18,13 +18,23 @@ return {
         }
       end,
     },
+    {
+      'anuvyklack/fold-preview.nvim',
+      config = function()
+        local fold_preview = require('fold-preview')
+        fold_preview.setup { default_keybindings = false }
+
+        vim.keymap.set('n', 'zp', fold_preview.toggle_preview, { desc = 'Toggle fold preview' })
+      end
+    },
   },
   init = function()
     vim.opt.fillchars = { eob = ' ', fold = ' ', foldopen = '', foldsep = ' ', foldclose = '' }
+    vim.opt.foldmethod = 'manual'
     vim.opt.foldenable = true
     vim.opt.foldcolumn = '1'
-    vim.opt.foldlevel = 9999
-    vim.opt.foldlevelstart = 9999
+    vim.opt.foldlevel = 99
+    vim.opt.foldlevelstart = 99
   end,
   config = function()
     local ufo = require 'ufo'
