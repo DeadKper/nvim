@@ -86,6 +86,9 @@ map({ 'n', 'v' }, '<leader>y', [[y]])
 map({ 'n', 'v' }, 'x', [["+x]])
 map({ 'n', 'v' }, '<leader>x', [[x]])
 
+-- Delete to system clipboard
+map({ 'n', 'v' }, '<leader>d', [["+d]])
+
 -- Paste from system clipboard
 map('n', 'p', [["+p]])
 map('v', 'p', [["+P]])

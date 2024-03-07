@@ -12,6 +12,8 @@ return { -- Useful plugin to show you pending keybinds.
       ['<leader>h'] = { name = '[H]arpoon', _ = 'which_key_ignore' },
       ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
       ['<leader>p'] = 'which_key_ignore',
+      ['<leader>d'] = 'which_key_ignore',
+      ['<leader>x'] = 'which_key_ignore',
       ['<leader>y'] = 'which_key_ignore',
     }
 
@@ -25,7 +27,6 @@ return { -- Useful plugin to show you pending keybinds.
       callback = function()
         wk.register {
           ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
-          ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
           ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
           ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
         }
