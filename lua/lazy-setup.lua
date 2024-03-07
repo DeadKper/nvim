@@ -14,9 +14,13 @@ local folders = { 'plugins' }
 for _, folder in ipairs(folders) do
   local path = vim.loop.fs_scandir(vim.fn.stdpath 'config' .. '/lua/' .. folder)
   if path ~= nil then
+    local file
     local plugin = vim.loop.fs_scandir_next(path)
     while plugin ~= nil do
-      table.insert(plugins, require(folder .. '.' .. plugin:match( "(.-).lua$" )))
+      file = plugin:match '(.+)[.]lua$'
+      if file ~= nil then
+        table.insert(plugins, require(folder .. '.' .. file))
+      end
       plugin = vim.loop.fs_scandir_next(path)
     end
   end
