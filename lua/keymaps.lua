@@ -57,11 +57,11 @@ map('n', '<C-p>', [[:bprevious<CR>]], { desc = 'Previous buffer', silent = true 
 map('n', '<C-n>', [[:bnext<CR>]], { desc = 'Next buffer', silent = true })
 
 -- Move selection
-map('v', 'J', [[:m '>+1<CR>gv=gv]])
-map('v', 'K', [[:m '<-2<CR>gv=gv]])
+map('v', 'J', [[:m '>+1<CR>gv=gv]], { silent = true })
+map('v', 'K', [[:m '<-2<CR>gv=gv]], { silent = true })
 
 -- Append line below to current
-map('n', 'J', [[mzJ`z]])
+map('n', 'J', [[mzJ`z]], { silent = true })
 
 -- Jump half page with cursor in the middle
 map('n', '<C-d>', [[<C-d>zz]])
@@ -79,12 +79,12 @@ map('i', '<M-v>', [[<C-r>"]], { desc = 'Paste from unnamed register' })
 map('n', '<leader>fy', [[mzG$vgg^"+y`z]], { desc = '[F]ile [Y]ank' })
 
 -- Yank to system clipboard
-map({ 'n', 'v'  }, 'y', [["+y]])
-map({ 'n', 'v'  }, '<leader>y', [[y]])
+map({ 'n', 'v' }, 'y', [["+y]])
+map({ 'n', 'v' }, '<leader>y', [[y]])
 
 -- Cut to system clipboard
-map({ 'n', 'v'  }, 'x', [["+x]])
-map({ 'n', 'v'  }, '<leader>x', [[x]])
+map({ 'n', 'v' }, 'x', [["+x]])
+map({ 'n', 'v' }, '<leader>x', [[x]])
 
 -- Paste from system clipboard
 map('n', 'p', [["+p]])
