@@ -12,6 +12,12 @@ return {
     },
   },
   config = function()
+    local utils = require 'utils'
+    table.insert(utils.loaded_languages, 'rust')
+    local conf_file = utils.find_config()
+    if conf_file ~= nil then
+      vim.cmd(':luafile ' .. conf_file)
+    end
     vim.g.rustaceanvim = {
       inlay_hints = {
         highlight = 'NonText',
