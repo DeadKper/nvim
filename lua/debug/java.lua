@@ -26,4 +26,4 @@ dap.configurations.java = {
   },
 }
 
-require('jdtls').setup_dap(dap.configurations.java)
+require('jdtls').setup_dap()
