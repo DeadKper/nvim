@@ -16,7 +16,7 @@ return {
         '-Dlog.protocol=true',
         '-Dlog.level=ALL',
         '-javaagent:' .. vim.fn.stdpath 'data' .. '/mason/packages/jdtls/lombok.jar',
-        '-Xms1g',
+        '-Xmx1g',
         '--add-modules=ALL-SYSTEM',
         '--add-opens',
         'java.base/java.util=ALL-UNNAMED',
@@ -32,11 +32,20 @@ return {
       },
 
       root_dir = root,
+
+      init_options = {
+        bundles = {
+          utils.find('debug[.]plugin-', vim.fn.stdpath 'data' .. '/mason/share/java-debug-adapter/')[1],
+        },
+      },
     }
 
+    table.insert(utils.loaded_languages, 'java')
     local jdtls = require 'jdtls'
-
     jdtls.start_or_attach(config)
-    jdtls.setup_dap()
+    local conf_file = utils.find_config(root)
+    if conf_file ~= nil then
+      vim.cmd(':luafile ' .. conf_file)
+    end
   end,
 }
