@@ -22,8 +22,8 @@ return {
       end
     end
 
-    -- Set autocmd on BufWinEnter so it loads after sleuth
-    vim.api.nvim_create_autocmd({ 'BufWinEnter' }, {
+    -- Set autocmd on VimEnter so it loads after sleuth
+    vim.api.nvim_create_autocmd({ 'VimEnter' }, {
       once = true,
       group = vim.api.nvim_create_augroup('sleuth-custom', { clear = true }),
       callback = function()
