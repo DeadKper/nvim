@@ -24,6 +24,8 @@ M.root_markers = {
   },
 }
 
+M.loaded_languages = {}
+
 ---@param check table<string>|string|nil table of root markers, string indicating the language or nil to check for default markers
 ---@return string|nil root the root of the project or nil if not found
 function M.find_root(check)
@@ -45,7 +47,7 @@ function M.find_root(check)
     path = vim.fs.dirname(vim.api.nvim_buf_get_name(0)),
   })
 
-  if next(root) == nil then
+  if next(root) == nil or root[1]:match('^/') == nil then
     return vim.loop.cwd()
   else
     return vim.fs.dirname(root[1])

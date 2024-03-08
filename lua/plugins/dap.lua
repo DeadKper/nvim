@@ -45,60 +45,17 @@ return {
       },
     }
 
-    local function start()
-      local types = {}
-      for _, value in pairs(vim.lsp.get_active_clients()) do
-        if value.config.filetypes ~= nil then
-          for _, v in pairs(value.config.filetypes) do
-            table.insert(types, v)
-          end
-        end
-      end
-
-      local utils = require 'utils'
-      local conf_file = utils.find_config()
-
-      if next(types) ~= nil then
-        for _, value in pairs(types) do
-          if utils.root_markers[value] == nil then
-            goto continue
-          end
-          local root = utils.find_root(utils.root_markers[value])
-          if root ~= nil then
-            conf_file = utils.setup_config(value, root)
-            break
-          end
-          ::continue::
-        end
-      end
-
-      if conf_file ~= nil then
-        vim.cmd(':luafile ' .. conf_file)
-      end
-      dap.continue()
-    end
-
     local function continue()
-      local types = {}
-      for _, value in pairs(vim.lsp.get_active_clients()) do
-        if value.config.filetypes ~= nil then
-          for _, v in pairs(value.config.filetypes) do
-            table.insert(types, v)
-          end
-        end
-      end
-
       local utils = require 'utils'
       local conf_file = utils.find_config()
       local root
 
-      if conf_file == nil and next(types) ~= nil then
-        for _, value in ipairs(types) do
+      if conf_file == nil and next(utils.loaded_languages) ~= nil then
+        for _, value in ipairs(utils.loaded_languages) do
           if utils.root_markers[value] ~= nil then
             root = utils.find_root(utils.root_markers[value])
             if root ~= nil then
               conf_file = utils.setup_config(value, root)
-              print(conf_file)
               break
             end
           end
