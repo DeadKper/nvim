@@ -30,7 +30,5 @@ return {
         end,
       },
     }
-
-    require('utils').setup_config 'rust'
   end,
 }
