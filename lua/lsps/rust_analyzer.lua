@@ -1,7 +1,7 @@
 return {
   'mrcjkb/rustaceanvim',
-  version = '^3', -- Recommended
-  event = 'VeryLazy',
+  version = '^4', -- Recommended
+  ft = { 'rust' },
   dependencies = {
     'neovim/nvim-lspconfig',
     'nvim-lua/plenary.nvim',
@@ -13,9 +13,9 @@ return {
   },
   config = function()
     vim.g.rustaceanvim = {
-      -- inlay_hints = {
-      -- highlight = "NonText",
-      -- },
+      inlay_hints = {
+        highlight = 'NonText',
+      },
       tools = {
         hover_actions = {
           auto_focus = true,
@@ -26,9 +26,11 @@ return {
           require('lsp-inlayhints').on_attach(client, bufnr)
           vim.keymap.set('n', '<leader>ca', function()
             vim.cmd.RustLsp 'codeAction'
-          end, { silent = true, buffer = bufnr, description = '[C]ode [A]ction' })
+          end, { silent = true, buffer = bufnr, description = 'LSP: [C]ode [A]ction' })
         end,
       },
     }
+
+    require('utils').setup_config 'rust'
   end,
 }

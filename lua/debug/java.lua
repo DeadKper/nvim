@@ -2,9 +2,7 @@ local dap = require 'dap'
 
 ---@diagnostic disable-next-line:param-type-mismatch
 local name = require('utils').find_root 'java'
-local main = vim.fn.system { 'rg', '-Fl', 'public static void main' }
----@diagnostic disable-next-line:need-check-nil
-main = main:match '(.+[.]java)'
+local main = vim.fn.system({ 'rg', '-l', [[^\s*public static void main\(]], '**.java' }):match '(.+[.]java)'
 local package = vim.fn.system { 'rg', '^package [\\w.]+;', main }
 
 dap.configurations.java = {

@@ -9,7 +9,8 @@
 return {
   -- NOTE: Yes, you can install new plugins here!
   'mfussenegger/nvim-dap',
-  ft = { 'java', 'go' },
+  lazy = true,
+  ft = { 'go' },
   -- NOTE: And you can specify dependencies as well
   dependencies = {
     -- Creates a beautiful debugger UI
@@ -21,7 +22,6 @@ return {
 
     -- Add your own debuggers here
     'leoluz/nvim-dap-go',
-    'mfussenegger/nvim-jdtls',
   },
   config = function()
     local dap = require 'dap'
@@ -46,36 +46,59 @@ return {
     }
 
     local function start()
+      local types = {}
+      for _, value in pairs(vim.lsp.get_active_clients()) do
+        if value.config.filetypes ~= nil then
+          for _, v in pairs(value.config.filetypes) do
+            table.insert(types, v)
+          end
+        end
+      end
+
       local utils = require 'utils'
       local conf_file = utils.find_config()
 
-      if conf_file == nil then
-        _, conf_file = next(utils.conf_files)
+      if next(types) ~= nil then
+        for _, value in pairs(types) do
+          if utils.root_markers[value] == nil then
+            goto continue
+          end
+          local root = utils.find_root(utils.root_markers[value])
+          if root ~= nil then
+            conf_file = utils.setup_config(value, root)
+            break
+          end
+          ::continue::
+        end
+      end
 
-        local types = {}
-        for _, value in pairs(vim.lsp.get_active_clients()) do
-          if value.config.filetypes ~= nil then
-            for _, v in pairs(value.config.filetypes) do
-              table.insert(types, v)
-            end
+      if conf_file ~= nil then
+        vim.cmd(':luafile ' .. conf_file)
+      end
+      dap.continue()
+    end
+
+    local function continue()
+      local types = {}
+      for _, value in pairs(vim.lsp.get_active_clients()) do
+        if value.config.filetypes ~= nil then
+          for _, v in pairs(value.config.filetypes) do
+            table.insert(types, v)
           end
         end
+      end
 
-        if next(types) ~= nil then
-          for _, value in pairs(types) do
-            if utils.root_markers[value] ~= nil then
-              local root = utils.find_root(utils.root_markers[value])
+      local utils = require 'utils'
+      local conf_file = utils.find_config()
+      local root
 
-              vim.fn.system {
-                'mkdir',
-                root .. '/.nvim',
-              }
-
-              vim.fn.system {
-                'cp',
-                vim.fn.stdpath 'config' .. '/lua/debug/' .. value .. '.lua',
-                root .. '/' .. conf_file,
-              }
+      if conf_file == nil and next(types) ~= nil then
+        for _, value in ipairs(types) do
+          if utils.root_markers[value] ~= nil then
+            root = utils.find_root(utils.root_markers[value])
+            if root ~= nil then
+              conf_file = utils.setup_config(value, root)
+              print(conf_file)
               break
             end
           end
@@ -89,7 +112,7 @@ return {
     end
 
     -- Basic debugging keymaps, feel free to change to your liking!
-    vim.keymap.set('n', '<F5>', start, { desc = 'Debug: Start/Continue' })
+    vim.keymap.set('n', '<F5>', continue, { desc = 'Debug: Start/Continue' })
     vim.keymap.set('n', '<F1>', dap.step_into, { desc = 'Debug: Step Into' })
     vim.keymap.set('n', '<F2>', dap.step_over, { desc = 'Debug: Step Over' })
     vim.keymap.set('n', '<F3>', dap.step_out, { desc = 'Debug: Step Out' })

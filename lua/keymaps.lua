@@ -76,7 +76,7 @@ map('i', '<C-v>', [[<C-r>+]], { desc = 'Paste from clipboard' })
 map('i', '<M-v>', [[<C-r>"]], { desc = 'Paste from unnamed register' })
 
 -- Yank all file to clipboard
-map('n', '<leader>fy', [[mzG$vgg^"+y`z]], { desc = '[F]ile [Y]ank' })
+map('n', '<leader>fy', [[:%y+<CR>]], { desc = '[F]ile [Y]ank' })
 
 -- Yank to system clipboard
 map({ 'n', 'v' }, 'y', [["+y]])
@@ -142,13 +142,13 @@ map('v', '<tab>', [[>gv]])
 map('v', '<S-tab>', [[<gv]])
 
 -- Delete everything in the file
-map('n', '<leader>fD', [[ggdG]], { desc = '[F]ile [D]elete' })
+map('n', '<leader>fd', [[:%d<CR>]], { desc = '[F]ile [D]elete' })
 
 -- Diff open files
-map('n', '<leader>fd', function()
+map('n', '<leader>fD', function()
   vim.cmd 'windo diffthis'
 end, { desc = '[F]ile [D]iff' })
 
-map('n', '<leader>fo', function()
+map('n', '<leader>fO', function()
   vim.cmd 'windo diffoff'
 end, { desc = '[F]ile diff [O]ff' })
