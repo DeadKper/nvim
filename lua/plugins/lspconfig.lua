@@ -115,14 +115,18 @@ return { -- LSP Configuration & Plugins
             callback = vim.lsp.buf.clear_references,
           })
         end
-
-        -- Set diagnostics icons
-        for name, icon in pairs(require('icons').diagnostics) do
-          name = 'DiagnosticSign' .. name:sub(1, 1):upper() .. name:sub(2) -- Capitalize
-          vim.fn.sign_define(name, { text = icon, texthl = name, numhl = '' })
-        end
       end,
     })
+
+    -- Set diagnostics icons
+    for name, icon in pairs(require('icons').diagnostics) do
+      name = 'DiagnosticSign' .. name
+      vim.fn.sign_define(name, { text = icon, texthl = name, numhl = '' })
+    end
+    for name, sign in pairs(require('icons').dap) do
+      sign = type(sign) == 'table' and sign or { sign }
+      vim.fn.sign_define('Dap' .. name, { text = sign[1], texthl = sign[2] or 'DiagnosticInfo', linehl = sign[3], numhl = sign[3] })
+    end
 
     -- LSP servers and clients are able to communicate to each other what features they support.
     --  By default, Neovim doesn't support everything that is in the LSP Specification.

@@ -19,7 +19,7 @@ return {
         'diff',
         {
           'diagnostics',
-          symbols = icons.diagnostics,
+          symbols = icons.lualine,
         },
       },
     },
