@@ -1,7 +1,7 @@
 return {
   'navarasu/onedark.nvim',
-  lazy = false,
-  priority = 1000, -- load this before all the other start plugins
+  priority = 1000,
+  event = 'UIEnter',
   config = function()
     local onedark = require 'onedark'
 
