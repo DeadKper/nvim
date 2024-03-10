@@ -7,4 +7,5 @@ require('lazy').setup({
   require('plugins.conform'),
   require('plugins.sleuth'),
   require('plugins.lsps'),
+  require('plugins.gitsigns'),
 })

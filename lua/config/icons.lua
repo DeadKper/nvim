@@ -5,4 +5,12 @@ return { -- Requires a nerd font
     hint = '',
     info = '',
   },
+  git = {
+    add = '│',
+    change = '│',
+    delete = '_',
+    topdelete = '‾',
+    changedelete = '~',
+    untracked = '┆',
+  },
 }
