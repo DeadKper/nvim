@@ -9,16 +9,16 @@ return {
 
     local function fix_indent()
       if vim.bo.expandtab then
-        if not vim.tbl_contains(indent.valid, vim.bo.tabstop) then
-          vim.bo.shiftwidth = indent.default -- Set shiftwidth to an acceptable value
-        end
-      else
         if not vim.tbl_contains(indent.valid, vim.bo.shiftwidth) then
-          vim.bo.shiftwidth = indent.default -- Set shiftwidth to an acceptable value
+          vim.bo.shiftwidth = indent.default
         end
+        vim.bo.tabstop = vim.bo.shiftwidth
+      else
+        if not vim.tbl_contains(indent.valid, vim.bo.tabstop) then
+          vim.bo.tabstop = indent.default
+        end
+        vim.bo.shiftwidth = vim.bo.tabstop
       end
-      vim.bo.tabstop = vim.bo.shiftwidth -- Set tabstop to shiftwidth
-      vim.bo.softtabstop = 0 -- Disable softtabstop
     end
 
     -- Set autocmd on UIEnter so it loads after sleuth
