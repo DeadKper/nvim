@@ -1,10 +1,6 @@
 return { -- Formatter
   'stevearc/conform.nvim',
   event = 'UIEnter',
-  dependencies = {
-    'williamboman/mason.nvim', -- Required by mason-tool-installer
-    'WhoIsSethDaniel/mason-tool-installer.nvim', -- Auto install formatters
-  },
   config = function()
     local conform = require('conform')
 
@@ -15,17 +11,14 @@ return { -- Formatter
       },
     })
 
-    -- Configure formatters to install
-    require('mason-tool-installer').setup({
-      ensure_installed = {
-        'stylua',
-      },
+    require('plugins.lsps.conf').auto_install({
+      'stylua',
     })
 
-    -- Auto-install formatters after 1 second
-    vim.defer_fn(function()
-      vim.cmd([[MasonToolsUpdate]])
-    end, 1000)
+    -- Filetypes to autoformat
+    local filetypes = {
+      'lua',
+    }
 
     -- Format buffer with = operation as fallbak
     local function format()
@@ -38,11 +31,6 @@ return { -- Formatter
 
     -- Keymap to format current buffer with LSP fallback
     vim.keymap.set('n', '<leader>ff', format, { desc = '[F]ile [F]ormat' })
-
-    -- Filetypes to autoformat
-    local filetypes = {
-      'lua',
-    }
 
     -- Custom autoformat
     vim.api.nvim_create_autocmd('BufWritePre', {
