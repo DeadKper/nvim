@@ -7,6 +7,10 @@ return { -- Theme inspired by Atom
 
     onedark.setup {
       transparent = true,
+      diagnostics = {
+        darker = false,
+        background = false,
+      },
     }
 
     onedark.load()
