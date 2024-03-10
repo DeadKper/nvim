@@ -8,6 +8,7 @@ require('lazy').setup({
   require('plugins.treesitter'),
   require('plugins.telescope'),
   require('plugins.gitsigns'),
+  require('plugins.mini'),
 
   -- Load indent helpers
   require('plugins.sleuth'),

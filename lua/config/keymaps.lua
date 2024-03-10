@@ -8,6 +8,8 @@ vim.keymap.set('n', '<leader>fe', vim.cmd.Ex, { desc = '[F]ile [E]xplorer', sile
 -- Move selection
 vim.keymap.set('v', 'J', [[:m '>+1<CR>gv=gv]], { silent = true })
 vim.keymap.set('v', 'K', [[:m '<-2<CR>gv=gv]], { silent = true })
+vim.keymap.set('v', 'L', [[>gv]])
+vim.keymap.set('v', 'H', [[<gv]])
 
 -- Append line below to current
 vim.keymap.set('n', 'J', [[mzJ`z]], { silent = true })
@@ -36,7 +38,3 @@ vim.keymap.set('i', '<C-c>', [[<Esc>]])
 
 -- Make current file executable
 vim.keymap.set('n', '<leader>fx', [[<cmd>silent !chmod +x %<CR>]], { desc = 'Grant current [F]ile e[X]ecution perm' })
-
--- Indent with tab
-vim.keymap.set('v', '<tab>', [[>gv]])
-vim.keymap.set('v', '<S-tab>', [[<gv]])
