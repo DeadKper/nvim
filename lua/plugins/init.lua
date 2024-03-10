@@ -1,11 +1,18 @@
-require('plugins.lazy')
+require('plugins.lazy') -- Bootstrap lazy
 
 require('lazy').setup({
+  -- Load theme
   require('plugins.onedark'),
+
+  -- Load utilities
   require('plugins.treesitter'),
   require('plugins.telescope'),
-  require('plugins.conform'),
-  require('plugins.sleuth'),
-  require('plugins.lsps'),
   require('plugins.gitsigns'),
+
+  -- Load indent helpers
+  require('plugins.sleuth'),
+  require('plugins.conform'),
+
+  -- Load lsps at the end
+  require('plugins.lsps'),
 })
