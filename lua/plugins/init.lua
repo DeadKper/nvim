@@ -7,4 +7,5 @@ require("lazy").setup({
   require("plugins.cmp"),
   require("plugins.lspconfig"),
   require("plugins.mason"),
+  require("plugins.conform"),
 })
