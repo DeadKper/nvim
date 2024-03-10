@@ -8,4 +8,5 @@ require('lazy').setup({
   require('plugins.lspconfig'),
   require('plugins.mason'),
   require('plugins.conform'),
+  require('plugins.sleuth'),
 })
