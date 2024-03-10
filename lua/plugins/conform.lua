@@ -27,17 +27,30 @@ return { -- Formatter
       vim.cmd([[MasonToolsUpdate]])
     end, 1000)
 
+    -- Format buffer with = operation as fallbak
+    local function format()
+      if not conform.format({ lsp_fallback = true, timeout_ms = 500 }) then
+        local view = vim.fn.winsaveview()
+        vim.cmd([[silent normal gg=G]])
+        vim.fn.winrestview(view)
+      end
+    end
+
     -- Keymap to format current buffer with LSP fallback
-    vim.keymap.set('n', '<leader>ff', function()
-      conform.format({ lsp_fallback = true, timeout_ms = 500 })
-    end, { desc = '[F]ile [F]ormat' })
+    vim.keymap.set('n', '<leader>ff', format, { desc = '[F]ile [F]ormat' })
+
+    -- Filetypes to autoformat
+    local filetypes = {
+      'lua',
+    }
 
     -- Custom autoformat
     vim.api.nvim_create_autocmd('BufWritePre', {
-      pattern = { '*.lua' },
       group = vim.api.nvim_create_augroup('autoformat', { clear = true }),
       callback = function()
-        conform.format({ lsp_fallback = true, timeout_ms = 500 })
+        if vim.tbl_contains(filetypes, vim.bo.filetype) then
+          format()
+        end
       end,
     })
   end,
