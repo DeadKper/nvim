@@ -11,6 +11,7 @@ require('lazy').setup({
   require('plugins.mini'),
   require('plugins.lualine'),
   require('plugins.comment'),
+  require('plugins.suda'),
 
   -- Load indent helpers
   require('plugins.sleuth'),
