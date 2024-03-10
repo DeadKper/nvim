@@ -55,7 +55,7 @@ vim.opt.incsearch = true
 
 -- Sets how neovim will display certain whitespace in the editor
 vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.opt.listchars = { tab = '  ', trail = '·', nbsp = '␣' }
 
 -- Disable eob fill chars
 vim.opt.fillchars = { eob = ' ' }
