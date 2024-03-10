@@ -7,6 +7,9 @@ return { -- Theme inspired by Atom
 
     onedark.setup({
       transparent = true,
+      lualine = {
+        transparent = true,
+      },
       diagnostics = {
         darker = false,
         background = false,

@@ -9,6 +9,7 @@ require('lazy').setup({
   require('plugins.telescope'),
   require('plugins.gitsigns'),
   require('plugins.mini'),
+  require('plugins.lualine'),
 
   -- Load indent helpers
   require('plugins.sleuth'),
