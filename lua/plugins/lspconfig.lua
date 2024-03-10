@@ -54,6 +54,9 @@ return { -- LSP configuration
         --  For example, in C this would take you to the header
         map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
+        -- Show diagnostics
+        map('<leader>e', vim.diagnostic.open_float, 'Show diagnostic [E]rror messages')
+
         local client = vim.lsp.get_client_by_id(event.data.client_id)
         if client and client.server_capabilities.documentHighlightProvider then
           -- Highlight word under cursor
