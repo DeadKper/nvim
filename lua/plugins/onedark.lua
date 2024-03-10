@@ -3,15 +3,15 @@ return { -- Theme inspired by Atom
   lazy = false,
   priority = 1000,
   config = function()
-    local onedark = require 'onedark'
+    local onedark = require('onedark')
 
-    onedark.setup {
+    onedark.setup({
       transparent = true,
       diagnostics = {
         darker = false,
         background = false,
       },
-    }
+    })
 
     onedark.load()
   end,
