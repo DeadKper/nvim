@@ -6,12 +6,6 @@ return { -- Set lualine as statusline
     -- Don't show the mode, since it's already in status line
     vim.opt.showmode = false
 
-    local diagnostics = {}
-
-    for key, value in pairs(require('config.icons').diagnostics) do
-      diagnostics[key] = value .. ' '
-    end
-
     local icons = require('config.icons')
     require('lualine').setup({
       options = {
@@ -28,7 +22,7 @@ return { -- Set lualine as statusline
           'diff',
         },
         lualine_x = {
-          { 'diagnostics', symbols = diagnostics },
+          { 'diagnostics', symbols = require('config.icons').diagnostics },
           'encoding',
           'fileformat',
           'filetype',

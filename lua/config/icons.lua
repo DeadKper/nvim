@@ -5,10 +5,10 @@ return { -- Requires a nerd font
     split = { '╎', '┆' },
   },
   diagnostics = {
-    error = '',
-    warn = '',
-    hint = '',
-    info = '',
+    error = ' ',
+    warn = ' ',
+    hint = ' ',
+    info = ' ',
   },
   git = {
     add = '┃',

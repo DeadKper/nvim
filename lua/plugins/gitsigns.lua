@@ -4,7 +4,7 @@ return { -- Adds git related signs to the gutter, as well as utilities for manag
   config = function()
     local signs = {}
     for key, value in pairs(require('config.icons').git) do
-      signs[key] = { text = ' ' .. value }
+      signs[key] = { text = value }
     end
     require('gitsigns').setup({
       signs = signs,
