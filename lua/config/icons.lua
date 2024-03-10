@@ -6,11 +6,11 @@ return { -- Requires a nerd font
     info = '',
   },
   git = {
-    add = '│',
-    change = '│',
-    delete = '_',
-    topdelete = '‾',
-    changedelete = '~',
-    untracked = '┆',
+    add = '┃',
+    change = '┃',
+    delete = '▁',
+    topdelete = '▔',
+    changedelete = '┇',
+    untracked = '┇',
   },
 }
