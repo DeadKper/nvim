@@ -25,8 +25,8 @@ vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]])
 vim.keymap.set({ 'n', 'v' }, '<leader>Y', [["+Y]])
 
 -- Paste over selected contents without overriding " register
-vim.keymap.set('x', '<leader>p', [["_dp]])
-vim.keymap.set('x', '<leader>P', [["_dP]])
+vim.keymap.set('x', '<leader>p', [["_dP]])
+vim.keymap.set('x', '<leader>P', [["_dp]])
 
 -- Delete without saving contents to a delete register
 vim.keymap.set({ 'n', 'v' }, '<leader>d', [["_d]])
