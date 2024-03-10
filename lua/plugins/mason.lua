@@ -2,9 +2,9 @@ return { -- Automatically install LSPs and related tools to stdpath for neovim
   'williamboman/mason.nvim',
   event = 'UIEnter',
   dependencies = {
+    { 'folke/neodev.nvim', opts = {} }, -- Setup lua_ls to have better neovim integration
     'neovim/nvim-lspconfig', -- LSP configuration
     'williamboman/mason-lspconfig.nvim', -- Allow lspconfig integration to mason
-    'folke/neodev.nvim', -- Setup lua_ls to have better neovim integration
   },
   config = function()
     -- Set new neovim capabilities granted by the LSP, requires 'hrsh7th/cmp-nvim-lsp' to be included
@@ -29,15 +29,6 @@ return { -- Automatically install LSPs and related tools to stdpath for neovim
         },
       },
     }
-
-    -- Specific neovim config folder
-    if vim.loop.cwd() == vim.fn.stdpath('config') then
-      servers.lua_ls.settings.Lua.workspace = {
-        checkThirdParty = false,
-        library = { vim.env.VIMRUNTIME },
-      }
-      require('neodev').setup()
-    end
 
     -- Setup mason lspconfig
     require('mason-lspconfig').setup({
