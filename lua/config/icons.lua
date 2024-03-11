@@ -10,6 +10,15 @@ return { -- Requires a nerd font
     hint = ' ',
     info = ' ',
   },
+  comments = {
+    fix = ' ',
+    todo = ' ',
+    hack = ' ',
+    warn = ' ',
+    perf = '󰓅 ',
+    note = ' ',
+    test = ' ',
+  },
   git = {
     add = '┃',
     change = '┃',
