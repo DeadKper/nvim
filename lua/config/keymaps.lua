@@ -24,6 +24,7 @@ vim.keymap.set('n', 'N', [[Nzzzv]])
 
 -- Yank to system clipboard
 vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]])
+vim.keymap.set({ 'n' }, '<leader>fy', [[%y+]], { desc = '[F]ile [Y]ank' })
 
 -- Paste over selected contents without overriding " register
 vim.keymap.set('x', '<leader>p', [["_dP]])
