@@ -31,7 +31,7 @@ return { -- Setup lua_ls to have better neovim integration
       return next(vim.fs.find('lua', {
         upward = true,
         type = 'directory',
-        stop = vim.loop.cwd() or path,
+        stop = vim.fs.dirname(vim.loop.cwd() or path),
         path = path,
       }))
     end
