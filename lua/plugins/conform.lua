@@ -8,6 +8,12 @@ return { -- Formatter
       notify_on_error = false,
       formatters_by_ft = { -- Setup formatters
         lua = { 'stylua' },
+        fish = { 'fish_indent' },
+      },
+      formatters = { -- Custom formatters
+        fish_indent = {
+          command = 'fish_indent',
+        },
       },
     })
 
@@ -16,9 +22,22 @@ return { -- Formatter
     })
 
     -- Filetypes to autoformat
-    local filetypes = {
-      'lua',
+    local auto_format = {
+      enabled = nil,
+      filetype = {
+        lua = true,
+        fish = true,
+      },
     }
+
+    vim.api.nvim_create_user_command('AutoformatToggle', function()
+      if auto_format.enabled == nil and auto_format.filetype[vim.bo.filetype] ~= nil then
+        auto_format.enabled = not auto_format.filetype[vim.bo.filetype]
+      else
+        auto_format.enabled = not auto_format.enabled
+      end
+      print('Setting autoformatting to: ' .. tostring(auto_format.enabled))
+    end, {})
 
     -- Format buffer with = operation as fallbak
     local function format()
@@ -36,7 +55,7 @@ return { -- Formatter
     vim.api.nvim_create_autocmd('BufWritePre', {
       group = vim.api.nvim_create_augroup('autoformat', { clear = true }),
       callback = function()
-        if vim.tbl_contains(filetypes, vim.bo.filetype) then
+        if auto_format.enabled or (auto_format.enabled == nil and auto_format.filetype[vim.bo.filetype]) then
           format()
         end
       end,
