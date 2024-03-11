@@ -29,8 +29,9 @@ return { -- Better folds
     },
   },
   config = function()
+    local folds = require('config.icons').fold
     -- Configure vim options to work with ufo
-    vim.opt.fillchars = { eob = ' ', fold = ' ', foldopen = '', foldsep = ' ', foldclose = '' }
+    vim.opt.fillchars = { eob = ' ', fold = ' ', foldopen = folds.open, foldsep = ' ', foldclose = folds.close }
     vim.opt.foldenable = true
     vim.opt.foldcolumn = '1'
     vim.opt.foldlevel = 99

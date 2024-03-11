@@ -4,6 +4,10 @@ return { -- Requires a nerd font
     center = '│',
     split = { '╎', '┆' },
   },
+  fold = {
+    open = '',
+    close = '',
+  },
   diagnostics = {
     error = ' ',
     warn = ' ',
