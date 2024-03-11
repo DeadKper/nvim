@@ -3,11 +3,19 @@ return { -- LSP configuration
   lazy = true, -- Loaded in mason.lua
   dependencies = {
     { 'j-hui/fidget.nvim', opts = {} }, -- Useful status updates for LSP
+    'folke/which-key.nvim', -- Show keymaps
   },
   config = function()
     vim.api.nvim_create_autocmd('LspAttach', {
       group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
       callback = function(event)
+        require('which-key').register({
+          ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
+          ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
+          ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
+          ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
+        })
+
         -- Easily define mappings specific for LSP related items
         local map = function(keys, func, desc)
           vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })

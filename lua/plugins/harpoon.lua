@@ -5,8 +5,19 @@ return { -- Harpoon for fast navigation
   dependencies = {
     'nvim-lua/plenary.nvim', -- Required
     'nvim-telescope/telescope.nvim', -- Search through harpoon buffer list
+    'folke/which-key.nvim', -- Show keymaps
   },
   config = function()
+    local mappings = {
+      ['<leader>h'] = { name = '[H]arpoon', _ = 'which_key_ignore' },
+      ['<leader>h#'] = { desc = '[H]arpoon jump to file [#]' },
+    }
+    for i = 1, 10, 1 do
+      ---@diagnostic disable-next-line:assign-type-mismatch
+      mappings['<leader>h' .. i % 10] = 'which_key_ignore'
+    end
+    require('which-key').register(mappings)
+
     local harpoon = require('harpoon')
     harpoon:setup({})
 

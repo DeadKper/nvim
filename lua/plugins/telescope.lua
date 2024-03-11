@@ -20,8 +20,14 @@ return { -- Fuzzy Finder (files, lsp, etc)
         return vim.fn.executable('make') == 1
       end,
     },
+
+    'folke/which-key.nvim', -- Show keymaps
   },
   config = function()
+    require('which-key').register({
+      ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
+    })
+
     local actions = require('telescope.actions')
     local action_layout = require('telescope.actions.layout')
     local previewers = require('telescope.previewers')
