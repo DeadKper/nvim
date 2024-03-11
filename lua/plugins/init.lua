@@ -4,6 +4,7 @@ require('lazy').setup({
   -- Load theme
   require('plugins.onedark'),
   require('plugins.auto-session'),
+  require('plugins.dashboard'),
 
   -- Load utilities
   require('plugins.treesitter'),
