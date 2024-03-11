@@ -3,6 +3,7 @@ require('plugins.lazy') -- Bootstrap lazy
 require('lazy').setup({
   -- Load theme
   require('plugins.onedark'),
+  require('plugins.auto-session'),
 
   -- Load utilities
   require('plugins.treesitter'),
