@@ -15,6 +15,7 @@ require('lazy').setup({
   require('plugins.ufo'),
   require('plugins.harpoon'),
   require('plugins.todo-comments'),
+  require('plugins.trouble'),
 
   -- Load indent helpers
   require('plugins.sleuth'),
