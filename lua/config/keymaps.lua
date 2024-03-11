@@ -24,7 +24,6 @@ vim.keymap.set('n', 'N', [[Nzzzv]])
 
 -- Yank to system clipboard
 vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]])
-vim.keymap.set({ 'n', 'v' }, '<leader>Y', [["+Y]])
 
 -- Paste over selected contents without overriding " register
 vim.keymap.set('x', '<leader>p', [["_dP]])
@@ -37,4 +36,4 @@ vim.keymap.set({ 'n', 'v' }, '<leader>d', [["_d]])
 vim.keymap.set('i', '<C-c>', [[<Esc>]])
 
 -- Make current file executable
-vim.keymap.set('n', '<leader>fx', [[<cmd>silent !chmod +x %<CR>]], { desc = 'Grant current [F]ile e[X]ecution perm' })
+vim.keymap.set('n', '<leader>fx', [[<cmd>silent !chmod +x %<CR>]], { desc = '[F]ile give E[x]ecution permission' })

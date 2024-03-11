@@ -16,6 +16,7 @@ require('lazy').setup({
   require('plugins.harpoon'),
   require('plugins.todo-comments'),
   require('plugins.trouble'),
+  require('plugins.which-key'),
 
   -- Load indent helpers
   require('plugins.sleuth'),
