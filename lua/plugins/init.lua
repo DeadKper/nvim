@@ -13,6 +13,7 @@ require('lazy').setup({
   require('plugins.comment'),
   require('plugins.suda'),
   require('plugins.ufo'),
+  require('plugins.harpoon'),
 
   -- Load indent helpers
   require('plugins.sleuth'),
