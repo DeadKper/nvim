@@ -6,7 +6,6 @@ return {
   end,
   config = function()
     local conf = {
-      valid = { 2, 4 },
       default = {
         indent = 4,
         spaces = false,
