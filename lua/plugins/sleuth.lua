@@ -23,6 +23,7 @@ return {
       vim.bo.tabstop = 8 -- Make sure tabstop is 8 before Sleuth runs
       local error = vim.api.nvim_exec2('Sleuth', { output = true }).output:match('Sleuth disabled.*')
       if error then
+        print(error)
         vim.bo.tabstop = tabstop
         return
       end
