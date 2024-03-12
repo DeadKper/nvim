@@ -15,22 +15,23 @@ vim.keymap.set('v', 'H', [[<gv]])
 vim.keymap.set('n', 'J', [[mzJ`z]], { silent = true })
 
 -- C-d/C-u does weird things with long lines so fix that here
+local half_page = [[normal ]] .. math.floor(vim.fn.winheight(0) / 2) .. [[g]]
 local function scroll(motion)
-	vim.cmd([[normal ]] .. math.floor(vim.fn.winheight(0) / 2) .. [[g]] .. motion)
-	if vim.g.vscode then
-		vim.defer_fn(function()
-			vim.cmd([[normal zz]])
-		end, 10)
-	else
-		vim.cmd([[normal zz]])
-	end
+  vim.cmd(half_page .. motion)
+  if vim.g.vscode then
+    vim.defer_fn(function()
+      vim.cmd([[normal zz]])
+    end, 15)
+  else
+    vim.cmd([[normal zz]])
+  end
 end
 -- Jump half page with cursor in the middle
 vim.keymap.set('n', '<C-d>', function()
-	scroll('j')
+  scroll('j')
 end)
 vim.keymap.set('n', '<C-u>', function()
-	scroll('k')
+  scroll('k')
 end)
 
 -- Jump search with cursor in the middle
