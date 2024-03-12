@@ -27,7 +27,8 @@ return {
         vim.bo.tabstop = tabstop
         return
       end
-      local detected = not vim.api.nvim_exec2('set sw', { output = true }).output:match('shiftwidth=8')
+      local shiftwidth = tonumber(vim.api.nvim_exec2('set sw', { output = true }).output:match('shiftwidth=([0-9]+)'))
+      local detected = shiftwidth ~= 8 and shiftwidth > 0
       if not detected then
         if conf.filetype[vim.bo.filetype] ~= nil then
           vim.bo.shiftwidth = conf.filetype[vim.bo.filetype].indent or conf.default.indent
@@ -36,8 +37,10 @@ return {
           vim.bo.shiftwidth = conf.default.indent
           vim.bo.expandtab = conf.default.spaces
         end
+        vim.bo.tabstop = vim.bo.shiftwidth
+      else
+        vim.bo.tabstop = shiftwidth
       end
-      vim.bo.tabstop = vim.bo.shiftwidth
 
       if verbose then
         local message
@@ -51,7 +54,7 @@ return {
         else
           message = message .. ' noet'
         end
-        print(message .. ' sw=' .. vim.bo.shiftwidth .. ' ts=' .. vim.bo.shiftwidth)
+        print(message .. ' sw=' .. vim.bo.tabstop .. ' ts=' .. vim.bo.tabstop)
       end
     end
 
