@@ -33,6 +33,27 @@ return { -- Automatically install LSPs and related tools to stdpath for neovim
     local lsp_mappings = {
       lua = 'lua-language-server',
       java = 'jdtls',
+      python = 'pyright',
+      rust = 'rust-analyzer',
+      toml = 'taplo',
+      php = 'intelephense',
+      html = 'html-lsp',
+      c = 'clangd',
+      cpp = 'clangd',
+      awk = 'awk-language-server',
+      bash = 'bash-language-server',
+      cmake = 'cmake-language-server',
+      csharp = 'csharp-language-server',
+      docker = 'docker-compose-language-service',
+      go = 'gopls',
+      gradle = 'gradle-language-server',
+      groovy = 'graphql-language-service-cli',
+      htmx = 'htmx-lsp',
+      json = 'json-lsp',
+      kotlin = 'kotlin-language-server',
+      markdown = 'marksman',
+      powershell = 'powershell-editor-services',
+      typescript = 'typescript-language-server',
     }
 
     local conf = require('plugins.lsps.conf')
