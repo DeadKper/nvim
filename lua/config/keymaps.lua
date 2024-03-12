@@ -15,12 +15,12 @@ vim.keymap.set('v', 'H', [[<gv]])
 vim.keymap.set('n', 'J', [[mzJ`z]], { silent = true })
 
 -- C-d/C-u does weird things with long lines so fix that here
-local half_page = [[normal ]] .. math.floor(vim.fn.winheight(0) / 2) .. [[g]]
 local function scroll(motion)
-  vim.cmd(half_page .. motion)
+  vim.cmd([[normal 16g]] .. motion)
   if vim.g.vscode then
     vim.defer_fn(function()
       vim.cmd([[normal zz]])
+      vim.cmd([[normal zz]]) -- Don't know why 2 times but it fixes glitchiness
     end, 15)
   else
     vim.cmd([[normal zz]])
