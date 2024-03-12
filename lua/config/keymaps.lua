@@ -17,9 +17,11 @@ vim.keymap.set('n', 'J', [[mzJ`z]], { silent = true })
 -- C-d/C-u does weird things with long lines so fix that here
 local function scroll(key)
   local motion = '' -- Make entire motion since mason doesn't work with 16gj/16gk
-  local count = math.floor(vim.fn.winheight(0) / 2)
+  local count
   if vim.g.vscode then
-    count = count == 50 and 16 or count -- Fix random 50 lines jump at startup
+    count = 16
+  else
+    count = math.floor(vim.fn.winheight(0) / 2)
   end
   for _ = 1, count, 1 do
     motion = motion .. key
