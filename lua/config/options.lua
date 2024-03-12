@@ -59,7 +59,3 @@ vim.opt.listchars = { tab = '  ', trail = '·', nbsp = '␣' }
 
 -- Disable eob fill chars
 vim.opt.fillchars = { eob = ' ' }
-
--- Set default indent config
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
