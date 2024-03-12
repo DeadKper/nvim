@@ -85,7 +85,7 @@ return {
         end
         vim.defer_fn(function() -- Defer because it fails otherwise
           set_indent()
-        end, 10)
+        end, 50)
       end,
     })
   end,
