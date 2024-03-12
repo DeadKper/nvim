@@ -15,8 +15,13 @@ vim.keymap.set('v', 'H', [[<gv]])
 vim.keymap.set('n', 'J', [[mzJ`z]], { silent = true })
 
 -- C-d/C-u does weird things with long lines so fix that here
-local function scroll(motion)
-  vim.cmd([[normal 16g]] .. motion)
+local function scroll(key)
+  local motion = '' -- Make entire motion since mason doesn't work with 16gj/16gk
+  for _ = 1, 16, 1 do
+    motion = motion .. 'g' .. key
+  end
+
+  vim.cmd([[normal ]] .. motion)
   if vim.g.vscode then
     vim.defer_fn(function()
       vim.cmd([[normal zz]])
@@ -26,6 +31,7 @@ local function scroll(motion)
     vim.cmd([[normal zz]])
   end
 end
+
 -- Jump half page with cursor in the middle
 vim.keymap.set('n', '<C-d>', function()
   scroll('j')
