@@ -3,8 +3,6 @@ require('plugins.lazy') -- Bootstrap lazy
 if vim.g.vscode then
   require('lazy').setup({
     require('plugins.mini'),
-    require('plugins.sleuth'),
-    require('plugins.conform'),
     require('plugins.todo-comments'),
   })
   return
