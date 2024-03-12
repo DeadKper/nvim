@@ -30,14 +30,25 @@ return { -- Formatter
       },
     }
 
-    vim.api.nvim_create_user_command('AutoformatToggle', function()
-      if auto_format.enabled == nil and auto_format.filetype[vim.bo.filetype] ~= nil then
-        auto_format.enabled = not auto_format.filetype[vim.bo.filetype]
-      else
+    vim.api.nvim_create_user_command('Autoformat', function(data)
+      if data.args:match('status') then
+        print('global: ' .. tostring(auto_format.enabled) .. ', ' .. vim.bo.filetype .. ': ' .. tostring(auto_format.filetype[vim.bo.filetype]))
+      elseif data.args:match('global') then
         auto_format.enabled = not auto_format.enabled
+        print('Set global autoformat to: ' .. tostring(auto_format.enabled))
+      elseif data.args:match('filetype') then
+        auto_format.filetype[vim.bo.filetype] = not auto_format.filetype[vim.bo.filetype]
+        print('Set filetype autoformat to: ' .. tostring(auto_format.filetype[vim.bo.filetype]))
+      elseif data.args:match('disable_global') then
+        auto_format.enabled = nil
+        print('Set global autoformat to: ' .. tostring(auto_format.enabled))
       end
-      print('Setting autoformatting to: ' .. tostring(auto_format.enabled))
-    end, {})
+    end, {
+      nargs = 1,
+      complete = function()
+        return { 'status', 'global', 'filetype', 'disable_global' }
+      end,
+    })
 
     -- Format buffer with = operation as fallbak
     local function format()
