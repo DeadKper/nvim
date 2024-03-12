@@ -28,7 +28,7 @@ return { -- Better folds
       end,
     },
   },
-  config = function()
+  init = function()
     local folds = require('config.icons').fold
     -- Configure vim options to work with ufo
     vim.opt.fillchars = { eob = ' ', fold = ' ', foldopen = folds.open, foldsep = ' ', foldclose = folds.close }
@@ -36,7 +36,8 @@ return { -- Better folds
     vim.opt.foldcolumn = '1'
     vim.opt.foldlevel = 99
     vim.opt.foldlevelstart = 99
-
+  end,
+  config = function()
     local ufo = require('ufo')
     vim.keymap.set('n', 'zR', ufo.openAllFolds)
     vim.keymap.set('n', 'zM', ufo.closeAllFolds)
