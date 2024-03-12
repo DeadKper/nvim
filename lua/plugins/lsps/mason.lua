@@ -30,18 +30,53 @@ return { -- Automatically install LSPs and related tools to stdpath for neovim
       },
     }
 
+    local lsp_mappings = {
+      lua = 'lua-language-server',
+      java = 'jdtls',
+    }
+
     local conf = require('plugins.lsps.conf')
 
     conf.auto_install(vim.tbl_keys(servers))
 
-    require('mason-tool-installer').setup({
-      ensure_installed = conf.mason_ensure_installed,
-    })
+    local tools = require('mason-tool-installer')
+    tools.setup({ ensure_installed = conf.mason_ensure_installed })
 
-    -- Auto-install and update after 1 second, mason-tools-installer won't autoinstall if lazy loaded
-    vim.defer_fn(function()
-      vim.cmd([[MasonToolsUpdate]])
-    end, 1000)
+    local registry = require('mason-registry')
+    local mason_busy = false
+
+    vim.api.nvim_create_autocmd({ 'FileType' }, {
+      group = vim.api.nvim_create_augroup('mason-autoinstall', { clear = true }),
+      callback = function()
+        local server = lsp_mappings[vim.bo.filetype]
+        if not server or mason_busy or registry.is_installed(server) then
+          return
+        end
+
+        registry:on(
+          'package:handle',
+          vim.schedule_wrap(function()
+            print(string.format('Installing "%s"', server))
+            vim.defer_fn(vim.cmd.close, 5)
+          end)
+        )
+
+        registry:on(
+          'package:install:success',
+          vim.schedule_wrap(function()
+            mason_busy = false
+            print(string.format('Successfully installed "%s"', server))
+
+            vim.defer_fn(function()
+              vim.cmd([[LspStart]])
+            end, 50)
+          end)
+        )
+
+        mason_busy = true
+        vim.cmd([[MasonInstall ]] .. server)
+      end,
+    })
 
     -- Setup mason lspconfig
     require('mason-lspconfig').setup({
