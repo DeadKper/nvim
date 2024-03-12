@@ -1,6 +1,6 @@
 return {
   'tpope/vim-sleuth',
-  event = 'BufReadPre',
+  event = 'UIEnter',
   init = function()
     vim.cmd([[let g:sleuth_automatic = 0]])
   end,
