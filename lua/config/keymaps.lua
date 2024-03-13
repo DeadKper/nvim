@@ -66,3 +66,7 @@ vim.keymap.set('i', '<C-c>', [[<Esc>]])
 
 -- Make current file executable
 vim.keymap.set('n', '<leader>fx', [[<cmd>silent !chmod +x %<CR>]], { desc = '[F]ile give E[x]ecution permission' })
+
+-- Switch between open buffers
+vim.keymap.set('n', '<C-n>', [[:bnext<CR>]], { silent = true })
+vim.keymap.set('n', '<C-p>', [[:bprev<CR>]], { silent = true })

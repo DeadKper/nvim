@@ -51,10 +51,10 @@ return { -- Harpoon for fast navigation
     vim.keymap.set('n', '<leader>hs', telescope_picker, { desc = '[H]arpoon [S]earch' })
 
     -- Toggle previous & next buffers stored within Harpoon list
-    vim.keymap.set('n', '<C-p>', function()
+    vim.keymap.set('n', '<C-M-p>', function()
       harpoon:list():prev()
     end)
-    vim.keymap.set('n', '<C-n>', function()
+    vim.keymap.set('n', '<C-M-n>', function()
       harpoon:list():next()
     end)
 
