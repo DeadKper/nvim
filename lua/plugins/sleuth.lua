@@ -1,9 +1,5 @@
 return {
   'tpope/vim-sleuth',
-  event = 'UIEnter',
-  init = function()
-    vim.cmd([[let g:sleuth_automatic = 0]])
-  end,
   config = function()
     local conf = {
       default = {
@@ -19,16 +15,6 @@ return {
     }
 
     local function set_indent(verbose)
-      local tabstop = tonumber(vim.api.nvim_exec2('set ts', { output = true }).output:match('tabstop=([0-9]+)'))
-      vim.bo.tabstop = 8 -- Make sure tabstop is 8 before Sleuth runs
-      local error = vim.api.nvim_exec2('Sleuth', { output = true }).output:match('Sleuth disabled.*')
-      if error then
-        if verbose then
-          print(error)
-        end
-        vim.bo.tabstop = tabstop
-        return
-      end
       local shiftwidth = tonumber(vim.api.nvim_exec2('set sw', { output = true }).output:match('shiftwidth=([0-9]+)'))
       local detected = shiftwidth ~= 8 and shiftwidth > 0
       if not detected then
