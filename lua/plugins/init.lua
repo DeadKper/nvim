@@ -10,7 +10,7 @@ end
 require('lazy').setup({
   -- Load theme
   require('plugins.onedark'),
-  require('plugins.auto-session'),
+  require('plugins.neovim-session-manager'),
   require('plugins.dashboard'),
 
   -- Load utilities

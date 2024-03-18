@@ -3,12 +3,12 @@ return {
   event = 'VimEnter',
   dependencies = {
     'nvim-telescope/telescope.nvim', -- Search through files
-    'nvim-tree/nvim-web-devicons', -- Better icons
-    'rmagatti/auto-session',
+    'nvim-tree/nvim-web-devicons',   -- Better icons
+    'Shatur/neovim-session-manager',
   },
   config = function()
     local logo = [[
-██████╗ ███████╗ █████╗ ██████╗ ██╗  ██╗██████╗ ███████╗██████╗ 
+██████╗ ███████╗ █████╗ ██████╗ ██╗  ██╗██████╗ ███████╗██████╗
 ██╔══██╗██╔════╝██╔══██╗██╔══██╗██║ ██╔╝██╔══██╗██╔════╝██╔══██╗
 ██║  ██║█████╗  ███████║██║  ██║█████╔╝ ██████╔╝█████╗  ██████╔╝
 ██║  ██║██╔══╝  ██╔══██║██║  ██║██╔═██╗ ██╔═══╝ ██╔══╝  ██╔══██╗
@@ -33,7 +33,7 @@ return {
           { action = 'Telescope oldfiles', desc = ' Recent files', icon = ' ', key = 'r' },
           { action = 'Telescope live_grep', desc = ' Find text', icon = ' ', key = 'g' },
           { action = [[lua require('telescope.builtin').find_files({ cwd = vim.fn.stdpath('config') })]], desc = ' Config', icon = ' ', key = 'c' },
-          { action = 'SessionRestore', desc = ' Restore Session', icon = ' ', key = 's' },
+          { icon = ' ', key = 's' },
           { action = 'qa', desc = ' Quit', icon = ' ', key = 'q' },
         },
         footer = function()
@@ -43,6 +43,14 @@ return {
         end,
       },
     }
+
+    if vim.loop.cwd() == vim.loop.os_homedir() then
+      opts.config.center[6].action = 'SessionManager load_last_session'
+      opts.config.center[6].desc = ' Restore Last Session'
+    else
+      opts.config.center[6].action = 'SessionManager load_current_dir_session'
+      opts.config.center[6].desc = ' Restore Session'
+    end
 
     for _, button in ipairs(opts.config.center) do
       button.desc = button.desc .. string.rep(' ', 43 - #button.desc)
