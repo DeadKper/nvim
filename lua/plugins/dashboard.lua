@@ -3,12 +3,12 @@ return {
   event = 'VimEnter',
   dependencies = {
     'nvim-telescope/telescope.nvim', -- Search through files
-    'nvim-tree/nvim-web-devicons',   -- Better icons
+    'nvim-tree/nvim-web-devicons', -- Better icons
     'Shatur/neovim-session-manager',
   },
   config = function()
     local logo = [[
-██████╗ ███████╗ █████╗ ██████╗ ██╗  ██╗██████╗ ███████╗██████╗
+██████╗ ███████╗ █████╗ ██████╗ ██╗  ██╗██████╗ ███████╗██████╗ 
 ██╔══██╗██╔════╝██╔══██╗██╔══██╗██║ ██╔╝██╔══██╗██╔════╝██╔══██╗
 ██║  ██║█████╗  ███████║██║  ██║█████╔╝ ██████╔╝█████╗  ██████╔╝
 ██║  ██║██╔══╝  ██╔══██║██║  ██║██╔═██╗ ██╔═══╝ ██╔══╝  ██╔══██╗
@@ -29,11 +29,11 @@ return {
         header = vim.split(logo, '\n'),
         center = {
           { action = 'Telescope find_files', desc = ' Find file', icon = ' ', key = 'f' },
+          { action = 'Ex', desc = ' File explorer', icon = ' ', key = 'e' },
           { action = 'ene | startinsert', desc = ' New file', icon = ' ', key = 'n' },
           { action = 'Telescope oldfiles', desc = ' Recent files', icon = ' ', key = 'r' },
           { action = 'Telescope live_grep', desc = ' Find text', icon = ' ', key = 'g' },
           { action = [[lua require('telescope.builtin').find_files({ cwd = vim.fn.stdpath('config') })]], desc = ' Config', icon = ' ', key = 'c' },
-          { icon = ' ', key = 's' },
           { action = 'qa', desc = ' Quit', icon = ' ', key = 'q' },
         },
         footer = function()
@@ -44,12 +44,14 @@ return {
       },
     }
 
+    local n = #opts.config.center
+    table.insert(opts.config.center, n, { icon = ' ', key = 's' })
     if vim.loop.cwd() == vim.loop.os_homedir() then
-      opts.config.center[6].action = 'SessionManager load_last_session'
-      opts.config.center[6].desc = ' Restore Last Session'
+      opts.config.center[n].action = 'SessionManager load_last_session'
+      opts.config.center[n].desc = ' Restore Last Session'
     else
-      opts.config.center[6].action = 'SessionManager load_current_dir_session'
-      opts.config.center[6].desc = ' Restore Session'
+      opts.config.center[n].action = 'SessionManager load_current_dir_session'
+      opts.config.center[n].desc = ' Restore Session'
     end
 
     for _, button in ipairs(opts.config.center) do
