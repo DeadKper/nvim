@@ -48,10 +48,10 @@ return {
     table.insert(opts.config.center, n, { icon = ' ', key = 's' })
     if vim.loop.cwd() == vim.loop.os_homedir() then
       opts.config.center[n].action = 'SessionManager load_last_session'
-      opts.config.center[n].desc = ' Restore Last Session'
+      opts.config.center[n].desc = ' Restore last session'
     else
       opts.config.center[n].action = 'SessionManager load_current_dir_session'
-      opts.config.center[n].desc = ' Restore Session'
+      opts.config.center[n].desc = ' Restore session'
     end
 
     for _, button in ipairs(opts.config.center) do
