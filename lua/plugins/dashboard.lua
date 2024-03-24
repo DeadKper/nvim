@@ -3,12 +3,12 @@ return {
   event = 'VimEnter',
   dependencies = {
     'nvim-telescope/telescope.nvim', -- Search through files
-    'nvim-tree/nvim-web-devicons', -- Better icons
+    'nvim-tree/nvim-web-devicons',   -- Better icons
     'Shatur/neovim-session-manager',
   },
   config = function()
     local logo = [[
-██████╗ ███████╗ █████╗ ██████╗ ██╗  ██╗██████╗ ███████╗██████╗ 
+██████╗ ███████╗ █████╗ ██████╗ ██╗  ██╗██████╗ ███████╗██████╗
 ██╔══██╗██╔════╝██╔══██╗██╔══██╗██║ ██╔╝██╔══██╗██╔════╝██╔══██╗
 ██║  ██║█████╗  ███████║██║  ██║█████╔╝ ██████╔╝█████╗  ██████╔╝
 ██║  ██║██╔══╝  ██╔══██║██║  ██║██╔═██╗ ██╔═══╝ ██╔══╝  ██╔══██╗
@@ -16,7 +16,7 @@ return {
 ╚═════╝ ╚══════╝╚═╝  ╚═╝╚═════╝ ╚═╝  ╚═╝╚═╝     ╚══════╝╚═╝  ╚═╝
     ]]
 
-    logo = string.rep('\n', 7) .. logo .. '\n\n'
+    logo = string.rep('\n', 5) .. logo .. '\n'
 
     local opts = {
       theme = 'doom',
