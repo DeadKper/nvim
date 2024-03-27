@@ -3,12 +3,12 @@ return {
   event = 'VimEnter',
   dependencies = {
     'nvim-telescope/telescope.nvim', -- Search through files
-    'nvim-tree/nvim-web-devicons',   -- Better icons
+    'nvim-tree/nvim-web-devicons', -- Better icons
     'Shatur/neovim-session-manager',
   },
   config = function()
     local logo = [[
-██████╗ ███████╗ █████╗ ██████╗ ██╗  ██╗██████╗ ███████╗██████╗
+██████╗ ███████╗ █████╗ ██████╗ ██╗  ██╗██████╗ ███████╗██████╗ 
 ██╔══██╗██╔════╝██╔══██╗██╔══██╗██║ ██╔╝██╔══██╗██╔════╝██╔══██╗
 ██║  ██║█████╗  ███████║██║  ██║█████╔╝ ██████╔╝█████╗  ██████╔╝
 ██║  ██║██╔══╝  ██╔══██║██║  ██║██╔═██╗ ██╔═══╝ ██╔══╝  ██╔══██╗
