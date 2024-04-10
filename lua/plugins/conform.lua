@@ -9,6 +9,7 @@ return { -- Formatter
       formatters_by_ft = { -- Setup formatters
         lua = { 'stylua' },
         fish = { 'fish_indent' },
+        go = { 'gofmt' },
       },
       formatters = { -- Custom formatters
         fish_indent = {
@@ -27,6 +28,7 @@ return { -- Formatter
       filetype = {
         lua = true,
         fish = true,
+        go = true,
       },
     }
 
