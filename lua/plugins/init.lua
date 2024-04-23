@@ -16,6 +16,7 @@ require('lazy').setup({
   -- Load utilities
   require('plugins.treesitter'),
   require('plugins.telescope'),
+  require('plugins.fugitive'),
   require('plugins.gitsigns'),
   require('plugins.mini'),
   require('plugins.lualine'),
