@@ -47,12 +47,11 @@ return { -- Automatically install LSPs and related tools to stdpath for neovim
       docker = 'docker-compose-language-service',
       go = 'gopls',
       gradle = 'gradle-language-server',
-      groovy = 'graphql-language-service-cli',
+      groovy = 'groovy-language-server',
       htmx = 'htmx-lsp',
       json = 'json-lsp',
       kotlin = 'kotlin-language-server',
       markdown = 'marksman',
-      powershell = 'powershell-editor-services',
       typescript = 'typescript-language-server',
     }
 
@@ -90,7 +89,7 @@ return { -- Automatically install LSPs and related tools to stdpath for neovim
 
             vim.defer_fn(function()
               vim.cmd([[LspStart]])
-            end, 50)
+            end, 250)
           end)
         )
 
