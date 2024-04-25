@@ -16,6 +16,9 @@ return { -- Automatically install LSPs and related tools to stdpath for neovim
     --  You can press `g?` for help in :Mason menu
     require('mason').setup()
 
+    -- Add custom filetypes
+    vim.filetype.add({ extension = { templ = 'templ' } })
+
     -- Server configuration
     local servers = {
       lua_ls = {
