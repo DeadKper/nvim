@@ -11,6 +11,7 @@ return { -- Formatter
         fish = { 'fish_indent' },
         go = { 'gofmt' },
         php = { 'easy-coding-standard' },
+        json = { 'jq' },
       },
       formatters = { -- Custom formatters
         fish_indent = {
@@ -31,6 +32,7 @@ return { -- Formatter
         fish = true,
         go = true,
         php = true,
+        json = true,
       },
     }
 
