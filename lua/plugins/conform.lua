@@ -10,6 +10,7 @@ return { -- Formatter
         lua = { 'stylua' },
         fish = { 'fish_indent' },
         go = { 'gofmt' },
+        php = { 'easy-coding-standard' },
       },
       formatters = { -- Custom formatters
         fish_indent = {
@@ -29,6 +30,7 @@ return { -- Formatter
         lua = true,
         fish = true,
         go = true,
+        php = true,
       },
     }
 
