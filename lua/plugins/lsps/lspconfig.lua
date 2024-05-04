@@ -79,6 +79,10 @@ return { -- LSP configuration
             callback = vim.lsp.buf.clear_references,
           })
         end
+        if client and client.server_capabilities.inlayHintProvider then
+          vim.lsp.inlay_hint.enable(true)
+          vim.cmd.hi('LspInlayHint guifg=#888888 gui=italic')
+        end
       end,
     })
 
