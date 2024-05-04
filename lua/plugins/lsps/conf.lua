@@ -2,7 +2,7 @@ local M = {
   ---@type table<string>
   ignore_lspconfig = {},
   ---@type table<string>
-  mason_ensure_installed = {},
+  ensure_installed = {},
 }
 
 local function insert_if_missing(t, value)
@@ -26,7 +26,7 @@ end
 ---@param mason_package string|table<string> package to install if missing
 -- Mason packages to install via mason-tool-installer
 function M.auto_install(mason_package)
-  insert_if_missing(M.mason_ensure_installed, mason_package)
+  insert_if_missing(M.ensure_installed, mason_package)
 end
 
 return M
