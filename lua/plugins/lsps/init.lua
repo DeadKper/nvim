@@ -4,6 +4,7 @@ return {
 
   -- Config pre lsps plugins
   require('plugins.lsps.neodev'),
+  require('plugins.lsps.rustaceanvim'),
 
   -- Do lsp config
   require('plugins.lsps.lspconfig'),
