@@ -60,6 +60,48 @@ return { -- Automatically install LSPs and related tools to stdpath for neovim
       ensure_installed()
     end
 
+    local auto_install = {
+      c = { 'clangd' },
+      cmake = { 'cmake-language-server' },
+      cpp = { 'clangd' },
+      lua = { 'lua-language-server', 'stylua' },
+      go = { 'gopls' },
+      templ = { 'templ' },
+      html = { 'html-lsp' },
+      htmx = { 'htmx-lsp' },
+      java = { 'jdtls' },
+      javascript = { 'biome' },
+      json = { 'biome' },
+      markdown = { 'marksman' },
+      python = { 'pyright' },
+      php = { 'intelephense' },
+      rust = { 'rust-analyzer' },
+      toml = { 'taplo' },
+      typescript = { 'biome' },
+    }
+
+    vim.api.nvim_create_autocmd({ 'FileType' }, {
+      group = vim.api.nvim_create_augroup('mason-autoinstall', { clear = true }),
+      callback = function()
+        local tools = auto_install[vim.bo.filetype]
+
+        if tools ~= nil and next(tools) then
+          local installed = false
+          for _, tool in pairs(tools) do
+            local package = registry.get_package(tool)
+            if not package:is_installed() then
+              package:install()
+              installed = true
+            end
+          end
+
+          if installed then
+            print('installing tools for: ' .. vim.bo.filetype)
+          end
+        end
+      end,
+    })
+
     -- Setup mason lspconfig
     require('mason-lspconfig').setup({
       handlers = {

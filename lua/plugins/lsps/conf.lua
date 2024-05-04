@@ -24,7 +24,7 @@ function M.ignore(lsp)
 end
 
 ---@param mason_package string|table<string> package to install if missing
--- Mason packages to install via mason-tool-installer
+-- Mason packages to ensure are installed
 function M.auto_install(mason_package)
   insert_if_missing(M.ensure_installed, mason_package)
 end

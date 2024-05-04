@@ -1,6 +1,4 @@
-local conf = require('plugins.lsps.conf')
-conf.auto_install({ 'rust-analyzer' })
-conf.ignore('rust_analyzer')
+require('plugins.lsps.conf').ignore('rust_analyzer')
 
 return { -- Setup
   'mrcjkb/rustaceanvim',
