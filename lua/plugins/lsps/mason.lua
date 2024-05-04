@@ -4,7 +4,6 @@ return { -- Automatically install LSPs and related tools to stdpath for neovim
   dependencies = {
     'neovim/nvim-lspconfig', -- LSP configuration
     'williamboman/mason-lspconfig.nvim', -- Allow lspconfig integration to mason
-    'WhoIsSethDaniel/mason-tool-installer.nvim', -- Auto install formatters
   },
   config = function()
     -- Set new neovim capabilities granted by the LSP, requires 'hrsh7th/cmp-nvim-lsp' to be included
@@ -34,9 +33,32 @@ return { -- Automatically install LSPs and related tools to stdpath for neovim
     }
 
     local conf = require('plugins.lsps.conf')
+    local registry = require('mason-registry')
 
-    require('mason-tool-installer').setup({ ensure_installed = conf.ensure_installed })
-    vim.cmd([[MasonToolsUpdate]]) -- Doesn't auto install on setup prob cause load event is UIEnter
+    registry:on('package:install:success', function()
+      vim.defer_fn(function()
+        -- trigger FileType event to possibly load this newly installed LSP server
+        require('lazy.core.handler.event').trigger({
+          event = 'FileType',
+          buf = vim.api.nvim_get_current_buf(),
+        })
+      end, 100)
+    end)
+
+    local function ensure_installed()
+      for _, tool in ipairs(conf.ensure_installed) do
+        local p = registry.get_package(tool)
+        if not p:is_installed() then
+          p:install()
+        end
+      end
+    end
+
+    if registry.refresh then
+      registry.refresh(ensure_installed)
+    else
+      ensure_installed()
+    end
 
     -- Setup mason lspconfig
     require('mason-lspconfig').setup({
