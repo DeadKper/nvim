@@ -74,7 +74,7 @@ return { -- Automatically install LSPs and related tools to stdpath for neovim
       json = { 'biome' },
       markdown = { 'marksman' },
       python = { 'pyright' },
-      php = { 'intelephense' },
+      php = { 'intelephense', 'easy-coding-standard' },
       rust = { 'rust-analyzer' },
       toml = { 'taplo' },
       typescript = { 'biome' },
