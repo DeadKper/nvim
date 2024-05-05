@@ -22,7 +22,7 @@ return { -- Harpoon for fast navigation
     harpoon:setup({})
 
     vim.keymap.set('n', '<leader>ha', function()
-      harpoon:list():append()
+      harpoon:list():add()
     end, { desc = '[H]arpoon [A]ppend' })
 
     vim.keymap.set('n', '<leader>hf', function()
@@ -51,10 +51,10 @@ return { -- Harpoon for fast navigation
     vim.keymap.set('n', '<leader>hs', telescope_picker, { desc = '[H]arpoon [S]earch' })
 
     -- Toggle previous & next buffers stored within Harpoon list
-    vim.keymap.set('n', '<C-M-p>', function()
+    vim.keymap.set('n', '<C-P>', function()
       harpoon:list():prev()
     end)
-    vim.keymap.set('n', '<C-M-n>', function()
+    vim.keymap.set('n', '<C-N>', function()
       harpoon:list():next()
     end)
 
