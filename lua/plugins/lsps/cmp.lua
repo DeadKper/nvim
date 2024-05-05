@@ -19,7 +19,9 @@ return { -- Autocompletion
       dependencies = {
         'nvim-lua/plenary.nvim',
       },
-      opts = {},
+      opts = {
+        enable_chat = true,
+      },
     },
 
     'saadparwaiz1/cmp_luasnip', -- LuaSnip completion source for nvim-cmp
