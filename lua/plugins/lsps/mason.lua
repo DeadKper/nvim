@@ -61,9 +61,9 @@ return { -- Automatically install LSPs and related tools to stdpath for neovim
     end
 
     local auto_install = {
-      c = { 'clangd' },
+      c = { 'clangd', 'codelldb' },
       cmake = { 'cmake-language-server' },
-      cpp = { 'clangd' },
+      cpp = { 'clangd', 'codelldb' },
       lua = { 'lua-language-server', 'stylua' },
       go = { 'gopls' },
       templ = { 'templ' },
@@ -75,9 +75,10 @@ return { -- Automatically install LSPs and related tools to stdpath for neovim
       markdown = { 'marksman' },
       python = { 'pyright' },
       php = { 'intelephense', 'easy-coding-standard' },
-      rust = { 'rust-analyzer' },
+      rust = { 'rust-analyzer', 'codelldb' },
       toml = { 'taplo' },
       typescript = { 'biome' },
+      zig = { 'zls', 'codelldb' },
     }
 
     vim.api.nvim_create_autocmd({ 'FileType' }, {

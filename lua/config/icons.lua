@@ -4,6 +4,13 @@ return { -- Requires a nerd font
     center = '│',
     split = { '╎', '┆' },
   },
+  dap = {
+    Stopped = { ' ', 'DiagnosticWarn', 'DapStoppedLine' },
+    Breakpoint = ' ',
+    BreakpointCondition = '󰍶 ',
+    BreakpointRejected = { '󱑙 ', 'DiagnosticError' },
+    LogPoint = ' ',
+  },
   fold = {
     open = '',
     close = '',

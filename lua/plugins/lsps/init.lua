@@ -9,4 +9,7 @@ return {
   -- Do lsp config
   require('plugins.lsps.lspconfig'),
   require('plugins.lsps.mason'),
+
+  -- Setup dap
+  require('plugins.lsps.dap'),
 }
