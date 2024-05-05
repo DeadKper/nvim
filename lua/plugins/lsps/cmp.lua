@@ -14,6 +14,14 @@ return { -- Autocompletion
       end)(),
     },
 
+    { -- Add Codeium as an AI assistant
+      'Exafunction/codeium.nvim',
+      dependencies = {
+        'nvim-lua/plenary.nvim',
+      },
+      opts = {},
+    },
+
     'saadparwaiz1/cmp_luasnip', -- LuaSnip completion source for nvim-cmp
 
     -- Adds other completion capabilities.
@@ -68,6 +76,7 @@ return { -- Autocompletion
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
         { name = 'path' },
+        { name = 'codeium' },
       },
     })
   end,
