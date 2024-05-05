@@ -17,6 +17,12 @@ vim.keymap.set('i', '<C-k>', [[<C-o>k]], { silent = true })
 vim.keymap.set('i', '<C-l>', [[<Right>]], { silent = true })
 vim.keymap.set('i', '<C-h>', [[<Left>]], { silent = true })
 
+-- Move through windows quickly
+vim.keymap.set('n', '<C-j>', [[<C-w>j]], { silent = true })
+vim.keymap.set('n', '<C-k>', [[<C-w>k]], { silent = true })
+vim.keymap.set('n', '<C-l>', [[<C-w>l]], { silent = true })
+vim.keymap.set('n', '<C-h>', [[<C-w>h]], { silent = true })
+
 -- Append line below to current
 vim.keymap.set('n', 'J', [[mzJ`z]], { silent = true })
 
