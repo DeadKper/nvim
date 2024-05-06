@@ -66,7 +66,10 @@ return { -- LSP configuration
         map('<leader>e', vim.diagnostic.open_float, 'Show diagnostic [E]rror messages')
 
         local client = vim.lsp.get_client_by_id(event.data.client_id)
-        if client and client.server_capabilities.documentHighlightProvider then
+        if not client then
+          return
+        end
+        if client.server_capabilities.documentHighlightProvider then
           -- Highlight word under cursor
           vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
             buffer = event.buf,
@@ -79,7 +82,8 @@ return { -- LSP configuration
             callback = vim.lsp.buf.clear_references,
           })
         end
-        if client and client.server_capabilities.inlayHintProvider then
+        local ver = vim.version()
+        if (ver.major > 0 or ver.minor >= 10) and client.server_capabilities.inlayHintProvider then
           vim.lsp.inlay_hint.enable(true)
           vim.cmd.hi('LspInlayHint guifg=#888888 gui=italic')
         end
