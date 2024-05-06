@@ -82,9 +82,12 @@ return { -- LSP configuration
             callback = vim.lsp.buf.clear_references,
           })
         end
+
         local ver = vim.version()
         if (ver.major > 0 or ver.minor >= 10) and client.server_capabilities.inlayHintProvider then
+          -- Enable inlay hints
           vim.lsp.inlay_hint.enable(true)
+          -- Make inlay hints italic with a light gray color
           vim.cmd.hi('LspInlayHint guifg=#888888 gui=italic')
         end
       end,
