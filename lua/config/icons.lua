@@ -5,7 +5,7 @@ return { -- Requires a nerd font
     split = { '╎', '┆' },
   },
   dap = {
-    Stopped = { ' ', 'DiagnosticWarn', 'DapStoppedLine' },
+    Stopped = { '󰏥 ', 'DiagnosticWarn', 'DapStoppedLine' },
     Breakpoint = ' ',
     BreakpointCondition = '󰍶 ',
     BreakpointRejected = { '󱑙 ', 'DiagnosticError' },
