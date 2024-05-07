@@ -16,7 +16,7 @@ return {
 ╚═════╝ ╚══════╝╚═╝  ╚═╝╚═════╝ ╚═╝  ╚═╝╚═╝     ╚══════╝╚═╝  ╚═╝
     ]]
 
-    logo = string.rep('\n', 5) .. logo .. '\n'
+    logo = string.rep('\n', 6) .. logo .. '\n\n'
 
     local opts = {
       theme = 'doom',
@@ -71,5 +71,7 @@ return {
     end
 
     require('dashboard').setup(opts)
+    vim.cmd.hi('DashboardHeader guifg=#FAC898')
+    vim.cmd.hi('DashboardFooter guifg=#FF6961')
   end,
 }
