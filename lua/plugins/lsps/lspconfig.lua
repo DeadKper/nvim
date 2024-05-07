@@ -11,7 +11,6 @@ return { -- LSP configuration
       callback = function(event)
         require('which-key').register({
           ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
-          ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
           ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
           ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
         })
@@ -41,7 +40,7 @@ return { -- LSP configuration
 
         -- Fuzzy find al the symbols in your current document.
         --  Symbols are things like variables, functions, types, etc.
-        map('<leader>ds', telescope.lsp_document_symbols, '[D]ocument [S]ymbols')
+        map('<leader>S', telescope.lsp_document_symbols, 'Document [S]ymbols')
 
         -- Fuzzy find all the symbols in your current workspace
         --  Similar to document symbols, except searches over your whole project.
