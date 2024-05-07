@@ -71,7 +71,7 @@ return { -- Automatically install LSPs and related tools to stdpath for neovim
       htmx = { 'htmx-lsp' },
       java = { 'jdtls' },
       javascript = { 'biome' },
-      json = { 'biome' },
+      json = { 'json-lsp', 'biome' },
       markdown = { 'marksman' },
       python = { 'pyright' },
       php = { 'intelephense', 'easy-coding-standard' },
