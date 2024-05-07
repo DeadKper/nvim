@@ -13,11 +13,6 @@ return { -- Formatter
         php = { 'easy-coding-standard' },
         json = { 'jq' },
       },
-      formatters = { -- Custom formatters
-        fish_indent = {
-          command = 'fish_indent',
-        },
-      },
     })
 
     require('plugins.lsps.conf').auto_install({
