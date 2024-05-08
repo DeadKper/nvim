@@ -5,11 +5,11 @@ return { -- Requires a nerd font
     split = { '╎', '┆' },
   },
   dap = {
-    Stopped = { '󰏥 ', 'DiagnosticWarn', 'DapStoppedLine' },
-    Breakpoint = ' ',
-    BreakpointCondition = '󰍶 ',
-    BreakpointRejected = { '󱑙 ', 'DiagnosticError' },
-    LogPoint = ' ',
+    paused = '󰏥 ',
+    breakpoint = ' ',
+    condition = '󰍶 ',
+    rejected = '󱑙 ',
+    log = ' ',
   },
   fold = {
     open = '',

@@ -63,7 +63,16 @@ return { -- Debug adapter for neovim
     dap.listeners.before.event_terminated['dapui_config'] = dapui.close
     dap.listeners.before.event_exited['dapui_config'] = dapui.close
 
-    for name, sign in pairs(require('config.icons').dap) do
+    local icons = require('config.icons').dap
+    local dap_signs = {
+      Stopped = { icons.paused, 'DiagnosticWarn', 'DapStoppedLine' },
+      Breakpoint = icons.breakpoint,
+      BreakpointCondition = icons.condition,
+      BreakpointRejected = { icons.rejected, 'DiagnosticError' },
+      LogPoint = icons.log,
+    }
+
+    for name, sign in pairs(dap_signs) do
       sign = type(sign) == 'table' and sign or { sign }
 
       ---@diagnostic disable-next-line:assign-type-mismatch
