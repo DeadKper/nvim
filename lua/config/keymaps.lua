@@ -12,8 +12,12 @@ vim.keymap.set('v', 'L', [[>gv]])
 vim.keymap.set('v', 'H', [[<gv]])
 
 -- Move in insertmode
-vim.keymap.set('i', '<C-j>', [[<C-o>j]], { silent = true })
-vim.keymap.set('i', '<C-k>', [[<C-o>k]], { silent = true })
+vim.keymap.set('i', '<C-j>', function()
+  vim.cmd('normal j')
+end, { silent = true })
+vim.keymap.set('i', '<C-k>', function()
+  vim.cmd('normal k')
+end, { silent = true })
 vim.keymap.set('i', '<C-l>', [[<Right>]], { silent = true })
 vim.keymap.set('i', '<C-h>', [[<Left>]], { silent = true })
 
