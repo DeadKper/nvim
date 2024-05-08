@@ -32,18 +32,12 @@ vim.keymap.set('n', 'J', [[mzJ`z]], { silent = true })
 
 -- C-d/C-u does weird things with long lines so fix that here
 local function scroll(key)
-  local motion = '' -- Make entire motion since mason doesn't work with 16gj/16gk
-  local count
-  if vim.g.vscode then
+  local count = math.floor(vim.fn.winheight(0) / 2)
+  if vim.g.vscode and count >= 50 then
     count = 16
-  else
-    count = math.floor(vim.fn.winheight(0) / 2)
-  end
-  for _ = 1, count, 1 do
-    motion = motion .. key
   end
 
-  vim.cmd([[normal ]] .. motion)
+  vim.cmd([[normal ]] .. string.rep(key, count)) -- Make entire motion since mason doesn't work with 16gj/16gk
   if vim.g.vscode then
     vim.defer_fn(function()
       vim.cmd([[normal zz]])
