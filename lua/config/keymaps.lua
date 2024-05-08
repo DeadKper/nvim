@@ -6,8 +6,8 @@ vim.keymap.set({ 'n', 'v' }, 'j', [[v:count == 0 ? 'gj' : 'j']], { expr = true, 
 vim.keymap.set('n', '<leader>fe', vim.cmd.Ex, { desc = '[F]ile [E]xplorer', silent = true })
 
 -- Move selection
-vim.keymap.set('v', 'J', [[:m '>+1<CR>gv=gv]], { silent = true })
-vim.keymap.set('v', 'K', [[:m '<-2<CR>gv=gv]], { silent = true })
+vim.keymap.set('v', 'J', [[:m '>+1<cr>gv=gv]], { silent = true })
+vim.keymap.set('v', 'K', [[:m '<-2<cr>gv=gv]], { silent = true })
 vim.keymap.set('v', 'L', '>gv')
 vim.keymap.set('v', 'H', '<gv')
 
@@ -75,8 +75,8 @@ vim.keymap.set({ 'n', 'v' }, '<leader>d', '"_d')
 vim.keymap.set('i', '<C-c>', '<Esc>')
 
 -- Make current file executable
-vim.keymap.set('n', '<leader>fx', ':!chmod +x %<CR>', { desc = '[F]ile give E[x]ecution permission' })
+vim.keymap.set('n', '<leader>fx', ':!chmod +x %<cr>', { desc = '[F]ile give E[x]ecution permission' })
 
 -- Switch between open buffers
-vim.keymap.set('n', '<C-n>', ':bnext<CR>', { silent = true })
-vim.keymap.set('n', '<C-p>', ':bprev<CR>', { silent = true })
+vim.keymap.set('n', '<C-n>', ':bnext<cr>', { silent = true })
+vim.keymap.set('n', '<C-p>', ':bprev<cr>', { silent = true })
