@@ -49,10 +49,10 @@ local function scroll(key)
 end
 
 -- Jump half page with cursor in the middle
-vim.keymap.set('n', '<C-d>', function()
+vim.keymap.set({ 'n', 'i' }, '<C-d>', function()
   scroll('j')
 end)
-vim.keymap.set('n', '<C-u>', function()
+vim.keymap.set({ 'n', 'i' }, '<C-u>', function()
   scroll('k')
 end)
 
