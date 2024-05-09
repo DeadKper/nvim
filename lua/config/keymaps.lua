@@ -37,17 +37,16 @@ local function scroll(key)
     count = 16
   end
 
-  local hijump = math.floor(count * 1.5) - 1
+  local hijump = math.floor(count * 1.5)
   local bufcurr = vim.fn.getpos('.')[2]
   local bufend = vim.fn.getpos('$')[2]
 
   if key == 'j' and bufcurr + count <= hijump then
-    vim.cmd(tostring(hijump))
+    count = hijump - bufcurr
   elseif key == 'k' and bufend - bufcurr < hijump then
-    vim.cmd(tostring(bufend - hijump))
-  else
-    vim.cmd('normal ' .. string.rep(key, count)) -- Make entire motion since mason doesn't work with 16gj/16gk
+    count = hijump - (bufend - bufcurr)
   end
+  vim.cmd('normal ' .. string.rep(key, count)) -- Make entire motion since mason doesn't work with 16gj/16gk
 
   if vim.g.vscode then
     vim.defer_fn(function()
