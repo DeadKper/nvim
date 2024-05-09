@@ -11,9 +11,7 @@ local augroup_num_lines = vim.api.nvim_create_augroup('numbered-lines', { clear 
 vim.api.nvim_create_autocmd({ 'BufLeave', 'FocusLost', 'InsertEnter', 'WinLeave' }, {
   group = augroup_num_lines,
   callback = function()
-    if vim.fn.eval('&rnu') == 1 then
-      vim.opt.relativenumber = false
-    end
+    vim.opt.relativenumber = false
   end,
 })
 vim.api.nvim_create_autocmd({ 'UIEnter' }, {
