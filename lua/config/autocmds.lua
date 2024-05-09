@@ -6,20 +6,29 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- Show relative number lines when in insert mode
 local augroup_num_lines = vim.api.nvim_create_augroup('numbered-lines', { clear = true })
 vim.api.nvim_create_autocmd({ 'BufLeave', 'FocusLost', 'InsertEnter', 'WinLeave' }, {
   group = augroup_num_lines,
   callback = function()
-    if vim.opt.number then
+    if vim.fn.eval('&rnu') == 1 then
       vim.opt.relativenumber = false
     end
   end,
 })
-vim.api.nvim_create_autocmd({ 'BufEnter', 'FocusGained', 'InsertLeave', 'WinEnter' }, {
+vim.api.nvim_create_autocmd({ 'UIEnter' }, {
   group = augroup_num_lines,
+  once = true,
   callback = function()
-    if vim.bo.filetype ~= 'dashboard' and vim.bo.buftype ~= 'nofile' and vim.opt.number and vim.fn.mode() ~= 'i' then
-      vim.opt.relativenumber = true
+    local function enable_rnu()
+      if vim.fn.eval('&nu') == 1 and vim.fn.mode() ~= 'i' then
+        vim.opt.relativenumber = true
+      end
     end
+    vim.api.nvim_create_autocmd({ 'BufEnter', 'FocusGained', 'InsertLeave', 'WinEnter' }, {
+      group = augroup_num_lines,
+      callback = enable_rnu,
+    })
+    enable_rnu()
   end,
 })
