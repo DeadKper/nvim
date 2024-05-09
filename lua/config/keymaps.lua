@@ -43,7 +43,7 @@ local function scroll(key)
 
   if key == 'j' and bufcurr + count <= hijump then
     count = hijump - bufcurr
-  elseif key == 'k' and bufend - bufcurr < hijump then
+  elseif key == 'k' and bufend - bufcurr + count - 1 < hijump then
     count = hijump - (bufend - bufcurr)
   end
   vim.cmd('normal ' .. string.rep(key, count)) -- Make entire motion since mason doesn't work with 16gj/16gk
