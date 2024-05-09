@@ -18,7 +18,7 @@ vim.api.nvim_create_autocmd({ 'BufLeave', 'FocusLost', 'InsertEnter', 'WinLeave'
 vim.api.nvim_create_autocmd({ 'BufEnter', 'FocusGained', 'InsertLeave', 'WinEnter' }, {
   group = augroup_num_lines,
   callback = function()
-    if vim.bo.filetype ~= 'dashboard' and vim.opt.number and vim.fn.mode() ~= 'i' then
+    if vim.bo.filetype ~= 'dashboard' and vim.bo.buftype ~= 'nofile' and vim.opt.number and vim.fn.mode() ~= 'i' then
       vim.opt.relativenumber = true
     end
   end,
