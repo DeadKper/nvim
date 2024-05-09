@@ -96,8 +96,12 @@ local scroll_up = vim.api.nvim_replace_termcodes('normal! <C-y>', true, false, t
 vim.keymap.set({ 'n', 'v' }, 'zz', function()
   vim.cmd('normal! zz')
 
+  local prev_line
+  local curr_line = vim.fn.winline()
   local buffer_end = vim.fn.getpos('$')[2] - vim.fn.getpos('.')[2]
-  while (vim.fn.winheight(0) - vim.fn.winline()) - buffer_end > 0 do
+  while prev_line ~= curr_line and (vim.fn.winheight(0) - curr_line) - buffer_end > 0 do
     vim.cmd(scroll_up)
+    prev_line = curr_line
+    curr_line = vim.fn.winline()
   end
 end, { silent = true })
