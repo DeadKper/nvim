@@ -1,4 +1,4 @@
-return {
+return { -- Auto detection for file indentation with custom logic un lua to add default values
   'tpope/vim-sleuth',
   config = function()
     local conf = {
