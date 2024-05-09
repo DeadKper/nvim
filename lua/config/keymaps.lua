@@ -80,3 +80,17 @@ vim.keymap.set('n', '<leader>fx', ':!chmod +x %<cr>', { desc = '[F]ile give E[x]
 -- Switch between open buffers
 vim.keymap.set('n', '<C-n>', ':bnext<cr>', { silent = true })
 vim.keymap.set('n', '<C-p>', ':bprev<cr>', { silent = true })
+
+-- Make zz not center at the end of the buffer
+local function center()
+  vim.cmd('normal! zz')
+
+  local screen_end = vim.fn.winheight(0) - vim.fn.winline()
+  local buffer_end = vim.fn.getpos('$')[2] - vim.fn.getpos('.')[2]
+
+  local offset = screen_end - buffer_end
+  if offset > 0 then
+    vim.cmd(vim.api.nvim_replace_termcodes('normal! ' .. offset .. '<C-y>', true, true, true))
+  end
+end
+vim.keymap.set({ 'i', 'n' }, 'zz', center, { silent = true })
