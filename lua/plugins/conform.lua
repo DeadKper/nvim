@@ -15,7 +15,7 @@ return { -- Formatter
       },
     })
 
-    require('plugins.lsps.conf').auto_install({
+    require('config.lsp').add_ensure_install({
       'stylua',
     })
 

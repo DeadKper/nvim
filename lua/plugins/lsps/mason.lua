@@ -32,7 +32,7 @@ return { -- Automatically install LSPs and related tools to stdpath for neovim
       },
     }
 
-    local conf = require('plugins.lsps.conf')
+    local conf = require('config.lsp')
     local registry = require('mason-registry')
 
     registry:on('package:install:success', function()
@@ -46,7 +46,7 @@ return { -- Automatically install LSPs and related tools to stdpath for neovim
     end)
 
     local function ensure_installed()
-      for _, tool in ipairs(conf.ensure_installed) do
+      for _, tool in ipairs(conf.get_ensure_installed()) do
         local p = registry.get_package(tool)
         if not p:is_installed() then
           p:install()
@@ -60,31 +60,10 @@ return { -- Automatically install LSPs and related tools to stdpath for neovim
       ensure_installed()
     end
 
-    local auto_install = {
-      c = { 'clangd', 'codelldb' },
-      cmake = { 'cmake-language-server' },
-      cpp = { 'clangd', 'codelldb' },
-      lua = { 'lua-language-server', 'stylua' },
-      go = { 'gopls' },
-      templ = { 'templ' },
-      html = { 'html-lsp' },
-      htmx = { 'htmx-lsp' },
-      java = { 'jdtls' },
-      javascript = { 'biome' },
-      json = { 'json-lsp', 'biome' },
-      markdown = { 'marksman' },
-      python = { 'pyright' },
-      php = { 'intelephense', 'easy-coding-standard' },
-      rust = { 'rust-analyzer', 'codelldb' },
-      toml = { 'taplo' },
-      typescript = { 'biome' },
-      zig = { 'zls', 'codelldb' },
-    }
-
     vim.api.nvim_create_autocmd({ 'FileType' }, {
       group = vim.api.nvim_create_augroup('mason-autoinstall', { clear = true }),
       callback = function()
-        local tools = auto_install[vim.bo.filetype]
+        local tools = conf.get_auto_install(vim.bo.filetype)
 
         if tools ~= nil and next(tools) then
           local installed = false
@@ -108,7 +87,7 @@ return { -- Automatically install LSPs and related tools to stdpath for neovim
       handlers = {
         function(server_name)
           -- Don't setup ignore servers
-          if vim.tbl_contains(conf.ignore_lspconfig, server_name) then
+          if conf.is_ignored(server_name) then
             return
           end
 

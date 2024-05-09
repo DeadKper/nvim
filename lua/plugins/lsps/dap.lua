@@ -2,22 +2,21 @@ return { -- Debug adapter for neovim
   'mfussenegger/nvim-dap',
   event = 'LspAttach',
   dependencies = {
-    { -- Creates debuger ui
-      'rcarriga/nvim-dap-ui',
-      dependencies = {
-        'nvim-neotest/nvim-nio', -- Dependency
-        { 'theHamsta/nvim-dap-virtual-text', opts = {} }, -- Virtual text for the debugger
-      },
-    },
+    'rcarriga/nvim-dap-ui', -- Creates debuger ui
+    'nvim-neotest/nvim-nio', -- Dependency
+    { 'theHamsta/nvim-dap-virtual-text', opts = {} }, -- Virtual text for the debugger
     { -- Sets up debuggers
       'jay-babu/mason-nvim-dap.nvim',
       dependencies = 'williamboman/mason.nvim',
     },
   },
   config = function()
-    require('which-key').register({
-      ['<leader>d'] = { name = '[D]ebug', _ = 'which_key_ignore' },
-    })
+    ---@diagnostic disable-next-line:undefined-field
+    if vim.inspect(vim.opt.rtp:get()):find('which[-]key') then
+      require('which-key').register({
+        ['<leader>d'] = { name = '[D]ebug', _ = 'which_key_ignore' },
+      })
+    end
 
     local map = function(keys, func, desc)
       vim.keymap.set('n', keys, func, { desc = 'Debug: ' .. desc })

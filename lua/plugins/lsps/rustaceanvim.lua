@@ -1,4 +1,4 @@
-require('plugins.lsps.conf').ignore('rust_analyzer')
+require('config.lsp').add_ignore('rust_analyzer')
 
 return { -- Setup
   'mrcjkb/rustaceanvim',

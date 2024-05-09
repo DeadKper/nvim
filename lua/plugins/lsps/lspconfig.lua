@@ -9,11 +9,14 @@ return { -- LSP configuration
     vim.api.nvim_create_autocmd('LspAttach', {
       group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
       callback = function(event)
-        require('which-key').register({
-          ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
-          ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
-          ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
-        })
+        ---@diagnostic disable-next-line:undefined-field
+        if vim.inspect(vim.opt.rtp:get()):find('which[-]key') then
+          require('which-key').register({
+            ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
+            ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
+            ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
+          })
+        end
 
         -- Easily define mappings specific for LSP related items
         local map = function(keys, func, desc)

@@ -24,9 +24,12 @@ return { -- Fuzzy Finder (files, lsp, etc)
     'folke/which-key.nvim', -- Show keymaps
   },
   config = function()
-    require('which-key').register({
-      ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
-    })
+    ---@diagnostic disable-next-line:undefined-field
+    if vim.inspect(vim.opt.rtp:get()):find('which[-]key') then
+      require('which-key').register({
+        ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
+      })
+    end
 
     local actions = require('telescope.actions')
     local action_layout = require('telescope.actions.layout')

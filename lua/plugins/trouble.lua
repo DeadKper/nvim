@@ -7,9 +7,12 @@ return { -- List to show diagnostics, references, quickfixes and more
     'folke/which-key.nvim', -- Show keymaps
   },
   config = function()
-    require('which-key').register({
-      ['<leader>t'] = { name = '[T]rouble', _ = 'which_key_ignore' },
-    })
+    ---@diagnostic disable-next-line:undefined-field
+    if vim.inspect(vim.opt.rtp:get()):find('which[-]key') then
+      require('which-key').register({
+        ['<leader>t'] = { name = '[T]rouble', _ = 'which_key_ignore' },
+      })
+    end
     local trouble = require('trouble')
     trouble.setup({
       use_diagnostic_signs = true,
