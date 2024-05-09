@@ -1,6 +1,6 @@
 return { -- Highlight comments with specified keywords
   'folke/todo-comments.nvim',
-  event = 'UIEnter',
+  event = 'VeryLazy',
   dependencies = { 'nvim-lua/plenary.nvim' }, -- Required
   config = function()
     local comments = require('todo-comments')

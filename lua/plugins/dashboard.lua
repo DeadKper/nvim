@@ -1,6 +1,6 @@
 return {
   'nvimdev/dashboard-nvim',
-  event = 'VimEnter',
+  event = 'UIEnter',
   dependencies = {
     'nvim-telescope/telescope.nvim', -- Search through files
     'nvim-tree/nvim-web-devicons', -- Better icons

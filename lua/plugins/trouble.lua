@@ -1,6 +1,6 @@
 return { -- List to show diagnostics, references, quickfixes and more
   'folke/trouble.nvim',
-  event = 'UIEnter',
+  event = 'VeryLazy',
   dependencies = {
     'nvim-tree/nvim-web-devicons', -- Enable file icons
     'folke/todo-comments.nvim', -- Show todo list in trouble

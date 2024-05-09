@@ -1,6 +1,6 @@
 return { -- Better folds
   'kevinhwang91/nvim-ufo',
-  event = 'UIEnter',
+  event = 'VeryLazy',
   dependencies = {
     'kevinhwang91/promise-async', -- Required
     'nvim-treesitter/nvim-treesitter', -- Used for fold method

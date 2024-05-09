@@ -1,6 +1,6 @@
 return { -- Useful plugin to show you pending keybinds
   'folke/which-key.nvim',
-  event = 'UIEnter',
+  event = 'VeryLazy',
   config = function()
     local wk = require('which-key')
     wk.setup()

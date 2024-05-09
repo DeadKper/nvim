@@ -1,6 +1,6 @@
 return { -- Harpoon for fast navigation
   'ThePrimeagen/harpoon',
-  event = 'UIEnter',
+  event = 'VeryLazy',
   branch = 'harpoon2',
   dependencies = {
     'nvim-lua/plenary.nvim', -- Required

@@ -1,6 +1,6 @@
 return { -- Automatically install LSPs and related tools to stdpath for neovim
   'williamboman/mason.nvim',
-  event = 'UIEnter',
+  event = 'VeryLazy',
   dependencies = {
     'neovim/nvim-lspconfig', -- LSP configuration
     'williamboman/mason-lspconfig.nvim', -- Allow lspconfig integration to mason

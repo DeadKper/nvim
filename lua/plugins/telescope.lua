@@ -1,7 +1,7 @@
 return { -- Fuzzy Finder (files, lsp, etc)
   'nvim-telescope/telescope.nvim', -- Requires ripgrep, fd-find
   branch = '0.1.x',
-  event = 'UIEnter',
+  event = 'VeryLazy',
   dependencies = {
     'nvim-lua/plenary.nvim', -- Required
     'nvim-tree/nvim-web-devicons', -- Better icons

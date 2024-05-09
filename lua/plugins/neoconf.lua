@@ -1,6 +1,6 @@
-return { -- Comment with 'gc' in visual mode or block comment with 'gb', support gc operations in normal mode
+return { -- Allow configuration via vscode json files
   'folke/neoconf.nvim',
-  event = 'VimEnter',
+  event = 'UIEnter',
   config = function()
     require('plugins.lsps.conf').auto_install('json-lsp')
     require('neoconf').setup({})

@@ -1,6 +1,6 @@
 return { -- Set lualine as statusline
   'nvim-lualine/lualine.nvim',
-  event = 'UIEnter',
+  event = 'VeryLazy',
   dependencies = { 'nvim-tree/nvim-web-devicons' },
   config = function()
     -- Don't show the mode, since it's already in status line
