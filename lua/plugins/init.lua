@@ -28,6 +28,7 @@ require('lazy').setup({
   require('plugins.trouble'),
   require('plugins.which-key'),
   require('plugins.neoconf'),
+  require('plugins.lint'),
 
   -- Load indent helpers
   require('plugins.sleuth'),
