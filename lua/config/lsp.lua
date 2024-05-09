@@ -1,24 +1,88 @@
 local ignored = {}
 local ensure_installed = {}
 local auto_install = {
-  c = { 'clangd', 'codelldb' },
-  cmake = { 'cmake-language-server' },
-  cpp = { 'clangd', 'codelldb' },
-  lua = { 'lua-language-server', 'stylua' },
-  go = { 'gopls' },
-  templ = { 'templ', 'html-lsp', 'htmx-lsp' },
-  html = { 'html-lsp', 'htmx-lsp' },
-  htmx = { 'htmx-lsp' },
-  java = { 'jdtls' },
-  javascript = { 'biome' },
-  json = { 'json-lsp', 'biome' },
-  markdown = { 'marksman' },
-  python = { 'pyright' },
-  php = { 'intelephense', 'easy-coding-standard' },
-  rust = { 'rust-analyzer', 'codelldb' },
-  toml = { 'taplo' },
-  typescript = { 'biome' },
-  zig = { 'zls', 'codelldb' },
+  c = {
+    check = function()
+      return vim.fn.executable('gcc') == 1
+    end,
+    packages = { 'clangd', 'codelldb' },
+  },
+  cpp = {
+    check = function()
+      return vim.fn.executable('gcc') == 1
+    end,
+    packages = { 'clangd', 'codelldb' },
+  },
+  lua = {
+    check = function()
+      return vim.fn.executable('lua') == 1 or vim.fn.executable('luajit') == 1
+    end,
+    packages = { 'lua-language-server', 'stylua' },
+  },
+  go = {
+    check = function()
+      return vim.fn.executable('go') == 1
+    end,
+    packages = { 'gopls' },
+  },
+  templ = {
+    check = function()
+      return vim.fn.executable('templ') == 1
+    end,
+    packages = { 'templ', 'html-lsp', 'htmx-lsp' },
+  },
+  html = { packages = { 'html-lsp', 'htmx-lsp' } },
+  htmx = { packages = { 'htmx-lsp' } },
+  java = {
+    check = function()
+      return vim.fn.executable('java') == 1
+    end,
+    packages = { 'jdtls' },
+  },
+  javascript = {
+    check = function()
+      return vim.fn.executable('node') == 1
+    end,
+    packages = { 'biome' },
+  },
+  json = {
+    check = function()
+      return vim.fn.executable('node') == 1
+    end,
+    packages = { 'json-lsp', 'biome' },
+  },
+  markdown = { packages = { 'marksman' } },
+  python = {
+    check = function()
+      return vim.fn.executable('python3') == 1 or vim.fn.executable('python') == 1
+    end,
+    packages = { 'pyright' },
+  },
+  php = {
+    check = function()
+      return vim.fn.executable('composer') == 1
+    end,
+    packages = { 'intelephense', 'easy-coding-standard' },
+  },
+  rust = {
+    check = function()
+      return vim.fn.executable('cargo') == 1
+    end,
+    packages = { 'rust-analyzer', 'codelldb' },
+  },
+  toml = { packages = { 'taplo' } },
+  typescript = {
+    check = function()
+      return vim.fn.executable('node') == 1
+    end,
+    packages = { 'biome' },
+  },
+  zig = {
+    check = function()
+      return vim.fn.executable('zig') == 1
+    end,
+    packages = { 'zls', 'codelldb' },
+  },
 }
 
 local function insert_if_missing(t, value)
@@ -60,9 +124,13 @@ function M.get_ensure_installed()
 end
 
 ---@param ft string filetype to check which packages should be auto installed
----@return table<string> auto_install returns the list of packages to install when opening a related filetype
+---@return table<string>|nil auto_install returns the list of packages to install when opening a related filetype
 function M.get_auto_install(ft)
-  return auto_install[ft]
+  local tool = auto_install[ft]
+  if tool == nil or tool.check and not tool.check() then
+    return nil
+  end
+  return tool.packages
 end
 
 return M
