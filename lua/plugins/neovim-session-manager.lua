@@ -1,4 +1,4 @@
-return {                                      -- Neovim session manager
+return { -- Neovim session manager
   'Shatur/neovim-session-manager',
   dependencies = { 'nvim-lua/plenary.nvim' }, -- Required
   lazy = true,
