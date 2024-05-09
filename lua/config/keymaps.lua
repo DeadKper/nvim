@@ -82,7 +82,7 @@ vim.keymap.set('n', '<C-n>', ':bnext<cr>', { silent = true })
 vim.keymap.set('n', '<C-p>', ':bprev<cr>', { silent = true })
 
 -- Make zz not center at the end of the buffer
-vim.keymap.set({ 'i', 'n' }, 'zz', function()
+vim.keymap.set({ 'i', 'n', 'v' }, 'zz', function()
   vim.cmd('normal! zz')
 
   local screen_end = vim.fn.winheight(0) - vim.fn.winline()
