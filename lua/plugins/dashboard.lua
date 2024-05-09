@@ -1,4 +1,4 @@
-return {
+return { -- Create a dashboard screen similar to the one in Doom Emacs
   'nvimdev/dashboard-nvim',
   event = 'UIEnter',
   dependencies = {
