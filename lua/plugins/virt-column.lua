@@ -2,50 +2,17 @@ return { -- Comment with 'gc' in visual mode or block comment with 'gb', support
   'lukas-reineke/virt-column.nvim',
   event = 'VeryLazy',
   config = function()
+    local indent = require('config.indent')
     local virt_column = require('virt-column')
-    virt_column.setup({})
-    virt_column.overwrite({
+    virt_column.setup({
       exclude = {
-        filetypes = {
-          'lspinfo',
-          'packer',
-          'checkhealth',
-          'help',
-          'man',
-          'TelescopePrompt',
-          'TelescopeResults',
-        },
-      },
-    })
-    virt_column.update({
-      exclude = {
-        filetypes = {
-          'dashboard',
-          'fugitive',
-          'Trouble',
-        },
+        filetypes = indent.get_exclude('colorcolumn', 'filetype'),
+        buftypes = indent.get_exclude('colorcolumn', 'buftype'),
       },
       highlight = 'ColorColumn',
     })
-    local column = {
-      default = '80',
-      filetype = {
-        gitcommit = '50',
-      },
-      buftypes = {},
-    }
-    vim.cmd.hi('ColorColumn guifg=#636363 guibg=NONE')
-    vim.api.nvim_create_autocmd({ 'BufEnter', 'WinEnter', 'FileType' }, {
-      group = vim.api.nvim_create_augroup('colorcolumn', { clear = true }),
-      callback = function()
-        if column.buftypes[vim.bo.buftype] then
-          vim.opt.colorcolumn = column.buftypes[vim.bo.buftype]
-        elseif column.filetype[vim.bo.filetype] then
-          vim.opt.colorcolumn = column.filetype[vim.bo.filetype]
-        else
-          vim.opt.colorcolumn = column.default
-        end
-      end,
-    })
+    indent.colorcolumn.auto_exclude = false
+    indent.set_color_column()
+    vim.cmd.hi('ColorColumn guifg=' .. indent.colorcolumn.color .. ' guibg=NONE')
   end,
 }
