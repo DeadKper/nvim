@@ -46,7 +46,7 @@ local function scroll(key)
   elseif key == 'k' and bufend - bufcurr + count - 1 < hijump then
     count = hijump - (bufend - bufcurr)
   end
-  vim.cmd('normal ' .. string.rep(key, count)) -- Make entire motion since mason doesn't work with 16gj/16gk
+  vim.cmd('normal! ' .. count .. key)
 
   if vim.g.vscode then
     vim.defer_fn(function()
