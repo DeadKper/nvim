@@ -46,7 +46,6 @@ return { -- Collection of various small independent plugins/modules
       options = { try_as_border = true },
       draw = {
         delay = 50,
-        priority = 1,
         animation = indentscope.gen_animation.linear({
           duration = 10,
         }),

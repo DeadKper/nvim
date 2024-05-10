@@ -7,8 +7,8 @@ return { -- Add indent guides on blank lines
     require('ibl').setup({
       indent = {
         char = icons.lines.center,
+        tab_char = icons.lines.center,
         repeat_linebreak = true,
-        priority = 0,
       },
       scope = { enabled = false },
       exclude = {
