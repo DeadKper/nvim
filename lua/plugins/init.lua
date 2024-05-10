@@ -30,6 +30,7 @@ require('lazy').setup({
   require('plugins.neoconf'),
   require('plugins.lint'),
   require('plugins.virt-column'),
+  require('plugins.indent-blankline'),
 
   -- Load indent helpers
   require('plugins.sleuth'),
