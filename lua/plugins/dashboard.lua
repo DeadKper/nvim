@@ -1,6 +1,5 @@
 return { -- Create a dashboard screen similar to the one in Doom Emacs
   'nvimdev/dashboard-nvim',
-  event = 'UIEnter',
   dependencies = {
     'nvim-telescope/telescope.nvim', -- Search through files
     'nvim-tree/nvim-web-devicons', -- Better icons
@@ -33,7 +32,12 @@ return { -- Create a dashboard screen similar to the one in Doom Emacs
           { action = 'ene | startinsert', desc = ' New file', icon = ' ', key = 'n' },
           { action = 'Telescope oldfiles', desc = ' Recent files', icon = ' ', key = 'r' },
           { action = 'Telescope live_grep', desc = ' Find text', icon = ' ', key = 'g' },
-          { action = [[lua require('telescope.builtin').find_files({ cwd = vim.fn.stdpath('config') })]], desc = ' Config', icon = ' ', key = 'c' },
+          {
+            action = [[lua require('telescope.builtin').find_files({ cwd = vim.fn.stdpath('config') })]],
+            desc = ' Config',
+            icon = ' ',
+            key = 'c',
+          },
           { action = 'qa', desc = ' Quit', icon = ' ', key = 'q' },
         },
         footer = function()
