@@ -10,10 +10,10 @@ end
 require('lazy').setup({
   -- Load theme
   require('plugins.onedark'),
-  require('plugins.neovim-session-manager'),
-  require('plugins.dashboard'),
 
   -- Load utilities
+  require('plugins.neovim-session-manager'),
+  require('plugins.dashboard'),
   require('plugins.treesitter'),
   require('plugins.telescope'),
   require('plugins.fugitive'),
@@ -29,6 +29,7 @@ require('lazy').setup({
   require('plugins.which-key'),
   require('plugins.neoconf'),
   require('plugins.lint'),
+  require('plugins.virt-column'),
 
   -- Load indent helpers
   require('plugins.sleuth'),
