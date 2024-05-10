@@ -31,7 +31,7 @@ vim.opt.splitbelow = true
 vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor
-vim.opt.scrolloff = 8
+vim.opt.scrolloff = vim.fn.winheight(0) / 5 + 0.5 > 4 and math.floor(vim.fn.winheight(0) / 5 + 0.5) or 4
 
 -- Set completeopt to have a better completion experience
 vim.opt.completeopt = 'menuone,noselect'
