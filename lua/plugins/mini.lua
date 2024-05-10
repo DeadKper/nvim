@@ -57,7 +57,7 @@ return { -- Collection of various small independent plugins/modules
       filetypes = indent.get_exclude('blankline', 'filetype'),
       buftypes = indent.get_exclude('blankline', 'buftype'),
     }
-    vim.g.miniindentscope_disable = true
+    vim.b.miniindentscope_disable = true
     vim.api.nvim_create_autocmd({ 'BufEnter', 'WinEnter', 'FileType' }, {
       group = vim.api.nvim_create_augroup('mini.indentscope', { clear = true }),
       callback = function()
