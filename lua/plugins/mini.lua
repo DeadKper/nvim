@@ -57,17 +57,14 @@ return { -- Collection of various small independent plugins/modules
       filetypes = indent.get_exclude('blankline', 'filetype'),
       buftypes = indent.get_exclude('blankline', 'buftype'),
     }
-    vim.b.miniindentscope_disable = true
+    local function set_indentscope()
+      vim.b.miniindentscope_disable = vim.tbl_contains(excludes.filetypes, vim.bo.filetype)
+        or vim.tbl_contains(excludes.buftypes, vim.bo.buftype)
+    end
     vim.api.nvim_create_autocmd({ 'BufEnter', 'WinEnter', 'FileType' }, {
       group = vim.api.nvim_create_augroup('mini.indentscope', { clear = true }),
-      callback = function()
-        if
-          not vim.tbl_contains(excludes.filetypes, vim.bo.filetype)
-          and not vim.tbl_contains(excludes.buftypes, vim.bo.buftype)
-        then
-          vim.b.miniindentscope_disable = false
-        end
-      end,
+      callback = set_indentscope,
     })
+    set_indentscope()
   end,
 }
