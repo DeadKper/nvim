@@ -11,6 +11,7 @@ local M = {
       'dashboard',
       'fugitive',
       'Trouble',
+      '',
     },
     buftype = {
       'terminal',
@@ -21,7 +22,6 @@ local M = {
   },
   colorcolumn = {
     default = '80',
-    color = '#484848',
     auto_exclude = true,
     filetype = {
       gitcommit = '50',
@@ -30,7 +30,6 @@ local M = {
   blankline = {
     exclude = {
       filetype = {
-        '',
         'gitcommit',
       },
     },
