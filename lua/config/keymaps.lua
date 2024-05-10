@@ -46,7 +46,7 @@ local function scroll(key)
   elseif key == 'k' and bufend - bufcurr + count - 1 < hijump then
     count = hijump - (bufend - bufcurr)
   end
-  vim.cmd('normal! ' .. count .. key)
+  vim.cmd('normal! ' .. count .. 'g' .. key)
 
   if vim.g.vscode then
     vim.defer_fn(function()
