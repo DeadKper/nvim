@@ -38,5 +38,35 @@ return { -- Collection of various small independent plugins/modules
         line_up = '',
       },
     })
+
+    local icons = require('config.icons')
+    local indentscope = require('mini.indentscope')
+    indentscope.setup({
+      symbol = icons.lines.center,
+      options = { try_as_border = true },
+      draw = {
+        delay = 50,
+        priority = 1,
+        animation = indentscope.gen_animation.linear({
+          duration = 10,
+        }),
+      },
+    })
+
+    local indent = require('config.indent')
+    local excludes = {
+      filetypes = indent.get_exclude('blankline', 'filetype'),
+      buftypes = indent.get_exclude('blankline', 'buftype'),
+    }
+    vim.api.nvim_create_autocmd({ 'BufEnter', 'WinEnter', 'FileType' }, {
+      group = vim.api.nvim_create_augroup('mini.indentscope', { clear = true }),
+      callback = function()
+        if
+          vim.tbl_contains(excludes.filetypes, vim.bo.filetype) or vim.tbl_contains(excludes.buftypes, vim.bo.buftype)
+        then
+          vim.b.miniindentscope_disable = true
+        end
+      end,
+    })
   end,
 }
