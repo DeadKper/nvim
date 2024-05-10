@@ -8,6 +8,7 @@ return { -- Add indent guides on blank lines
       indent = {
         char = icons.lines.center,
         repeat_linebreak = true,
+        priority = 0,
       },
       scope = { enabled = false },
       exclude = {
