@@ -93,7 +93,7 @@ vim.keymap.set('n', '<C-p>', ':bprev<cr>', { silent = true })
 
 -- Make zz not center at the end of the buffer
 local scroll_up = vim.api.nvim_replace_termcodes('normal! <C-y>', true, false, true)
-vim.keymap.set({ 'n', 'v' }, 'zz', function()
+vim.keymap.set({ 'n' }, 'zz', function()
   vim.cmd('normal! zz')
 
   local prev_line
