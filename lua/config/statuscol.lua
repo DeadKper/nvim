@@ -111,7 +111,7 @@ function M.statuscolumn()
 
     colicons.folds = M.icon(fold)
     colicons.gitsg = is_file and M.icon(gitsg)
-    colicons.signs = M.get_mark(buf, vim.v.lnum) or signs and M.icon(M.get_mark(buf, vim.v.lnum) or signs)
+    colicons.signs = (M.get_mark(buf, vim.v.lnum) or signs) and M.icon(M.get_mark(buf, vim.v.lnum) or signs)
   end
 
   -- Numbers in Neovim are weird
@@ -139,7 +139,7 @@ function M.statuscolumn()
   return table.concat({
     colicons.folds or '',
     colicons.pnums or '',
-    colicons.signs or colicons.gitsg or '',
+    colicons.signs or colicons.gitsg or '  ',
   }, '')
 end
 
