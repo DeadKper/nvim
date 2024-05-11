@@ -3,7 +3,7 @@ return { -- Better folds
   event = 'VeryLazy',
   dependencies = {
     'kevinhwang91/promise-async', -- Required
-    'nvim-treesitter/nvim-treesitter', -- Used for fold method
+    'williamboman/mason.nvim', -- Setup mason before so it can extend lsp fold capabilities
   },
   config = function()
     local ufo = require('ufo')
