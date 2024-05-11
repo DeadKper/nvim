@@ -75,6 +75,7 @@ local fillchars = {
   eob = ' ',
   foldopen = icons.fold.open,
   foldsep = ' ',
+  fold = ' ',
   foldclose = icons.fold.close,
   diff = icons.diff,
 }
@@ -86,17 +87,6 @@ vim.opt.foldlevel = 99
 if vim.fn.has('nvim-0.9.0') == 1 then
   vim.opt.statuscolumn = [[%!v:lua.require'config.statuscol'.statuscolumn()]]
   vim.opt.foldtext = "v:lua.require'config.statuscol'.foldtext()"
-end
-
--- HACK: causes freezes on <= 0.9, so only enable on >= 0.10 for now
-if vim.fn.has('nvim-0.10') == 1 then
-  vim.opt.foldmethod = 'expr'
-  vim.opt.foldexpr = "v:lua.require'config.statuscol'.foldexpr()"
-  vim.opt.foldtext = ''
-  fillchars.fold = ' '
-  vim.opt.fillchars = fillchars
-else
-  vim.opt.foldmethod = 'indent'
 end
 
 -- Fix markdown indentation settings
