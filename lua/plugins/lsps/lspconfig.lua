@@ -84,8 +84,7 @@ return { -- LSP configuration
           })
         end
 
-        local ver = vim.version()
-        if (ver.major > 0 or ver.minor >= 10) and client.server_capabilities.inlayHintProvider then
+        if vim.fn.has('nvim-0.10') == 1 and client.server_capabilities.inlayHintProvider then
           -- Enable inlay hints
           vim.lsp.inlay_hint.enable(true)
           -- Make inlay hints italic with a light gray color
