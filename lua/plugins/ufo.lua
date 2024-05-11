@@ -22,7 +22,7 @@ return { -- Better folds
       'anuvyklack/fold-preview.nvim', -- Add fold preview
       config = function()
         local fold_preview = require('fold-preview')
-        fold_preview.setup({ default_keybindings = false, auto = 700 })
+        fold_preview.setup({ default_keybindings = false, auto = nil })
 
         vim.keymap.set('n', 'zp', fold_preview.toggle_preview, { desc = 'Toggle fold preview' })
       end,
