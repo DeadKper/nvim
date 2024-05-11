@@ -4,12 +4,18 @@ return { -- Automatically install LSPs and related tools to stdpath for neovim
   dependencies = {
     'neovim/nvim-lspconfig', -- LSP configuration
     'williamboman/mason-lspconfig.nvim', -- Allow lspconfig integration to mason
+    'hrsh7th/nvim-cmp',
   },
   config = function()
     -- Set new neovim capabilities granted by the LSP, requires 'hrsh7th/cmp-nvim-lsp' to be included
     -- in lazy, in this case in cmp.lua
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+    capabilities = vim.tbl_deep_extend('keep', capabilities, { -- Enable folding capabilities
+      textDocument = {
+        foldingRange = { dynamicRegistration = false, lineFoldingOnly = true },
+      },
+    })
 
     -- Setup Mason for automatic LSP, formatters, debuggers install
     --  You can press `g?` for help in :Mason menu

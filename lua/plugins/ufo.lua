@@ -20,10 +20,6 @@ return { -- Better folds
     vim.keymap.set('n', 'zM', ufo.closeAllFolds)
 
     ---@diagnostic disable-next-line:missing-fields
-    ufo.setup({
-      provider_selector = function()
-        return { 'treesitter', 'indent' }
-      end,
-    })
+    ufo.setup()
   end,
 }
