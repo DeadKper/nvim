@@ -14,7 +14,7 @@ return { -- Better folds
 
     local function handler(virtText, lnum, endLnum, width, truncate)
       local newVirtText = {}
-      local suffix = ('   ' .. icons.arrows.bottom_left .. ' %d '):format(endLnum - lnum)
+      local suffix = (' ' .. icons.arrows.bottom_left .. ' %d '):format(endLnum - lnum)
       local sufWidth = vim.fn.strdisplaywidth(suffix)
       local targetWidth = width - sufWidth
       local curWidth = 0
