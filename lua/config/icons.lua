@@ -4,6 +4,8 @@ return { -- Requires a nerd font
     center = '│',
     split = { '╎', '┆' },
   },
+  dots = '󰇘',
+  diff = '╱',
   dap = {
     paused = '󰏥 ',
     breakpoint = ' ',

@@ -58,5 +58,46 @@ vim.opt.inccommand = 'nosplit'
 vim.opt.list = true
 vim.opt.listchars = { tab = '  ', trail = '·', nbsp = '␣' }
 
--- Disable eob fill chars
-vim.opt.fillchars = { eob = ' ' }
+-- Set complete options
+vim.opt.completeopt = 'menu,menuone,noselect'
+
+-- Hide * markup for bold and italic, but not markers with substitutions
+vim.opt.conceallevel = 2
+
+-- Set rg as the default grep program if it's installed
+if vim.fn.executable('rg') == 1 then
+  vim.opt.grepprg = 'rg --vimgrep'
+end
+
+-- Set fillchars
+local icons = require('config.icons')
+local fillchars = {
+  eob = ' ',
+  foldopen = icons.fold.open,
+  foldsep = ' ',
+  foldclose = icons.fold.close,
+  diff = icons.diff,
+}
+vim.opt.fillchars = fillchars
+
+-- Set fold config
+vim.opt.foldlevel = 99
+
+if vim.fn.has('nvim-0.9.0') == 1 then
+  vim.opt.statuscolumn = [[%!v:lua.require'config.statuscol'.statuscolumn()]]
+  vim.opt.foldtext = "v:lua.require'config.statuscol'.foldtext()"
+end
+
+-- HACK: causes freezes on <= 0.9, so only enable on >= 0.10 for now
+if vim.fn.has('nvim-0.10') == 1 then
+  vim.opt.foldmethod = 'expr'
+  vim.opt.foldexpr = "v:lua.require'config.statuscol'.foldexpr()"
+  vim.opt.foldtext = ''
+  fillchars.fold = ' '
+  vim.opt.fillchars = fillchars
+else
+  vim.opt.foldmethod = 'indent'
+end
+
+-- Fix markdown indentation settings
+vim.g.markdown_recommended_style = 0
