@@ -66,6 +66,13 @@ return { -- LSP configuration
         -- Show diagnostics
         map('<leader>e', vim.diagnostic.open_float, 'Show diagnostic [E]rror messages')
 
+        if vim.inspect(vim.opt.rtp:get()):find('nvim[-]ufo') then
+          local ufo = require('ufo')
+          map('K', function()
+            return ufo.peekFoldedLinesUnderCursor() or vim.lsp.buf.hover()
+          end, 'Hover Documentation/Fold Preview')
+        end
+
         local client = vim.lsp.get_client_by_id(event.data.client_id)
         if not client then
           return
