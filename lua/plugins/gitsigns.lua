@@ -9,7 +9,6 @@ return { -- Adds git related signs to the gutter, as well as utilities for manag
     local gitsigns = require('gitsigns')
     gitsigns.setup({
       signs = signs,
-      current_line_blame = true,
       attach_to_untracked = true,
       yadm = {
         enable = true,
