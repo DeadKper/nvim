@@ -6,6 +6,9 @@ return { -- Requires a nerd font
   },
   dots = '󰇘',
   diff = '╱',
+  arrows = {
+    bottom_left = '󰁂',
+  },
   dap = {
     paused = '󰏥 ',
     breakpoint = ' ',
