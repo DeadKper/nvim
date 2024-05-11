@@ -121,6 +121,9 @@ function M.statuscolumn()
       signs = nil
     end
     vim.api.nvim_win_call(win, function()
+      if vim.fn.foldlevel(vim.v.lnum - 1) < vim.fn.foldlevel(vim.v.lnum) then
+        fold = { text = vim.opt.fillchars:get().foldopen or icons.fold.open, texthl = 'Unfolded' }
+      end
       if vim.fn.foldclosed(vim.v.lnum) >= 0 then
         fold = { text = vim.opt.fillchars:get().foldclose or icons.fold.close, texthl = 'Folded' }
       end
