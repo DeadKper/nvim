@@ -52,6 +52,7 @@ vim.opt.hlsearch = false
 
 -- Enable incremental search
 vim.opt.incsearch = true
+vim.opt.inccommand = 'nosplit'
 
 -- Sets how neovim will display certain whitespace in the editor
 vim.opt.list = true
