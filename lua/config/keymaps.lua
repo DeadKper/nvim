@@ -85,7 +85,7 @@ vim.keymap.set({ 'n', 'v' }, '<leader>d', '"_d')
 vim.keymap.set('i', '<C-c>', '<Esc>')
 
 -- Make current file executable
-vim.keymap.set('n', '<leader>fx', ':!chmod +x %<cr>', { desc = '[F]ile give E[x]ecution permission' })
+vim.keymap.set('n', '<leader>fx', ':!chmod +x %', { desc = '[F]ile give E[x]ecution permission' })
 
 -- Switch between open buffers
 vim.keymap.set('n', '<C-n>', ':bnext<cr>', { silent = true })
@@ -116,3 +116,6 @@ vim.keymap.set('o', 'n', "'Nn'[v:searchforward]", { expr = true, desc = 'Next Se
 vim.keymap.set('n', 'N', "'nN'[v:searchforward].'zv'", { expr = true, desc = 'Prev Search Result', silent = true })
 vim.keymap.set('x', 'N', "'nN'[v:searchforward]", { expr = true, desc = 'Prev Search Result', silent = true })
 vim.keymap.set('o', 'N', "'nN'[v:searchforward]", { expr = true, desc = 'Prev Search Result', silent = true })
+
+-- Macro editor
+vim.cmd([[nnoremap <leader>m  :<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(v:register))<cr><c-f><left>]])
