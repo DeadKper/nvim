@@ -13,8 +13,7 @@ function M.get_signs(buf, lnum)
   ---@type Sign[]
   local signs = {}
 
-  local ver = vim.version()
-  if ver.major == 0 or ver.minor < 10 then
+  if vim.fn.has('nvim-0.10') == 1 then
     -- Only needed for Neovim <0.10
     -- Newer versions include legacy signs in nvim_buf_get_extmarks
     for _, sign in ipairs(vim.fn.sign_getplaced(buf, { group = '*', lnum = lnum })[1].signs) do
