@@ -105,3 +105,6 @@ vim.keymap.set({ 'n', 'v' }, 'zz', function()
     curr_line = vim.fn.winline()
   end
 end, { silent = true })
+
+-- Rename word
+vim.keymap.set('n', '<leader>rw', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = 'Rename word' })
