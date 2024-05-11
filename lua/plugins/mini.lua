@@ -19,7 +19,11 @@ return { -- Collection of various small independent plugins/modules
 
     if not vim.g.vscode then
       -- Autoclose common pairs like ', ", (, [, {, ...
-      require('mini.pairs').setup()
+      require('mini.pairs').setup({
+        mappings = {
+          ['`'] = { action = 'closeopen', pair = '``', neigh_pattern = '[^\\`].', register = { cr = false } },
+        },
+      })
     end
 
     -- Move selection, better than keymaps
