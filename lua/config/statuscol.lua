@@ -110,8 +110,10 @@ function M.statuscolumn()
     end)
 
     colicons.folds = M.icon(fold)
-    colicons.gitsg = is_file and M.icon(gitsg)
-    colicons.signs = is_file and (M.get_mark(buf, vim.v.lnum) or signs) and M.icon(M.get_mark(buf, vim.v.lnum) or signs)
+    if is_file then
+      colicons.gitsg = M.icon(gitsg)
+      colicons.signs = (M.get_mark(buf, vim.v.lnum) or signs) and M.icon(M.get_mark(buf, vim.v.lnum) or signs)
+    end
   end
 
   -- Numbers in Neovim are weird
