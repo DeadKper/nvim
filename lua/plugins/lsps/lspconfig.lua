@@ -13,7 +13,6 @@ return { -- LSP configuration
         if vim.inspect(vim.opt.rtp:get()):find('which[-]key') then
           require('which-key').register({
             ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
-            ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
             ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
           })
         end
