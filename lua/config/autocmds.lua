@@ -30,3 +30,11 @@ vim.api.nvim_create_autocmd({ 'UIEnter' }, {
     enable_rnu()
   end,
 })
+
+-- Set fold leven in autocmd since diffing files seems to set fold level low
+vim.api.nvim_create_autocmd({ 'BufEnter' }, {
+  group = vim.api.nvim_create_augroup('foldlevel', { clear = true }),
+  callback = function()
+    vim.opt_local.foldlevel = 99
+  end,
+})
