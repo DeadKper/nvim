@@ -81,8 +81,8 @@ vim.keymap.set('x', '<leader>P', '"_dp')
 -- Delete without saving contents to a delete register
 vim.keymap.set({ 'n', 'v' }, '<leader>d', '"_d')
 
--- C-x to esc, C-c has some hardcoded func on some plugins
-vim.keymap.set('!', '<C-x>', '<Esc>')
+-- C-c does weird stuff sometimes
+vim.keymap.set({ 'i', 'n', 'v', 'c', 'o', 'x', '!' }, '<C-c>', '<Esc>')
 
 -- Make current file executable
 vim.keymap.set('n', '<leader>fx', ':!chmod +x %', { desc = '[F]ile give E[x]ecution permission' })

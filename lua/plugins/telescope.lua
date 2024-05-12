@@ -54,6 +54,9 @@ return { -- Fuzzy Finder (files, lsp, etc)
       }):sync()
     end
 
+    local function escape()
+      vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<esc>', true, true, true))
+    end
     -- Setup ui-select
     require('telescope').setup({
       defaults = {
@@ -63,8 +66,11 @@ return { -- Fuzzy Finder (files, lsp, etc)
         },
         mappings = {
           i = {
-            ['<esc>'] = actions.close,
+            ['<C-c>'] = escape,
             ['<M-p>'] = action_layout.toggle_preview,
+          },
+          n = {
+            ['<C-c>'] = escape,
           },
         },
         vimgrep_arguments = {
