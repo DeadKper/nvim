@@ -64,6 +64,9 @@ vim.opt.completeopt = 'menu,menuone,noselect'
 -- Hide * markup for bold and italic, but not markers with substitutions
 vim.opt.conceallevel = 2
 
+-- Fix markdown indentation settings
+vim.g.markdown_recommended_style = 0
+
 -- Set rg as the default grep program if it's installed
 if vim.fn.executable('rg') == 1 then
   vim.opt.grepprg = 'rg --vimgrep'
@@ -84,10 +87,8 @@ vim.opt.fillchars = fillchars
 -- Set fold config
 vim.opt.foldlevel = 99
 
+-- Config custom status column and fold text
 if vim.fn.has('nvim-0.9.0') == 1 then
   vim.opt.statuscolumn = [[%!v:lua.require'config.statuscol'.statuscolumn()]]
   vim.opt.foldtext = "v:lua.require'config.statuscol'.foldtext()"
 end
-
--- Fix markdown indentation settings
-vim.g.markdown_recommended_style = 0
