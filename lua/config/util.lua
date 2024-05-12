@@ -146,9 +146,6 @@ function M.statuscolumn()
 end
 
 function M.foldtext()
-  vim.defer_fn(function()
-    print('asd')
-  end, 2000)
   local ok = pcall(vim.treesitter.get_parser, vim.api.nvim_get_current_buf())
   local ret = ok and vim.treesitter.foldtext and vim.treesitter.foldtext()
   if not ret or type(ret) == 'string' then
