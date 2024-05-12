@@ -82,7 +82,7 @@ vim.keymap.set('x', '<leader>P', '"_dp')
 vim.keymap.set({ 'n', 'v' }, '<leader>d', '"_d')
 
 -- C-c does weird stuff sometimes
-vim.keymap.set({ 'i', 'n', 'v', 'c', 'o', 'x', '!' }, '<C-c>', '<Esc>')
+vim.keymap.set({ 'i', 'n', 'v', 'o', 'x', '!' }, '<C-c>', '<Esc>')
 
 -- Make current file executable
 vim.keymap.set('n', '<leader>fx', ':!chmod +x %', { desc = '[F]ile give E[x]ecution permission' })
