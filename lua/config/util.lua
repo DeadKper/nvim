@@ -152,7 +152,7 @@ function M.foldtext()
     ---@diagnostic disable-next-line:cast-local-type
     ret = { { vim.api.nvim_buf_get_lines(0, vim.v.lnum - 1, vim.v.lnum, false)[1], {} } }
   end
-  table.insert(ret, { ' ###' .. icons.dots })
+  table.insert(ret, { ' ' .. icons.dots })
 
   if not vim.treesitter.foldtext then
     return table.concat(
@@ -162,7 +162,7 @@ function M.foldtext()
       ' '
     )
   end
-  return ret .. '$'
+  return ret
 end
 
 M.skip_foldexpr = {} ---@type table<number,boolean>
