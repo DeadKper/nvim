@@ -15,14 +15,27 @@ return { -- Auto detection for file indentation with custom logic un lua to add 
       },
     }
 
-    local function indent()
-      local data = vim.api.nvim_exec2('verbose set ts sw', { output = true }).output
-      if not data:match('sleuth.vim') then
-        return
+    local function exec(cmd)
+      return vim.api.nvim_exec2(cmd, { output = true }).output
+    end
+
+    local function indent(sleuth)
+      if sleuth == true then
+        local text = exec('Sleuth')
+        if text:match('failed') then
+          vim.cmd('echohl WarningMsg')
+          vim.cmd("echo '" .. text .. "'")
+          vim.cmd('echohl NONE')
+          return
+        end
+      else
+        if not exec('verbose set ts sw'):match('sleuth[.]vim') then
+          return
+        end
       end
 
-      local tabstop = tonumber(data:match('tabstop=([0-9]+)'))
-      local shiftwidth = tonumber(data:match('shiftwidth=([0-9]+)'))
+      local tabstop = vim.fn.eval('&ts')
+      local shiftwidth = vim.fn.eval('&sw')
 
       if shiftwidth == 0 or tabstop == shiftwidth then
         if tabstop == 8 and not vim.tbl_contains(conf.ignore, vim.bo.filetype) then
@@ -36,11 +49,21 @@ return { -- Auto detection for file indentation with custom logic un lua to add 
       else
         vim.bo.tabstop = shiftwidth
       end
+
+      if sleuth then
+        print(
+          ':setlocal '
+            .. (vim.fn.eval('&et') == 1 and 'et' or 'noet')
+            .. ' ts='
+            .. vim.fn.eval('&ts')
+            .. ' sw='
+            .. vim.fn.eval('&sw')
+        )
+      end
     end
 
-    vim.api.nvim_create_user_command('DetectIndent', function()
-      vim.cmd('silent Sleuth')
-      indent()
+    vim.api.nvim_create_user_command('Indent', function()
+      indent(true)
     end, {})
 
     local augroup = vim.api.nvim_create_augroup('indent', { clear = true })
@@ -58,7 +81,7 @@ return { -- Auto detection for file indentation with custom logic un lua to add 
           group = augroup,
           once = true,
           callback = function()
-            vim.defer_fn(vim.cmd.DetectIndent, 500)
+            vim.defer_fn(vim.cmd.Indent, 500)
           end,
         })
       end,
