@@ -47,15 +47,16 @@ return { -- Auto detection for file indentation with custom logic un lua to add 
       elseif tabstop < shiftwidth then
         vim.bo.shiftwidth = tabstop
       else
-        vim.bo.tabstop = shiftwidth
+        if vim.fn.eval('&et') == 1 then
+          vim.bo.tabstop = shiftwidth
+        end
       end
 
       if sleuth then
         print(
           ':setlocal '
             .. (vim.fn.eval('&et') == 1 and 'et' or 'noet')
-            .. ' ts='
-            .. vim.fn.eval('&ts')
+            .. (vim.fn.eval('&et') == 0 and ' ts=' .. vim.fn.eval('&ts') or '')
             .. ' sw='
             .. vim.fn.eval('&sw')
         )
