@@ -10,6 +10,9 @@ return { -- Add indent guides on blank lines
         tab_char = icons.lines.center,
         repeat_linebreak = true,
       },
+      viewport_buffer = {
+        min = 100,
+      },
       scope = { enabled = false },
       exclude = {
         filetypes = indent.get_exclude('blankline', 'filetype'),
