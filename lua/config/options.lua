@@ -1,5 +1,5 @@
 -- Set mark to use in keymaps
-vim.g.temp_mark = 'a'
+vim.g.temp_mark = 'z'
 
 -- Make line numbers default
 vim.opt.number = true
