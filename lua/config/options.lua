@@ -29,9 +29,6 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor
 vim.opt.scrolloff = vim.fn.winheight(0) / 5 + 0.5 > 4 and math.floor(vim.fn.winheight(0) / 5 + 0.5) or 4
 
--- Set completeopt to have a better completion experience
-vim.opt.completeopt = 'menuone,noselect'
-
 -- NOTE: Make sure your terminal supports this
 vim.opt.termguicolors = true
 
@@ -54,7 +51,7 @@ vim.opt.inccommand = 'nosplit'
 vim.opt.list = true
 vim.opt.listchars = { tab = '  ', trail = '·', nbsp = '␣' }
 
--- Set complete options
+-- Set completeopt to have a better completion experience
 vim.opt.completeopt = 'menu,menuone,noselect'
 
 -- Hide * markup for bold and italic, but not markers with substitutions
