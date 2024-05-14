@@ -52,7 +52,7 @@ return { -- Auto detection for file indentation with custom logic un lua to add 
         end
       end
 
-      if sleuth then
+      if sleuth == true then
         print(
           ':setlocal '
             .. (vim.fn.eval('&et') == 1 and 'et' or 'noet')
