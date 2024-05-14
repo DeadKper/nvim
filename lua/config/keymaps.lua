@@ -34,40 +34,18 @@ vim.keymap.set('n', '<C-h>', '<C-w>h', { silent = true })
 -- Append line below to current
 vim.keymap.set('n', 'J', 'm' .. vim.g.temp_mark .. 'J`' .. vim.g.temp_mark, { silent = true })
 
--- C-d/C-u does weird things with long lines so fix that here
-local function scroll(key)
-  local count = math.floor(vim.fn.winheight(0) / 2)
-  if vim.g.vscode and count >= 50 then
-    count = 16
-  end
-
-  local hijump = math.floor(count * 1.5)
-  local bufcurr = vim.fn.getpos('.')[2]
-  local bufend = vim.fn.getpos('$')[2]
-
-  if key == 'j' and bufcurr + count <= hijump then
-    count = hijump - bufcurr
-  elseif key == 'k' and bufend - bufcurr + count - 1 < hijump then
-    count = hijump - (bufend - bufcurr)
-  end
-  vim.cmd('normal! ' .. count .. 'g' .. key)
-
-  if vim.g.vscode then
-    vim.defer_fn(function()
-      vim.cmd('normal zz')
-      vim.cmd('normal zz') -- Don't know why 2 times but it fixes glitchiness
-    end, 15)
-  else
-    vim.cmd('normal zz')
-  end
+-- Jump normally but use remaped zz
+local function jump(key)
+  vim.cmd('normal!' .. vim.api.nvim_replace_termcodes(key, true, true, true))
+  vim.cmd('normal zz')
 end
 
 -- Jump half page with cursor in the middle
 vim.keymap.set({ 'n', 'i' }, '<C-d>', function()
-  scroll('j')
+  jump('<C-d>')
 end)
 vim.keymap.set({ 'n', 'i' }, '<C-u>', function()
-  scroll('k')
+  jump('<C-u>')
 end)
 
 -- Jump search with cursor in the middle
