@@ -112,7 +112,12 @@ function M.statuscolumn()
     colicons.folds = M.icon(fold)
     if is_file then
       colicons.gitsg = M.icon(gitsg)
-      colicons.signs = (M.get_mark(buf, vim.v.lnum) or signs) and M.icon(M.get_mark(buf, vim.v.lnum) or signs)
+      local mark = M.get_mark(buf, vim.v.lnum)
+      if not mark or mark.text:match(vim.g.temp_mark) then
+        colicons.signs = signs and M.icon(signs)
+      else
+        colicons.signs = M.icon(mark)
+      end
     end
   end
 
