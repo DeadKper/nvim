@@ -13,7 +13,7 @@ function M.get_signs(buf, lnum)
   ---@type Sign[]
   local signs = {}
 
-  if vim.fn.has('nvim-0.10') == 1 then
+  if vim.fn.has('nvim-0.10') == 0 then
     -- Only needed for Neovim <0.10
     -- Newer versions include legacy signs in nvim_buf_get_extmarks
     for _, sign in ipairs(vim.fn.sign_getplaced(buf, { group = '*', lnum = lnum })[1].signs) do
@@ -113,10 +113,10 @@ function M.statuscolumn()
     if is_file then
       colicons.gitsg = M.icon(gitsg)
       local mark = M.get_mark(buf, vim.v.lnum)
-      if not mark or mark.text:match(vim.g.temp_mark) then
-        colicons.signs = signs and M.icon(signs)
-      else
+      if mark and not mark.text:match(vim.g.temp_mark) then
         colicons.signs = M.icon(mark)
+      else
+        colicons.signs = signs and M.icon(signs)
       end
     end
   end
