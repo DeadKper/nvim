@@ -84,7 +84,7 @@ vim.keymap.set({ 'n' }, 'zz', function()
   local height = vim.fn.winheight(0)
   local bufend = vim.fn.getpos('$')[2] - vim.fn.getpos('.')[2]
 
-  while prev ~= curr and (height - curr) - bufend do
+  while prev ~= curr and (height - curr) - bufend > 0 do
     vim.cmd(scroll_up)
     prev = curr
     curr = vim.fn.winline()
