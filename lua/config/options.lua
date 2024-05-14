@@ -1,7 +1,3 @@
--- Set mapleader
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
-
 -- Make line numbers default
 vim.opt.number = true
 
