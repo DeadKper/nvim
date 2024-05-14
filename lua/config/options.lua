@@ -1,3 +1,6 @@
+-- Set mark to use in keymaps
+vim.g.temp_mark = 'a'
+
 -- Make line numbers default
 vim.opt.number = true
 

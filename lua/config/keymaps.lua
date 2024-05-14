@@ -32,7 +32,7 @@ vim.keymap.set('n', '<C-l>', '<C-w>l', { silent = true })
 vim.keymap.set('n', '<C-h>', '<C-w>h', { silent = true })
 
 -- Append line below to current
-vim.keymap.set('n', 'J', 'mzJ`z', { silent = true })
+vim.keymap.set('n', 'J', 'm' .. vim.g.temp_mark .. 'J`' .. vim.g.temp_mark, { silent = true })
 
 -- C-d/C-u does weird things with long lines so fix that here
 local function scroll(key)
