@@ -101,13 +101,15 @@ vim.keymap.set({ 'n' }, 'zz', function()
   vim.cmd('normal! m' .. vim.g.temp_mark)
   vim.cmd('normal! zz')
 
-  local prev_line
-  local curr_line = vim.fn.winline()
-  local buffer_end = vim.fn.getpos('$')[2] - vim.fn.getpos('.')[2]
-  while prev_line ~= curr_line and (vim.fn.winheight(0) - curr_line) - buffer_end > 0 do
+  local prev
+  local curr = vim.fn.winline()
+  local height = vim.fn.winheight(0)
+  local bufend = vim.fn.getpos('$')[2] - vim.fn.getpos('.')[2]
+
+  while prev ~= curr and (height - curr) - bufend do
     vim.cmd(scroll_up)
-    prev_line = curr_line
-    curr_line = vim.fn.winline()
+    prev = curr
+    curr = vim.fn.winline()
   end
 
   vim.cmd('normal! `' .. vim.g.temp_mark)
