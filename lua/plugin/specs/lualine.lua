@@ -3,6 +3,6 @@ return { -- Set lualine as statusline
 	event = "VeryLazy",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	config = function()
-		require("plugin.confs.lualine")
+		require("plugin.setup.lualine")
 	end,
 }

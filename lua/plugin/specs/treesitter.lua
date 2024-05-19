@@ -3,6 +3,6 @@ return { -- Highlight, edit, and navigate code
 	event = "VeryLazy",
 	build = ":TSUpdate",
 	config = function()
-		require("plugin.confs.treesitter")
+		require("plugin.setup.treesitter")
 	end,
 }

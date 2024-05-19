@@ -3,6 +3,6 @@ return { -- Better explore
 	event = "VeryLazy",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	config = function()
-		require("plugin.confs.oil")
+		require("plugin.setup.oil")
 	end,
 }

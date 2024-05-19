@@ -3,6 +3,6 @@ return { -- Theme inspired by Atom
 	lazy = false,
 	priority = 1000,
 	config = function()
-		require("plugin.confs.onedark")
+		require("plugin.setup.onedark")
 	end,
 }
