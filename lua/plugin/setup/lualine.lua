@@ -1,5 +1,5 @@
-local ok, plugin = pcall(require, "lualine")
-if not ok then
+local has_lualine, lualine = pcall(require, "lualine")
+if not has_lualine then
 	return
 end
 
@@ -7,7 +7,7 @@ end
 vim.opt.showmode = false
 
 local icons = require("config.icons")
-plugin.setup({
+lualine.setup({
 	options = {
 		icons_enabled = true,
 		component_separators = icons.other.indent,

@@ -1,5 +1,5 @@
-local ok, plugin = pcall(require, "telescope")
-if not ok then
+local has_telescope, telescope = pcall(require, "telescope")
+if not has_telescope then
 	return
 end
 
@@ -11,6 +11,7 @@ local new_maker = function(filepath, bufnr, opts)
 	filepath = vim.fn.expand(filepath)
 	Job:new({
 		command = "file",
+		---@diagnostic disable-next-line:assign-type-mismatch
 		args = { "--mime-type", "-b", filepath },
 		on_exit = function(j)
 			local mime_type = vim.split(j:result()[1], "/")[1]
@@ -30,7 +31,7 @@ local function escape()
 end
 
 -- Setup ui-select
-plugin.setup({
+telescope.setup({
 	defaults = {
 		buffer_previewer_maker = new_maker,
 		preview = {
@@ -73,8 +74,8 @@ plugin.setup({
 })
 
 -- Enable telescope extensions, if they are installed
-pcall(plugin.load_extension, "fzf")
-pcall(plugin.load_extension, "ui-select")
+pcall(telescope.load_extension, "fzf")
+pcall(telescope.load_extension, "ui-select")
 
 -- See `:help telescope.builtin`
 local builtin = require("telescope.builtin")

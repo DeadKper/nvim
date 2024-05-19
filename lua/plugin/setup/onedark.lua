@@ -1,9 +1,9 @@
-local ok, plugin = pcall(require, "onedark")
-if not ok then
+local has_onedark, onedark = pcall(require, "onedark")
+if not has_onedark then
 	return
 end
 
-plugin.setup({
+onedark.setup({
 	transparent = true,
 	diagnostics = {
 		background = false,

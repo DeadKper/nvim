@@ -1,7 +1,7 @@
-local ok, plugin = pcall(require, "oil")
-if not ok then
+local has_oil, oil = pcall(require, "oil")
+if not has_oil then
 	return
 end
 
-plugin.setup({ view_options = { show_hidden = true } })
+oil.setup({ view_options = { show_hidden = true } })
 vim.g.explore = "Oil"

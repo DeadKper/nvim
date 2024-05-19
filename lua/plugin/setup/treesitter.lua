@@ -1,10 +1,10 @@
-local ok, plugin = pcall(require, "nvim-treesitter.configs")
-if not ok then
+local has_treesitter, treesitter = pcall(require, "nvim-treesitter.configs")
+if not has_treesitter then
 	return
 end
 
 ---@diagnostic disable-next-line:missing-fields
-plugin.setup({
+treesitter.setup({
 	ensure_installed = {},
 	auto_install = true,
 	highlight = { enable = true },
