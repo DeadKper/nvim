@@ -3,6 +3,10 @@ if not has_telescope then
 	return
 end
 
+require("plugin.confs.which-key").add({
+	["<leader>s"] = { name = "[S]earch", _ = "which_key_ignore" },
+})
+
 local actions = require("telescope.actions")
 local action_layout = require("telescope.actions.layout")
 local previewers = require("telescope.previewers")

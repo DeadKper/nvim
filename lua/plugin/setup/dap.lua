@@ -3,6 +3,10 @@ if not has_dap then
 	return
 end
 
+require("plugin.confs.which-key").add({
+	["<leader>d"] = { name = "[D]ebug", _ = "which_key_ignore" },
+})
+
 local map = function(keys, func, desc)
 	vim.keymap.set("n", keys, func, { desc = "Debug: " .. desc })
 end
