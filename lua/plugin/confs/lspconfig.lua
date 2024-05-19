@@ -15,7 +15,7 @@ M.ignore = {}
 ---List of servers ignore automatic setup
 ---@param ... string
 function M.add_ignore(...)
-	for _, value in ipairs(table.pack(...)) do
+	for _, value in ipairs({ ... }) do
 		if not vim.tbl_contains(M.ignore, value) then
 			table.insert(M.ignore, value)
 		end

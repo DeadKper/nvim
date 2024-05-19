@@ -21,5 +21,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
 			end,
 		},
 	},
-	config = function() end,
+	config = function()
+		require("plugin.setup.telescope")
+	end,
 }
