@@ -73,6 +73,6 @@ vim.opt.fillchars = {
 
 -- Config custom status column and fold text
 if vim.fn.has("nvim-0.9.0") == 1 then
-	vim.opt.statuscolumn = [[%!v:lua.require("kpr.ui").statuscolumn()]]
-	vim.opt.foldtext = "v:lua.require('kpr.ui').foldtext()"
+	vim.opt.statuscolumn = [[%!v:lua.require("keeper.ui").statuscolumn()]]
+	vim.opt.foldtext = "v:lua.require('keeper.ui').foldtext()"
 end
