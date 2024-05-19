@@ -3,6 +3,16 @@ return { -- Theme inspired by Atom
 	lazy = false,
 	priority = 1000,
 	config = function()
-		require("plugin.setup.onedark")
+		require("onedark").setup({
+			transparent = true,
+			diagnostics = {
+				background = false,
+			},
+			lualine = {
+				transparent = true,
+			},
+		})
+
+		vim.cmd("colorscheme onedark")
 	end,
 }

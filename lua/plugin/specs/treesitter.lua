@@ -3,6 +3,12 @@ return { -- Highlight, edit, and navigate code
 	event = "VeryLazy",
 	build = ":TSUpdate",
 	config = function()
-		require("plugin.setup.treesitter")
+		---@diagnostic disable-next-line:missing-fields
+		require("nvim-treesitter.configs").setup({
+			ensure_installed = {},
+			auto_install = true,
+			highlight = { enable = true },
+			indent = { enable = true },
+		})
 	end,
 }
