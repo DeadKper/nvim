@@ -44,10 +44,10 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 	end,
 })
 
-vim.filetype.add({ extension = { templ = 'templ' } }) -- Add templ as a file extension
+vim.filetype.add({ extension = { templ = "templ" } }) -- Add templ as a file extension
 
 -- Config mason-lspconfig
-local has_mason_lspconfig, mason_lspconfig = pcall(require, "mason")
+local has_mason_lspconfig, mason_lspconfig = pcall(require, "mason-lspconfig")
 if has_mason_lspconfig then
 	local has_neoconf, neoconf = pcall(require, "neoconf")
 	if has_neoconf then
@@ -64,17 +64,16 @@ if has_mason_lspconfig then
 		lua_ls = {
 			settings = {
 				Lua = {
-					runtime = { version = 'LuaJIT' },
+					runtime = { version = "LuaJIT" },
 					completion = {
-						callSnippet = 'Replace',
+						callSnippet = "Replace",
 					},
 				},
 			},
 		},
 	}
 
-	-- Make lsp capabilities
-	local capabilities = vim.lsp.protocol.make_client_capabilities()
+	local lsp = require("plugin.confs.lspconfig")
 
 	-- Setup mason lspconfig
 	mason_lspconfig.setup({
@@ -84,9 +83,24 @@ if has_mason_lspconfig then
 				local server = servers[server_name] or {}
 
 				-- This handles overriding only values explicitly passed by the server configuration above
-				server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-				require('lspconfig')[server_name].setup(server)
+				server.capabilities = vim.tbl_deep_extend("force", lsp.get_server_capabilities(), server.capabilities or {})
+				require("lspconfig")[server_name].setup(server)
 			end,
 		},
+	})
+end
+
+
+local has_mason_dap, mason_dap = pcall(require, "mason-nvim-dap")
+if has_mason_dap then
+	---@diagnostic disable-next-line:missing-fields
+	mason_dap.setup({
+		-- Makes a best effort to setup the various debuggers with
+		-- reasonable debug configurations
+		automatic_setup = true,
+
+		-- You can provide additional configuration to the handlers,
+		-- see mason-nvim-dap README for more information
+		handlers = {},
 	})
 end

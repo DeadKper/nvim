@@ -3,6 +3,7 @@ if not ok then
 	return
 end
 
+---@diagnostic disable-next-line:missing-fields
 plugin.setup({
 	ensure_installed = {},
 	auto_install = true,
