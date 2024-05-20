@@ -28,7 +28,7 @@ return { -- Create a dashboard screen similar to the one in Doom Emacs
 				header = vim.split(logo, "\n"),
 				center = {
 					{ action = "Telescope find_files", desc = " Find file", icon = icons.find, key = "f" },
-					{ action = "Ex", desc = " File explorer", icon = icons.explorer, key = "e" },
+					{ action = "lua vim.cmd(vim.g.explore)", desc = " File explorer", icon = icons.explorer, key = "e" },
 					{ action = "ene | startinsert", desc = " New file", icon = icons.newfile, key = "n" },
 					{ action = "Telescope oldfiles", desc = " Recent files", icon = icons.oldfiles, key = "r" },
 					{ action = "Telescope live_grep", desc = " Find text", icon = icons.grep, key = "g" },
