@@ -49,10 +49,10 @@ return { -- Harpoon for fast navigation
 		end, { desc = "[H]arpoon [F]iles" })
 
 		-- Toggle previous & next buffers stored within Harpoon list
-		vim.keymap.set("n", "<M-p>", function()
+		vim.keymap.set("n", "<C-p>", function()
 			harpoon:list():prev()
 		end)
-		vim.keymap.set("n", "<M-n>", function()
+		vim.keymap.set("n", "<C-n>", function()
 			harpoon:list():next()
 		end)
 
