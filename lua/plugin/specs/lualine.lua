@@ -21,6 +21,7 @@ return { -- Set lualine as statusline
 					"dapui_stacks",
 					"dap-repl",
 					"neo-tree",
+					"Trouble",
 					"qf",
 				},
 			},

@@ -2,8 +2,17 @@ return { -- Autocompletion
 	"hrsh7th/nvim-cmp",
 	event = { "InsertEnter", "CmdlineEnter" },
 	dependencies = {
-		{ -- Snippet Engine & its associated nvim-cmp source
-			"L3MON4D3/LuaSnip",
+		{
+			"saadparwaiz1/cmp_luasnip", -- LuaSnip completion source for nvim-cmp
+			dependencies = {
+				"L3MON4D3/LuaSnip", -- Snippet engine
+				{
+					"rafamadriz/friendly-snippets", -- Premade snippets
+					config = function()
+						require("luasnip.loaders.from_vscode").lazy_load()
+					end,
+				},
+			},
 			build = (function()
 				-- Build Step is needed for regex support in snippets
 				-- This is not supported in many windows environments
@@ -13,7 +22,8 @@ return { -- Autocompletion
 				return "make install_jsregexp"
 			end)(),
 		},
-		"saadparwaiz1/cmp_luasnip", -- LuaSnip completion source for nvim-cmp
+
+		"onsails/lspkind-nvim", -- Pretty symbols
 
 		-- Adds other completion capabilities
 		"hrsh7th/cmp-nvim-lsp",
