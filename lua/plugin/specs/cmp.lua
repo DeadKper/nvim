@@ -96,12 +96,18 @@ return { -- Autocompletion
 					end
 				end, { "i", "s" }),
 			}),
-			sources = {
+			sources = cmp.config.sources({
 				{ name = "nvim_lsp" },
 				{ name = "luasnip" },
 				{ name = "path" },
+			}, {
 				{ name = "codeium" },
-			},
+				{ name = "buffer" },
+			}),
+		})
+
+		cmp.setup.filetype({ "sql" }, {
+			sources = cmp.config.sources({ { name = "vim-dadbod-completion" } }, { { name = "buffer" } }),
 		})
 
 		local cmdmap = cmp.mapping.preset.cmdline()
@@ -109,9 +115,7 @@ return { -- Autocompletion
 
 		cmp.setup.cmdline({ "/", "?" }, {
 			mapping = cmdmap,
-			sources = {
-				{ name = "buffer" },
-			},
+			sources = cmp.config.sources({ { name = "buffer" } }),
 		})
 
 		cmp.setup.cmdline(":", {
