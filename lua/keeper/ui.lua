@@ -166,7 +166,6 @@ function M.statuscolumn()
 	end
 
 	local col = {}
-	local cond = false
 	for i, component in ipairs(vim.g.statuscolumn.display) do
 		if type(component) ~= "table" then
 			---@diagnostic disable-next-line:cast-local-type

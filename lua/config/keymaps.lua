@@ -40,7 +40,7 @@ vim.keymap.set("n", "<M-w>", "<C-w>5>", { silent = true })
 vim.keymap.set("n", "<M-d>", "<C-w>5<", { silent = true }) -- should be M-s but it's already in use
 
 local scroll_up = "normal! " .. vim.api.nvim_replace_termcodes("<C-y>", true, true, true)
-function custom_zz()
+local function custom_zz()
 	vim.cmd("normal! m" .. vim.g.temp_mark)
 	vim.cmd("normal! zz")
 
