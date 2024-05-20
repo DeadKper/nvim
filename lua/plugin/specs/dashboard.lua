@@ -15,7 +15,6 @@ return { -- Create a dashboard screen similar to the one in Doom Emacs
     ]]
 
 		logo = string.rep("\n", 6) .. logo .. "\n\n"
-		local icons = require("config.icons").dashboard
 
 		local opts = {
 			theme = "doom",
@@ -27,31 +26,63 @@ return { -- Create a dashboard screen similar to the one in Doom Emacs
 			config = {
 				header = vim.split(logo, "\n"),
 				center = {
-					{ action = "Telescope find_files", desc = " Find file", icon = icons.find, key = "f" },
-					{ action = "lua vim.cmd(vim.g.explore)", desc = " File explorer", icon = icons.explorer, key = "e" },
-					{ action = "ene | startinsert", desc = " New file", icon = icons.newfile, key = "n" },
-					{ action = "Telescope oldfiles", desc = " Recent files", icon = icons.oldfiles, key = "r" },
-					{ action = "Telescope live_grep", desc = " Find text", icon = icons.grep, key = "g" },
+					{
+						action = "Telescope find_files",
+						desc = " Find file",
+						icon = require("config.icons").dashboard.find,
+						key = "f",
+					},
+					{
+						action = "lua vim.cmd(vim.g.explore)",
+						desc = " File explorer",
+						icon = require("config.icons").dashboard.explorer,
+						key = "e",
+					},
+					{
+						action = "ene | startinsert",
+						desc = " New file",
+						icon = require("config.icons").dashboard.newfile,
+						key = "n",
+					},
+					{
+						action = "Telescope oldfiles",
+						desc = " Recent files",
+						icon = require("config.icons").dashboard.oldfiles,
+						key = "r",
+					},
+					{
+						action = "Telescope live_grep",
+						desc = " Find text",
+						icon = require("config.icons").dashboard.grep,
+						key = "g",
+					},
 					{
 						action = "lua require('telescope.builtin').find_files({ cwd = vim.fn.stdpath('config') })",
 						desc = " Config",
-						icon = icons.config,
+						icon = require("config.icons").dashboard.config,
 						key = "c",
 					},
-					{ action = "qa", desc = " Quit", icon = icons.exit, key = "q" },
+					{ action = "qa", desc = " Quit", icon = require("config.icons").dashboard.exit, key = "q" },
 				},
 				footer = function()
 					local stats = require("lazy").stats()
 					local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
 					return {
-						icons.loadtime .. " Neovim loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms .. "ms",
+						require("config.icons").dashboard.loadtime
+							.. " Neovim loaded "
+							.. stats.loaded
+							.. "/"
+							.. stats.count
+							.. " plugins in "
+							.. ms
+							.. "ms",
 					}
 				end,
 			},
 		}
 
 		local n = #opts.config.center
-		table.insert(opts.config.center, n, { icon = icons.lastsession, key = "s" })
+		table.insert(opts.config.center, n, { icon = require("config.icons").dashboard.lastsession, key = "s" })
 		if vim.loop.cwd() == vim.loop.os_homedir() then
 			opts.config.center[n].action = "SessionManager load_last_session"
 			opts.config.center[n].desc = " Restore last session"
