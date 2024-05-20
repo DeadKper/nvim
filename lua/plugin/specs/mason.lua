@@ -104,5 +104,7 @@ return { -- Automatically install LSPs and related tools to stdpath for neovim
 			-- see mason-nvim-dap README for more information
 			handlers = {},
 		})
+
+		lsp.run_callbacks()
 	end,
 }
