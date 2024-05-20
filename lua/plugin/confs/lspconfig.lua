@@ -4,10 +4,6 @@ local M = {}
 ---@type table<lsp.ClientCapabilities|function>
 M.capabilities_list = {}
 
----List of functions to call when setting up the servers
----@type table<function>
-M.callbacks = {}
-
 ---List of servers to ignore automatic setup
 ---@type table<string>
 M.ignore = {}
@@ -49,19 +45,6 @@ function M.get_server_capabilities()
 	end
 
 	return caps
-end
-
----Add callback to run after setting up the lsps
----@param func function
-function M.add_callback(func)
-	M.callbacks[#M.callbacks + 1] = func
-end
-
----Run all callbacks
-function M.run_callbacks()
-	for _, callback in ipairs(M.callbacks) do
-		callback()
-	end
 end
 
 return M

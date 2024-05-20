@@ -94,8 +94,6 @@ return { -- Automatically install LSPs and related tools to stdpath for neovim
 			},
 		})
 
-		lsp.run_callbacks()
-
 		---@diagnostic disable-next-line:missing-fields
 		require("mason-nvim-dap").setup({
 			-- Makes a best effort to setup the various debuggers with
