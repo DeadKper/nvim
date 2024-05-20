@@ -91,12 +91,19 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 
 -- Set colorcolumn on gitcommit
 local indent_guides = require("plugin.confs.indent-guides")
-if next(indent_guides.column.filetypes) then
-	vim.api.nvim_create_autocmd({ "FileType" }, {
-		group = vim.api.nvim_create_augroup("colorcolumn", { clear = true }),
-		pattern = vim.tbl_keys(indent_guides.column.filetypes),
-		callback = function()
-			vim.opt_local.colorcolumn = indent_guides.column.filetypes[vim.bo.filetype]
-		end,
-	})
-end
+local excludes = indent_guides.get_exclude("column")
+vim.api.nvim_create_autocmd({ "FileType", "BufEnter" }, {
+	group = vim.api.nvim_create_augroup("colorcolumn", { clear = true }),
+	callback = function(args)
+		local buf = vim.bo[args.buf]
+
+		if vim.tbl_contains(excludes.filetypes, buf.filetype) or vim.tbl_contains(excludes.buftypes, buf.buftype) then
+			vim.opt_local.colorcolumn = ""
+		end
+
+		local col = indent_guides.column.buftypes[buf.buftype] or indent_guides.column.filetypes[buf.filetype]
+		if col then
+			vim.opt_local.colorcolumn = col
+		end
+	end,
+})
