@@ -1,6 +1,6 @@
 return { -- Create a dashboard screen similar to the one in Doom Emacs
 	"nvimdev/dashboard-nvim",
-	event = "VimEnter",
+	lazy = false,
 	dependencies = {
 		"nvim-tree/nvim-web-devicons", -- Better icons
 	},
