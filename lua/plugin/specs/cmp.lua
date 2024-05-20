@@ -52,6 +52,13 @@ return { -- Autocompletion
 		luasnip.config.setup({})
 
 		cmp.setup({
+			---@diagnostic disable-next-line:missing-fields
+			formatting = {
+				format = require("lspkind").cmp_format({
+					mode = "symbol_text",
+				}),
+			},
+
 			snippet = {
 				expand = function(args)
 					luasnip.lsp_expand(args.body)
