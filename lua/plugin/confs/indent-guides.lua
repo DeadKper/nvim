@@ -5,28 +5,36 @@ local M = {}
 ---| 'indent'
 ---| 'column'
 
----@alias GuideExcludeType
----| 'buftypes'
----| 'filetypes'
+---@class GuideExcludeTable
+---@field filetypes table<string>
+---@field buftypes table<string>
 
 M.enable = false
 
 M.default = {
-	---@type table<GuideExcludeType, table<string>>
+	---@type GuideExcludeTable
 	exclude = {
 		filetypes = {
-			"lspinfo",
-			"packer",
+			"",
+			"alpha",
 			"checkhealth",
-			"help",
-			"man",
-			"TelescopePrompt",
-			"TelescopeResults",
 			"dashboard",
 			"fugitive",
-			"Trouble",
+			"help",
+			"lazy",
+			"lazyterm",
+			"lspinfo",
+			"man",
+			"mason",
+			"neo-tree",
+			"notify",
 			"oil",
-			"",
+			"packer",
+			"TelescopePrompt",
+			"TelescopeResults",
+			"toggleterm",
+			"trouble",
+			"Trouble",
 		},
 		buftypes = {
 			"terminal",
@@ -41,7 +49,7 @@ M.default = {
 ---@field default nil|string
 ---@field buftypes table<string, nil|string>
 ---@field filetypes table<string, nil|string>
----@field exclude table<GuideExcludeType, table<string>>
+---@field exclude GuideExcludeTable
 M.column = {
 	default = "121",
 	filetypes = {
@@ -55,7 +63,7 @@ M.column = {
 }
 
 M.indent = {
-	---@type table<GuideExcludeType, table<string>>
+	---@type GuideExcludeTable
 	exclude = {
 		filetypes = {
 			"gitcommit",
@@ -74,7 +82,7 @@ end
 
 ---Get excludes for a type
 ---@param type GuideType
----@return table<GuideExcludeType, table<string>>
+---@return GuideExcludeTable
 function M.get_exclude(type)
 	local excludes = deep_copy(M.default.exclude)
 
