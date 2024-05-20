@@ -33,6 +33,7 @@ return { -- Autocompletion
 
 		{ -- Add Codeium as an AI assistant
 			"Exafunction/codeium.nvim",
+			cond = false, -- keeps crashing for some reason
 			dependencies = {
 				"nvim-lua/plenary.nvim",
 			},
