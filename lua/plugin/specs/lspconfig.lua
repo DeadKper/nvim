@@ -11,6 +11,14 @@ return { -- LSP configuration
 			vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
 		end
 
+		vim.diagnostic.config({
+			virtual_text = {
+				source = "if_many",
+				prefix = "", -- disable icons, they already show in sign column
+			},
+			severity_sort = true,
+		})
+
 		-- Set keymaps
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
