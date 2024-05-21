@@ -1,6 +1,7 @@
 return {
 	"folke/noice.nvim",
 	event = "VeryLazy",
+	cond = vim.g.noiceui == 1,
 	dependencies = {
 		"MunifTanjim/nui.nvim",
 		"rcarriga/nvim-notify",

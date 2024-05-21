@@ -10,3 +10,6 @@ vim.g.temp_mark = "p"
 
 -- Explore filesystem command
 vim.g.explore = "Ex"
+
+-- Better ui
+vim.g.noiceui = 1
