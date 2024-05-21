@@ -92,9 +92,10 @@ vim.keymap.set({ "n", "v" }, "<leader>d", '"_d')
 -- C-c does weird stuff sometimes
 vim.keymap.set("i", "<C-c>", "<Esc>")
 
--- Switch between open buffers
-vim.keymap.set("n", "<S-l>", ":bnext<cr>", { silent = true })
-vim.keymap.set("n", "<S-h>", ":bprev<cr>", { silent = true })
+-- Buffer keymaps
+vim.keymap.set("n", "<C-n>", ":bnext<cr>", { silent = true })
+vim.keymap.set("n", "<C-p>", ":bprevious<cr>", { silent = true })
+vim.keymap.set("n", "<C-q>", ":bdelete<cr>", { silent = true })
 
 -- Rename word
 vim.keymap.set("n", "<leader>rw", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Rename word" })
