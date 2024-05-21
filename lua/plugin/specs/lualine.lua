@@ -36,6 +36,12 @@ return { -- Set lualine as statusline
 					"Trouble",
 					"qf",
 				},
+				disabled_filetypes = {
+					"dashboard",
+					"neo-tree",
+					"oil",
+					"netrw",
+				},
 			},
 			sections = {
 				lualine_b = {
