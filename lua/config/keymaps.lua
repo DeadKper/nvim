@@ -106,3 +106,18 @@ vim.keymap.set(
 	":<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(v:register))<cr><c-f><left>",
 	{ silent = true, desc = "Edit current macro buffer" }
 )
+
+local function custom_n(expr)
+	return function()
+		vim.cmd("normal! " .. vim.fn.eval(expr))
+		custom_zz()
+	end
+end
+
+-- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
+vim.keymap.set("n", "n", custom_n("'Nn'[v:searchforward].'zv'"), { desc = "Next Search Result" })
+vim.keymap.set("x", "n", custom_n("'Nn'[v:searchforward]"), { desc = "Next Search Result" })
+vim.keymap.set("o", "n", custom_n("'Nn'[v:searchforward]"), { desc = "Next Search Result" })
+vim.keymap.set("n", "N", custom_n("'nN'[v:searchforward].'zv'"), { desc = "Prev Search Result" })
+vim.keymap.set("x", "N", custom_n("'nN'[v:searchforward]"), { desc = "Prev Search Result" })
+vim.keymap.set("o", "N", custom_n("'nN'[v:searchforward]"), { desc = "Prev Search Result" })
