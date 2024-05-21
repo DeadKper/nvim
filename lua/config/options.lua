@@ -76,3 +76,9 @@ if vim.fn.has("nvim-0.9.0") == 1 then
 	vim.opt.statuscolumn = "%!v:lua.require('keeper.ui').statuscolumn()"
 	vim.opt.foldtext = "v:lua.require('keeper.ui').foldtext()"
 end
+
+-- Better session
+vim.opt.sessionoptions = "curdir,folds,buffers,globals,help,tabpages,terminal,winsize"
+
+-- Enable mouse move event
+vim.opt.mousemoveevent = true
