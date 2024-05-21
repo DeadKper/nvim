@@ -34,10 +34,10 @@ vim.keymap.set("n", "<C-l>", "<C-w>l", { silent = true })
 vim.keymap.set("n", "<C-h>", "<C-w>h", { silent = true })
 
 -- Adjust windows quickly
-vim.keymap.set("n", "<M-t>", "<C-w>+", { silent = true })
-vim.keymap.set("n", "<M-s>", "<C-w>-", { silent = true })
-vim.keymap.set("n", "<M-w>", "<C-w>5>", { silent = true })
-vim.keymap.set("n", "<M-d>", "<C-w>5<", { silent = true }) -- should be M-s but it's already in use
+vim.keymap.set("n", "<M-t>", "<C-w>2+", { silent = true })
+vim.keymap.set("n", "<M-s>", "<C-w>2-", { silent = true })
+vim.keymap.set("n", "<M-w>", "<C-w>4>", { silent = true })
+vim.keymap.set("n", "<M-d>", "<C-w>4<", { silent = true }) -- should be M-s but it's already in use
 
 local scroll_up = "normal! " .. vim.api.nvim_replace_termcodes("<C-y>", true, true, true)
 local function custom_zz()
