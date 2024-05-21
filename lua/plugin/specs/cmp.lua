@@ -33,7 +33,6 @@ return { -- Autocompletion
 
 		{ -- Add Codeium as an AI assistant
 			"Exafunction/codeium.nvim",
-			cond = false, -- keeps crashing for some reason
 			dependencies = {
 				"nvim-lua/plenary.nvim",
 			},
@@ -97,11 +96,11 @@ return { -- Autocompletion
 				end, { "i", "s" }),
 			}),
 			sources = cmp.config.sources({
+				{ name = "codeium" },
 				{ name = "nvim_lsp" },
 				{ name = "luasnip" },
 				{ name = "path" },
 			}, {
-				{ name = "codeium" },
 				{ name = "buffer" },
 			}),
 		})
