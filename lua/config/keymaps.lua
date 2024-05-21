@@ -110,8 +110,9 @@ vim.keymap.set(
 
 local function custom_n(expr)
 	return function()
-		vim.cmd("normal! " .. vim.fn.eval(expr))
-		custom_zz()
+		if pcall(vim.api.nvim_exec2, "normal! " .. vim.fn.eval(expr), { output = false }) then
+			custom_zz()
+		end
 	end
 end
 
