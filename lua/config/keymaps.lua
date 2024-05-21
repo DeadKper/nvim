@@ -40,9 +40,11 @@ vim.keymap.set("n", "<M-w>", "<C-w>4>", { silent = true })
 vim.keymap.set("n", "<M-d>", "<C-w>4<", { silent = true }) -- should be M-s but it's already in use
 
 local scroll_up = "normal! " .. vim.api.nvim_replace_termcodes("<C-y>", true, true, true)
-local function custom_zz()
+local function adjust_view(do_zz)
 	vim.cmd("normal! m" .. vim.g.temp_mark)
-	vim.cmd("normal! zz")
+	if do_zz == nil or do_zz then
+		vim.cmd("normal! zz")
+	end
 
 	local prev
 	local curr = vim.fn.winline()
@@ -66,17 +68,19 @@ local function custom_zz()
 	end
 end
 -- Set zz to center view, but don't show buf end lines and don't center on long wrapped lines
-vim.keymap.set("n", "zz", custom_zz, { silent = true })
+vim.keymap.set("n", "zz", adjust_view, { silent = true })
 
-local function jump(keycomb)
+local function jump(keycomb, do_zz)
+	local cmd = "normal! " .. vim.api.nvim_replace_termcodes(keycomb, true, true, true)
 	return function()
-		vim.cmd("normal! " .. vim.api.nvim_replace_termcodes(keycomb, true, true, true))
-		vim.cmd("normal zz")
+		vim.cmd(cmd)
+		adjust_view(do_zz)
 	end
 end
 -- Jump half page and center view
 vim.keymap.set("n", "<C-u>", jump("<C-u>"), { silent = true })
 vim.keymap.set("n", "<C-d>", jump("<C-d>"), { silent = true })
+vim.keymap.set("n", "<C-f>", jump("<C-f>", false), { silent = true })
 
 -- Yank to system clipboard
 vim.keymap.set({ "n", "v" }, "<leader>y", '"+y')
@@ -111,7 +115,7 @@ vim.keymap.set(
 local function custom_n(expr)
 	return function()
 		if pcall(vim.api.nvim_exec2, "normal! " .. vim.fn.eval(expr), { output = false }) then
-			custom_zz()
+			adjust_view()
 		end
 	end
 end
