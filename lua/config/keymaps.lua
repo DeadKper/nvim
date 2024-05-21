@@ -61,7 +61,7 @@ local function custom_zz()
 	if vim.g.mini_animate then
 		local has_animate, animate = pcall(require, "mini.animate")
 		if has_animate then
-			animate.execute_after("scroll", "")
+			pcall(animate.execute_after, "scroll", "")
 		end
 	end
 end
