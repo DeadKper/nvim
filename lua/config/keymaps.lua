@@ -121,3 +121,13 @@ vim.keymap.set("o", "n", custom_n("'Nn'[v:searchforward]"), { desc = "Next Searc
 vim.keymap.set("n", "N", custom_n("'nN'[v:searchforward].'zv'"), { desc = "Prev Search Result" })
 vim.keymap.set("x", "N", custom_n("'nN'[v:searchforward]"), { desc = "Prev Search Result" })
 vim.keymap.set("o", "N", custom_n("'nN'[v:searchforward]"), { desc = "Prev Search Result" })
+
+require("plugin.confs.which-key").add({
+	["<leader><tab>"] = { name = "Tabs" },
+})
+vim.keymap.set("n", "<leader><tab><tab>", ":tabnew<cr>", { desc = "New tab", silent = true })
+vim.keymap.set("n", "<leader><tab>q", ":tabclose<cr>", { desc = "Close tab", silent = true })
+vim.keymap.set("n", "<leader><tab>n", ":tabnext<cr>", { desc = "[N]ext tab", silent = true })
+vim.keymap.set("n", "<leader><tab>p", ":tabprev<cr>", { desc = "[P]revious tab", silent = true })
+vim.keymap.set("n", "<leader><tab>f", ":tabfirst<cr>", { desc = "[F]irst tab", silent = true })
+vim.keymap.set("n", "<leader><tab>l", ":tablast<cr>", { desc = "[L]ast tab", silent = true })
