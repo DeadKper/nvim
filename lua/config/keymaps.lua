@@ -58,9 +58,11 @@ local function custom_zz()
 	vim.cmd("normal! `" .. vim.g.temp_mark)
 	vim.cmd("delm " .. vim.g.temp_mark)
 
-	local has_animate, animate = pcall(require, "mini.animate")
-	if has_animate then
-		animate.execute_after("scroll", "")
+	if vim.g.mini_animate then
+		local has_animate, animate = pcall(require, "mini.animate")
+		if has_animate then
+			animate.execute_after("scroll", "")
+		end
 	end
 end
 -- Set zz to center view, but don't show buf end lines and don't center on long wrapped lines
