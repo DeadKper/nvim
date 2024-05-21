@@ -10,13 +10,23 @@ return { -- Animations
 			steps = 60
 		end
 		vim.g.mini_animate = 1
+		local linear = animate.gen_timing.linear({ duration = 10, unit = "step" })
 		animate.setup({
 			cursor = {
-				timing = animate.gen_timing.linear({ duration = 10, unit = "step" }),
+				timing = linear,
 			},
 			scroll = {
 				timing = animate.gen_timing.quartic({ duration = scroll_time, unit = "step", easing = "out" }),
 				subscroll = animate.gen_subscroll.equal({ max_output_steps = steps }),
+			},
+			resize = {
+				timing = linear,
+			},
+			open = {
+				timing = linear,
+			},
+			close = {
+				timing = linear,
 			},
 		})
 	end,
