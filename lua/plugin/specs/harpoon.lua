@@ -17,29 +17,6 @@ return { -- Harpoon for fast navigation
 		end
 		require("plugin.confs.which-key").add(mappings)
 
-		-- basic telescope configuration
-		if pcall(require, "telescope") then
-			local conf = require("telescope.config").values
-			local function telescope_picker()
-				local file_paths = {}
-				for _, item in ipairs(harpoon:list().items) do
-					table.insert(file_paths, item.value)
-				end
-
-				require("telescope.pickers")
-					.new({}, {
-						prompt_title = "Harpoon",
-						finder = require("telescope.finders").new_table({
-							results = file_paths,
-						}),
-						previewer = conf.file_previewer({}),
-						sorter = conf.generic_sorter({}),
-					})
-					:find()
-			end
-			vim.keymap.set("n", "<leader>hs", telescope_picker, { desc = "[H]arpoon [S]earch" })
-		end
-
 		vim.keymap.set("n", "<leader>ha", function()
 			harpoon:list():add()
 		end, { desc = "[H]arpoon [A]ppend" })
