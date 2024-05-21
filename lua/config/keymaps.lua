@@ -80,6 +80,8 @@ end
 -- Jump half page and center view
 vim.keymap.set("n", "<C-u>", jump("<C-u>"), { silent = true })
 vim.keymap.set("n", "<C-d>", jump("<C-d>"), { silent = true })
+
+-- Jump a page without scrolling off the end of the buffer
 vim.keymap.set("n", "<C-f>", jump("<C-f>", false), { silent = true })
 
 -- Yank to system clipboard
