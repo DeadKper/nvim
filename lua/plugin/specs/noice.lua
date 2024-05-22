@@ -27,6 +27,17 @@ return {
 				format_done = "lsp_progress_done",
 				view = "notify",
 			},
+			documentation = {
+				view = "hover",
+				---@type NoiceViewOptions
+				opts = {
+					lang = "markdown",
+					replace = true,
+					render = "plain",
+					format = { "{message}" },
+					win_options = { conceallevel = 3 },
+				},
+			},
 		},
 		presets = {
 			bottom_search = true,
