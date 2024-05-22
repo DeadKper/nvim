@@ -13,3 +13,6 @@ vim.g.explore = "Ex"
 
 -- Better ui
 vim.g.noiceui = 1
+
+-- Use transparency, 0 = disabled, 1 = onedark transparency, 2 = full transparency
+vim.g.transparency = 2

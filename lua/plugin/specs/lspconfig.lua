@@ -2,16 +2,16 @@ return { -- LSP configuration
 	"neovim/nvim-lspconfig",
 	lazy = true, -- Load this on mason
 	dependencies = {
-		{
+		{ -- Useful status updates for LSP
 			"j-hui/fidget.nvim",
 			opts = {
 				notification = {
 					window = {
-						winblend = 0,
+						winblend = vim.g.transparency > 1 and 0 or 100,
 					},
 				},
 			},
-		}, -- Useful status updates for LSP
+		},
 	},
 	config = function()
 		-- Set diagnostics icons
