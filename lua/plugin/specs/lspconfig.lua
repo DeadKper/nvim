@@ -104,14 +104,6 @@ return { -- LSP configuration
 					vim.lsp.inlay_hint.enable(true)
 					vim.cmd.hi("LspInlayHint guifg=#888888 gui=italic")
 				end
-
-				if client.server_capabilities.codeLensProvider then
-					vim.lsp.codelens.refresh()
-					vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
-						buffer = event.buf,
-						callback = vim.lsp.codelens.refresh,
-					})
-				end
 			end,
 		})
 	end,
