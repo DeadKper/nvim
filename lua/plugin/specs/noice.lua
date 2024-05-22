@@ -7,6 +7,12 @@ return {
 		"rcarriga/nvim-notify",
 	},
 	opts = {
+		routes = {
+			{
+				view = "mini",
+				filter = { event = "msg_showmode" },
+			},
+		},
 		cmdline = {
 			view = "cmdline",
 		},
