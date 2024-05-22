@@ -9,7 +9,7 @@ local M = {}
 ---@field filetypes table<string>
 ---@field buftypes table<string>
 
-M.enable = false
+M.enable = vim.g.indent == 1
 
 M.default = {
 	---@type GuideExcludeTable
