@@ -7,7 +7,7 @@ return { -- LSP configuration
 			opts = {
 				notification = {
 					window = {
-						winblend = vim.g.transparency > 1 and 0 or 100,
+						winblend = vim.g.transparency > 2 and 0 or 100,
 					},
 				},
 			},

@@ -70,14 +70,14 @@ end
 
 ---Set colorscheme if loaded, will use globals if available
 ---@param theme string
----@param transparent boolean
+---@param transparency integer 3 = full transparency, 2 = background + lualine, 1 = only background, 0 = no transparency
 ---@return boolean was_set whether the colorscheme was set
-function M.set(theme, transparent)
+function M.set(theme, transparency)
 	if not pcall(vim.cmd.colorscheme, theme or vim.g.colorscheme.theme) then
 		return false
 	end
 
-	if transparent then
+	if transparency > 0 then
 		local function set_transparent_bg(hlgroups)
 			for _, value in ipairs(hlgroups) do
 				if type(value) == "table" then
@@ -93,58 +93,13 @@ function M.set(theme, transparent)
 
 		set_transparent_bg({
 			"Normal",
-			"NormalFloat",
-			"FloatBorder",
-			"Pmenu",
-			"Conceal",
-			"SignColumn",
-
-			"Comment",
-			"Constant",
-			"Special",
-			"Identifier",
-			"Statement",
-			"PreProc",
-			"Type",
-			"Underlined",
-			"Todo",
-			"String",
-			"Function",
-			"Conditional",
-			"Repeat",
-			"Operator",
-			"Structure",
-			"LineNr",
-			"NonText",
-			"SignColumn",
-			"CursorLineNr",
 			"EndOfBuffer",
-			"VertSplit",
+			"SignColumn",
 		})
 
-		set_transparent_bg(M.get_hls("DiagnosticVirtualText"))
-
-		-- Remove background from lazy
-		vim.api.nvim_create_autocmd({ "FileType" }, {
-			pattern = { "lazy" },
-			once = true,
-			callback = function()
-				set_transparent_bg({
-					"LazyButton",
-				})
-			end,
-		})
-
-		-- Remove background from mason
-		vim.api.nvim_create_autocmd({ "FileType" }, {
-			pattern = { "mason" },
-			once = true,
-			callback = function()
-				set_transparent_bg({
-					{ "MasonMutedBlock", prefix = "guifg", color = "A0A0A0" },
-				})
-			end,
-		})
+		if transparency <= 1 then
+			return true
+		end
 
 		-- Remove background from lualine
 		local lualine_count_down = 5
@@ -175,6 +130,61 @@ function M.set(theme, transparent)
 				vim.defer_fn(function()
 					set_transparent_bg(M.get_hls("filetype_DevIcon"))
 				end, 10)
+			end,
+		})
+
+		if transparency <= 2 then
+			return true
+		end
+
+		set_transparent_bg({
+			"NormalFloat",
+			"FloatBorder",
+			"Pmenu",
+			"Conceal",
+			"SignColumn",
+			"Comment",
+			"Constant",
+			"Special",
+			"Identifier",
+			"Statement",
+			"PreProc",
+			"Type",
+			"Underlined",
+			"Todo",
+			"String",
+			"Function",
+			"Conditional",
+			"Repeat",
+			"Operator",
+			"Structure",
+			"LineNr",
+			"NonText",
+			"CursorLineNr",
+			"VertSplit",
+		})
+
+		set_transparent_bg(M.get_hls("DiagnosticVirtualText"))
+
+		-- Remove background from lazy
+		vim.api.nvim_create_autocmd({ "FileType" }, {
+			pattern = { "lazy" },
+			once = true,
+			callback = function()
+				set_transparent_bg({
+					"LazyButton",
+				})
+			end,
+		})
+
+		-- Remove background from mason
+		vim.api.nvim_create_autocmd({ "FileType" }, {
+			pattern = { "mason" },
+			once = true,
+			callback = function()
+				set_transparent_bg({
+					{ "MasonMutedBlock", prefix = "guifg", color = "A0A0A0" },
+				})
 			end,
 		})
 	end
