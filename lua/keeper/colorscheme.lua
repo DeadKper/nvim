@@ -118,6 +118,8 @@ function M.set(theme, transparency)
 		set_transparent_bg(M.get_hls("Normal"))
 		set_transparent_bg(M.get_hls("Border"))
 		set_transparent_bg(M.get_hls("^Notify"))
+		set_transparent_bg(M.get_hls("^DiagnosticVirtualText"))
+		set_transparent_bg(M.get_hls("^DiagnosticSign"))
 
 		set_transparent_bg({
 			"Pmenu",
@@ -143,8 +145,6 @@ function M.set(theme, transparency)
 			"CursorLineNr",
 			"VertSplit",
 		})
-
-		set_transparent_bg(M.get_hls("DiagnosticVirtualText"))
 
 		-- Remove background from lazy
 		vim.api.nvim_create_autocmd({ "FileType" }, {
