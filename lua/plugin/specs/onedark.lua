@@ -5,13 +5,6 @@ return { -- Theme inspired by Atom
 	config = function()
 		require("onedark").setup({
 			style = "warmer",
-			-- transparent = vim.g.transparency > 0,
-			diagnostics = {
-				-- background = false,
-			},
-			lualine = {
-				-- transparent = vim.g.transparency > 0,
-			},
 			highlights = {
 				DashboardHeader = { fg = "#FAC898" },
 				DashboardFooter = { fg = "#FF6961" },
