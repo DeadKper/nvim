@@ -29,9 +29,7 @@ return { -- Theme inspired by Atom
 		end
 
 		set_transparent_hl({
-			"Float",
 			"FloatBorder",
-			"Normal",
 			"NormalFloat",
 			"Pmenu",
 			"Conceal",
