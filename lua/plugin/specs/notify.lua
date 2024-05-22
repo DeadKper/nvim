@@ -11,7 +11,7 @@ return {
 		---@diagnostic disable-next-line:missing-fields
 		notify.setup({
 			stages = "fade_in_slide_out",
-			timeout = 3000,
+			timeout = 5000,
 			render = "wrapped-compact",
 			---@diagnostic disable-next-line:assign-type-mismatch
 			background_colour = (function()
