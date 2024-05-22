@@ -10,17 +10,12 @@ return {
 		blocking = false,
 		routes = {
 			{
-				view = "mini",
+				view = "notify",
 				filter = { event = "msg_showmode" },
 			},
 		},
 		cmdline = {
 			view = "cmdline",
-		},
-		views = {
-			notify = {
-				replace = true,
-			},
 		},
 		lsp = {
 			override = {
@@ -29,10 +24,7 @@ return {
 				["cmp.entry.get_documentation"] = true,
 			},
 			progress = {
-				enabled = true,
-				format = "lsp_progress",
-				format_done = "lsp_progress_done",
-				view = "notify",
+				enabled = false,
 			},
 			documentation = {
 				view = "hover",
