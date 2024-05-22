@@ -18,7 +18,7 @@ vim.g.noiceui = 1
 vim.g.indent = 0
 
 -- Use transparency according to keeper.colorscheme
-vim.g.transparency = 3
+vim.g.transparency = 2
 
 -- Default bufferline type
 vim.g.bufferline = "tabs"

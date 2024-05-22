@@ -20,36 +20,6 @@ function M.get_hl(hlgroup)
 	return hl:match("([^ ]+)") .. " " .. (hl:match("[^ ]+ +x+ *(.*)") or "")
 end
 
----@class HlReplace
----@field prefix string
----@field color string
-
----Replace existing highlight color to another
----@param hlgroup string
----@param replaces HlReplace|table<HlReplace>
-function M.replace_hl(hlgroup, replaces)
-	local hl = M.get_hl(hlgroup)
-
-	if not hl then
-		return
-	end
-
-	if replaces.prefix then
-		replaces = { replaces }
-	end
-
-	for _, value in ipairs(replaces) do
-		local current = hl:match(value.prefix .. "=[^ ]+")
-		if current and current ~= "" then
-			hl = hl:gsub(current, value.prefix .. "=" .. value.color)
-		else
-			hl = hl .. " " .. value.prefix .. "=" .. value.color
-		end
-	end
-
-	vim.cmd.hi(hl)
-end
-
 ---Get all group names from a case sensitive string match
 ---@param match any
 ---@return nil|table<string>
@@ -81,21 +51,29 @@ function M.set(theme, transparency)
 		local function set_transparent_bg(hlgroups)
 			for _, value in ipairs(hlgroups) do
 				if type(value) == "table" then
-					M.replace_hl(
-						value[1],
-						{ { prefix = value.prefix, color = value.color }, { prefix = "guibg", color = "NONE" } }
-					)
+					vim.cmd.hi(value[1] .. " guibg=NONE " .. value[2])
 				else
-					M.replace_hl(value, { prefix = "guibg", color = "NONE" })
+					vim.cmd.hi(value .. " guibg=NONE")
 				end
 			end
 		end
 
-		set_transparent_bg({
-			"Normal",
+		local clear = {
 			"EndOfBuffer",
 			"SignColumn",
-		})
+		}
+
+		local normals = M.get_hls("^Normal")
+		if normals then
+			for _, value in ipairs(normals) do
+				if value ~= "NormalFloat" then
+					clear[#clear + 1] = value
+				end
+			end
+		end
+
+		vim.cmd.hi("NormalFloat " .. M.get_hl("Normal"):match("[^ ]+ (.*)"))
+		set_transparent_bg(clear)
 
 		if transparency <= 1 then
 			return true
@@ -137,9 +115,11 @@ function M.set(theme, transparency)
 			return true
 		end
 
+		set_transparent_bg(M.get_hls("Normal"))
+		set_transparent_bg(M.get_hls("Border"))
+		set_transparent_bg(M.get_hls("^Notify"))
+
 		set_transparent_bg({
-			"NormalFloat",
-			"FloatBorder",
 			"Pmenu",
 			"Conceal",
 			"SignColumn",
@@ -183,7 +163,7 @@ function M.set(theme, transparency)
 			once = true,
 			callback = function()
 				set_transparent_bg({
-					{ "MasonMutedBlock", prefix = "guifg", color = "A0A0A0" },
+					{ "MasonMutedBlock", "guifg=#A0A0A0" },
 				})
 			end,
 		})
