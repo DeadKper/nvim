@@ -12,6 +12,7 @@ return {
 		notify.setup({
 			stages = "fade_in_slide_out",
 			timeout = 3000,
+			render = "wrapped-compact",
 			---@diagnostic disable-next-line:assign-type-mismatch
 			background_colour = (function()
 				local hl = require("keeper.colorscheme").get_hl("Normal")
