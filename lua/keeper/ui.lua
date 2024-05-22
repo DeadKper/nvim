@@ -155,7 +155,7 @@ function M.statuscolumn()
 			else
 				status.nums = is_relnum and "%r" or "%l" -- other lines
 			end
-			if vim.g.statuscolumn.rnupad == 1 and is_relnum and vim.v.relnum == 0 then
+			if vim.g.statuscolumn.rnupad and is_relnum and vim.v.relnum == 0 then
 				status.nums = status.nums .. pad .. "%= " -- left align
 			else
 				status.nums = pad .. "%=" .. status.nums .. " " -- right align

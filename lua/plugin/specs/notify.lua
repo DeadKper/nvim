@@ -1,7 +1,7 @@
 return {
 	"rcarriga/nvim-notify",
 	event = "VeryLazy",
-	cond = vim.g.noiceui == 1,
+	cond = vim.g.noiceui,
 	config = function()
 		local notify = require("notify")
 		vim.keymap.set("n", "<leader>n", function()

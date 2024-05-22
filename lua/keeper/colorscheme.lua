@@ -40,26 +40,32 @@ end
 
 ---Set colorscheme if loaded, will use globals if available
 ---@param theme string
----@param transparency integer 3 = full transparency, 2 = background + lualine, 1 = only background, 0 = no transparency
 ---@return boolean was_set whether the colorscheme was set
-function M.set(theme, transparency)
+function M.set(theme)
 	if not pcall(vim.cmd.colorscheme, theme) then
 		return false
 	end
 
-	if transparency > 0 then
-		local function set_transparent_bg(hlgroups)
-			for _, value in ipairs(hlgroups) do
-				local hlcmd
-				if type(value) == "table" then
-					hlcmd = value[1] .. " guibg=NONE " .. value[2]
-				else
-					hlcmd = value .. " guibg=NONE"
-				end
-				pcall(vim.cmd.hi, hlcmd)
+	local function set_transparent_bg(hlgroups)
+		for _, value in ipairs(hlgroups) do
+			local hl
+			local hlstr
+
+			if type(value) == "table" then
+				hl = M.get_hl(value[1])
+				hlstr = " guibg=NONE " .. value[2]
+			else
+				hl = M.get_hl(value)
+				hlstr = " guibg=NONE"
+			end
+
+			if hl and hl:match("guibg") then
+				pcall(vim.cmd.hi, hl:match("[^ ]+") .. hlstr)
 			end
 		end
+	end
 
+	if vim.g.transparencies.background then
 		local clear = {
 			"EndOfBuffer",
 			"SignColumn",
@@ -76,12 +82,9 @@ function M.set(theme, transparency)
 
 		vim.cmd.hi("NormalFloat " .. M.get_hl("Normal"):match("[^ ]+ (.*)"))
 		set_transparent_bg(clear)
+	end
 
-		if transparency <= 1 then
-			return true
-		end
-
-		-- Remove background from lualine
+	if vim.g.transparencies.lualine then
 		set_transparent_bg(M.get_hls("lualine_c_"))
 		set_transparent_bg(M.get_hls("lualine_x_"))
 		set_transparent_bg(M.get_hls("filetype_DevIcon"))
@@ -117,11 +120,9 @@ function M.set(theme, transparency)
 				end, 10)
 			end,
 		})
+	end
 
-		if transparency <= 2 then
-			return true
-		end
-
+	if vim.g.transparencies.floating then
 		set_transparent_bg(M.get_hls("Normal"))
 		set_transparent_bg(M.get_hls("Border"))
 		set_transparent_bg(M.get_hls("^Notify"))

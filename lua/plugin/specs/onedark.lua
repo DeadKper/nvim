@@ -11,6 +11,6 @@ return { -- Theme inspired by Atom
 			},
 		})
 
-		require("keeper.colorscheme").set("onedark", vim.g.transparency)
+		require("keeper.colorscheme").set("onedark")
 	end,
 }
