@@ -19,3 +19,6 @@ vim.g.indent = 0
 
 -- Use transparency, 0 = disabled, 1 = onedark transparency, 2 = full transparency
 vim.g.transparency = 2
+
+-- Default bufferline type
+vim.g.bufferline = "tabs"

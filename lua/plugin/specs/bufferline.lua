@@ -7,7 +7,7 @@ return { -- Buffer line
 	config = function()
 		require("bufferline").setup({
 			options = {
-				mode = vim.g.noiceui == 1 and "buffers" or "tabs",
+				mode = vim.g.noiceui == 1 and vim.g.bufferline or "tabs",
 				tab_size = 1,
 				diagnostics = "nvim_lsp",
 				hover = {
@@ -17,7 +17,7 @@ return { -- Buffer line
 				},
 			},
 		})
-		if vim.g.noiceui == 0 then
+		if vim.g.noiceui == 0 or vim.g.bufferline == "tabs" then
 			vim.api.nvim_create_autocmd({ "TabClosed" }, {
 				group = vim.api.nvim_create_augroup("close-tabline", { clear = true }),
 				callback = function()
