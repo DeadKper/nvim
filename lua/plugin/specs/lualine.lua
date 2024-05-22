@@ -23,8 +23,6 @@ return { -- Set lualine as statusline
 		require("lualine").setup({
 			options = {
 				icons_enabled = true,
-				component_separators = icons.other.indent,
-				section_separators = "",
 				ignore_focus = {
 					"dapui_watches",
 					"dapui_breakpoints",
