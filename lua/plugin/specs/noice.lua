@@ -7,6 +7,7 @@ return {
 		"rcarriga/nvim-notify",
 	},
 	opts = {
+		blocking = false,
 		routes = {
 			{
 				view = "mini",
