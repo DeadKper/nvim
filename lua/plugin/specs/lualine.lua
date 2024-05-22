@@ -48,7 +48,7 @@ return { -- Set lualine as statusline
 					"branch",
 				},
 				lualine_c = {
-					"filename",
+					{ "filename", color = { bg = "NONE" } },
 					{
 						"diff",
 						source = function()
@@ -61,13 +61,14 @@ return { -- Set lualine as statusline
 								}
 							end
 						end,
+						color = { bg = "NONE" },
 					},
 				},
 				lualine_x = {
-					{ "diagnostics", symbols = icons.diagnostics },
-					"encoding",
-					"fileformat",
-					"filetype",
+					{ "diagnostics", symbols = icons.diagnostics, color = { bg = "NONE" } },
+					{ "encoding", color = { bg = "NONE" } },
+					{ "fileformat", color = { bg = "NONE" } },
+					{ "filetype", color = { bg = "NONE" } },
 				},
 			},
 		})

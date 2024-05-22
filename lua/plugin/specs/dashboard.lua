@@ -108,7 +108,5 @@ return { -- Create a dashboard screen similar to the one in Doom Emacs
 		end
 
 		require("dashboard").setup(opts)
-		vim.cmd.hi("DashboardHeader guifg=#FAC898")
-		vim.cmd.hi("DashboardFooter guifg=#FF6961")
 	end,
 }
