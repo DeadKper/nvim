@@ -43,18 +43,20 @@ end
 ---@param transparency integer 3 = full transparency, 2 = background + lualine, 1 = only background, 0 = no transparency
 ---@return boolean was_set whether the colorscheme was set
 function M.set(theme, transparency)
-	if not pcall(vim.cmd.colorscheme, theme or vim.g.colorscheme.theme) then
+	if not pcall(vim.cmd.colorscheme, theme) then
 		return false
 	end
 
 	if transparency > 0 then
 		local function set_transparent_bg(hlgroups)
 			for _, value in ipairs(hlgroups) do
+				local hlcmd
 				if type(value) == "table" then
-					vim.cmd.hi(value[1] .. " guibg=NONE " .. value[2])
+					hlcmd = value[1] .. " guibg=NONE " .. value[2]
 				else
-					vim.cmd.hi(value .. " guibg=NONE")
+					hlcmd = value .. " guibg=NONE"
 				end
+				pcall(vim.cmd.hi, hlcmd)
 			end
 		end
 
@@ -80,6 +82,11 @@ function M.set(theme, transparency)
 		end
 
 		-- Remove background from lualine
+		set_transparent_bg(M.get_hls("lualine_c_"))
+		set_transparent_bg(M.get_hls("lualine_x_"))
+		set_transparent_bg(M.get_hls("filetype_DevIcon"))
+
+		-- Autocmd for when a new one is created
 		local lualine_count_down = 5
 		vim.api.nvim_create_autocmd({ "BufEnter" }, {
 			group = vim.api.nvim_create_augroup("lualine-background-buf", { clear = true }),
@@ -144,6 +151,8 @@ function M.set(theme, transparency)
 			"NonText",
 			"CursorLineNr",
 			"VertSplit",
+			"LazyButton",
+			{ "MasonMutedBlock", "guifg=#A0A0A0" },
 		})
 
 		-- Remove background from lazy
