@@ -10,8 +10,13 @@ return {
 
 		---@diagnostic disable-next-line:missing-fields
 		notify.setup({
-			stages = "slide",
+			stages = "fade_in_slide_out",
 			timeout = 3000,
+			---@diagnostic disable-next-line:assign-type-mismatch
+			background_colour = (function()
+				local hl = require("keeper.colorscheme").get_hl("Normal")
+				return hl and hl:match("guibg") and "Normal" or "#000000"
+			end)(),
 			max_height = function()
 				return math.floor(vim.o.lines * 0.75)
 			end,
