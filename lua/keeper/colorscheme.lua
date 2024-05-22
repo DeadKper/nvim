@@ -14,10 +14,9 @@ function M.get_hl(hlgroup)
 	hl = hl.output
 	local is_link = hl:match("links to ([^ ]+)")
 	if is_link and is_link ~= "" then
-		---@diagnostic disable-next-line:cast-local-type
-		hl = M.get_hl(is_link)
+		return hlgroup .. " " .. M.get_hl(is_link):match("[^ ]+ (.*)")
 	end
-	return hl:match("([^ ]+)") .. " " .. (hl:match("[^ ]+ +x+ *(.*)") or "")
+	return hlgroup .. " " .. (hl:match("[^ ]+ +x+ *(.*)") or "")
 end
 
 ---Get all group names from a case sensitive string match
@@ -67,8 +66,11 @@ function M.set(theme)
 
 	if vim.g.transparencies.background then
 		local clear = {
-			"EndOfBuffer",
 			"SignColumn",
+			"EndOfBuffer",
+			"DiffviewNormal",
+			"DiffviewSignColumn",
+			"DiffviewEndOfBuffer",
 		}
 
 		local normals = M.get_hls("^Normal")
