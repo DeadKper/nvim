@@ -18,14 +18,14 @@ vim.api.nvim_create_autocmd({ "UIEnter" }, {
 			end
 		end
 
-		vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "InsertLeave", "WinEnter" }, {
+		vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "InsertLeave", "CmdlineLeave", "WinEnter" }, {
 			group = augroup_num_lines,
 			callback = setrnu,
 		})
 		setrnu()
 	end,
 })
-vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter", "WinLeave" }, {
+vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter", "CmdlineEnter", "WinLeave" }, {
 	group = augroup_num_lines,
 	callback = function()
 		vim.opt_local.relativenumber = false
