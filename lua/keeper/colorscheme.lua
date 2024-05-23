@@ -135,7 +135,7 @@ function M.set(theme)
 			"Pmenu",
 			"Conceal",
 			"SignColumn",
-			"Constant",
+			-- "Constant",
 			-- "Comment",
 			-- "Special",
 			-- "Identifier",
