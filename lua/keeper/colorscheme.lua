@@ -87,9 +87,11 @@ function M.set(theme)
 	end
 
 	if vim.g.transparencies.lualine then
-		set_transparent_bg(M.get_hls("lualine_c_"))
-		set_transparent_bg(M.get_hls("lualine_x_"))
-		set_transparent_bg(M.get_hls("filetype_DevIcon"))
+		vim.defer_fn(function()
+			set_transparent_bg(M.get_hls("lualine_c_"))
+			set_transparent_bg(M.get_hls("lualine_x_"))
+			set_transparent_bg(M.get_hls("filetype_DevIcon"))
+		end, 10)
 
 		-- Autocmd for when a new one is created
 		local lualine_count_down = 5
@@ -125,7 +127,6 @@ function M.set(theme)
 	end
 
 	if vim.g.transparencies.floating then
-		set_transparent_bg(M.get_hls("Normal"))
 		set_transparent_bg(M.get_hls("Border"))
 		set_transparent_bg(M.get_hls("^Notify"))
 		set_transparent_bg(M.get_hls("^DiagnosticVirtualText"))

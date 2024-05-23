@@ -17,4 +17,9 @@ end
 ---@diagnostic disable-next-line:undefined-field
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({ spec = { import = "plugin.specs" }, change_detection = { notify = false } })
+local user = vim.api.nvim_exec2("silent !echo $USER | read", { output = true }).output
+require("lazy").setup({
+	spec = { import = "plugin.specs" },
+	dir = "/home/" .. user .. "/.config/themes/nvim/krbon",
+	change_detection = { notify = false },
+})
