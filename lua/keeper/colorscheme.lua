@@ -133,6 +133,7 @@ function M.set(theme)
 		set_transparent_bg(M.get_hls("^DiagnosticSign"))
 
 		set_transparent_bg({
+			"NormalFloat",
 			"Pmenu",
 			"Conceal",
 			"SignColumn",
