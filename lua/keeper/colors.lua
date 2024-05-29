@@ -121,6 +121,9 @@ function M.set(theme)
 				lualine_icon_hl_ft_set[#lualine_icon_hl_ft_set + 1] = vim.bo.filetype
 				vim.defer_fn(function()
 					set_transparent_bg(M.get_hls("filetype_DevIcon"))
+					set_transparent_bg({
+						"lualine_transitional_lualine_b_normal_to_lualine_c_normal",
+					})
 				end, 10)
 			end,
 		})
@@ -184,6 +187,20 @@ function M.set(theme)
 	end
 
 	return true
+end
+
+function M.apply(hlgroups)
+	for hl, color in pairs(hlgroups) do
+		local str = (color.fg and " guifg=" .. color.fg or "")
+			.. (color.bg and " guibg=" .. color.bg or "")
+			.. (color.gui and " gui=" .. color.gui or "")
+		if str ~= "" then
+			vim.cmd.hi(hl .. str)
+		end
+		if color[1] then
+			vim.cmd("hi! link " .. hl .. " " .. color[1])
+		end
+	end
 end
 
 return M
