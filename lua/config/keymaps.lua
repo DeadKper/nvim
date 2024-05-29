@@ -92,6 +92,14 @@ vim.keymap.set("n", "<leader>fy", ":%y+<cr>", { desc = "[F]ile [Y]ank" })
 vim.keymap.set("x", "<leader>p", '"_dP')
 vim.keymap.set("x", "<leader>P", '"_dp')
 
+-- Paste from system clipboard
+vim.keymap.set({ "n", "i", "v" }, "<M-p>", function()
+	vim.cmd('normal! "+p')
+end)
+vim.keymap.set({ "n", "i", "v" }, "<M-S-P>", function()
+	vim.cmd('normal! "+P')
+end)
+
 -- Delete without saving contents to a delete register
 vim.keymap.set({ "n", "v" }, "<leader>d", '"_d')
 
