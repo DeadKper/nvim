@@ -11,6 +11,6 @@ return { -- Theme inspired by Atom
 			},
 		})
 
-		require("keeper.colors").set("onedark")
+		-- require("keeper.colors").set("onedark")
 	end,
 }
