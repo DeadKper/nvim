@@ -189,16 +189,40 @@ function M.set(theme)
 	return true
 end
 
+local function getAttrs(hl, groups)
+	if groups[hl] == nil then
+		return {}
+	elseif groups[hl][1] ~= nil then
+		return vim.tbl_deep_extend("force", {}, getAttrs(groups[hl][1], groups), groups[hl])
+	else
+		return groups[hl]
+	end
+end
+
 function M.apply(hlgroups)
-	for hl, color in pairs(hlgroups) do
-		local str = (color.fg and " guifg=" .. color.fg or "")
-			.. (color.bg and " guibg=" .. color.bg or "")
-			.. (color.gui and " gui=" .. color.gui or "")
-		if str ~= "" then
-			vim.cmd.hi(hl .. str)
-		end
-		if color[1] then
-			vim.cmd("hi! link " .. hl .. " " .. color[1])
+	for hl, _ in pairs(hlgroups) do
+		local color = getAttrs(hl, hlgroups)
+
+		if color[1] ~= nil and next(color, 1) == nil then
+			vim.cmd.hi("link " .. hl .. " " .. color[1])
+		else
+			local str = ""
+			if color.fg ~= nil then
+				str = str .. " guifg=" .. color.fg
+			end
+			if color.bg ~= nil then
+				str = str .. " guibg=" .. color.bg
+			end
+			if color.sp ~= nil then
+				str = str .. " guisp=" .. color.sp
+			end
+			if color.fmt ~= nil then
+				str = str .. " gui=" .. color.fmt
+			end
+
+			if str ~= "" then
+				vim.cmd.hi(hl .. str)
+			end
 		end
 	end
 end
