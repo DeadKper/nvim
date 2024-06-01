@@ -14,7 +14,7 @@ return { -- Create a dashboard screen similar to the one in Doom Emacs
 ╚═════╝ ╚══════╝╚═╝  ╚═╝╚═════╝ ╚═╝  ╚═╝╚═╝     ╚══════╝╚═╝  ╚═╝
     ]]
 
-		logo = string.rep("\n", 6) .. logo .. "\n\n"
+		logo = string.rep("\n", 5) .. logo .. "\n\n"
 
 		local opts = {
 			theme = "doom",
