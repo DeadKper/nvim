@@ -8,4 +8,9 @@ return {
 	keys = {
 		{ "<leader>du", ":DBUIToggle<cr>", desc = "Toggle dadbod [U]i" },
 	},
+	init = function()
+		require("plugin.confs.which-key").add({
+			["<leader>d"] = { name = "[D]adbod", _ = "which_key_ignore" },
+		})
+	end,
 }

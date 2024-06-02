@@ -52,8 +52,6 @@ function M.add(table)
 				else -- Current value is a string, replace it
 					M.keys_list[key] = { deep_copy(value) }
 				end
-			else -- Key is a string, replace it
-				M.keys_list[key] = value
 			end
 		else -- Key doesn't exist
 			if type(value) == "table" then
