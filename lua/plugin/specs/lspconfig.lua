@@ -7,7 +7,7 @@ return { -- LSP configuration
 			opts = {
 				notification = {
 					window = {
-						winblend = vim.g.transparencies.fidget and 0 or 100,
+						winblend = string.match(vim.api.nvim_exec2("hi Normal", { output = true }).output, "guibg") and 0 or 100,
 					},
 				},
 			},
