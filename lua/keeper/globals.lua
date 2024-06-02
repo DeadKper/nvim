@@ -5,6 +5,9 @@ vim.g.statuscolumn = {
 	rnupad = true,
 }
 
+-- Enable this to use local theme and disable noice
+vim.g.dev = false
+
 -- Temp mark used in keymaps, won't be shown in status column
 vim.g.temp_mark = "p"
 
@@ -19,3 +22,7 @@ vim.g.indent = false
 
 -- Default bufferline type
 vim.g.bufferline = "tabs"
+
+-- [ Don't change anything below here ] --
+
+vim.g.noiceui = vim.g.noiceui and not vim.g.dev
