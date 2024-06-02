@@ -12,7 +12,7 @@ vim.g.temp_mark = "p"
 vim.g.explore = "Ex"
 
 -- Better ui
-vim.g.noiceui = false
+vim.g.noiceui = true
 
 -- Indentation guides
 vim.g.indent = false
