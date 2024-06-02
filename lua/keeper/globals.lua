@@ -17,13 +17,5 @@ vim.g.noiceui = false
 -- Indentation guides
 vim.g.indent = false
 
--- Use transparencies
-vim.g.transparencies = {
-	fidget = true,
-	lualine = true,
-	floating = true,
-	background = true,
-}
-
 -- Default bufferline type
 vim.g.bufferline = "tabs"
