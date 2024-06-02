@@ -84,6 +84,11 @@ return { -- Automatically install LSPs and related tools to stdpath for neovim
 		require("mason-lspconfig").setup({
 			handlers = {
 				function(server_name)
+					-- Don't setup ignore servers
+					if vim.tbl_contains(lsp.ignore, server_name) then
+						return
+					end
+
 					-- List of default servers and their configs
 					local server = servers[server_name] or {}
 
