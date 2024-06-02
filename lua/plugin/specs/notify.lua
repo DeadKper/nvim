@@ -14,10 +14,7 @@ return {
 			timeout = 5000,
 			render = "wrapped-compact",
 			---@diagnostic disable-next-line:assign-type-mismatch
-			background_colour = function()
-				local hl = require("keeper.colorscheme").get_hl("Normal")
-				return hl and hl:match("guibg") and "Normal" or "#000000"
-			end,
+			background_colour = "#000000",
 			max_height = function()
 				return math.floor(vim.o.lines * 0.75)
 			end,
