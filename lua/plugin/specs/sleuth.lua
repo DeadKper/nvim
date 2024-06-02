@@ -38,11 +38,11 @@ return { -- Auto detection for file indentation with custom logic in lua to add 
 			local shiftwidth = vim.fn.eval("&sw")
 
 			if shiftwidth == 0 or tabstop == shiftwidth then
-				if tabstop == 8 and not vim.tbl_contains(conf.ignore, vim.bo.filetype) then
-					local defaults = conf.filetype[vim.bo.filetype]
-					vim.bo.tabstop = defaults and defaults.indent or conf.default.indent
-					vim.bo.expandtab = defaults and defaults.spaces or conf.default.spaces
-					vim.bo.shiftwidth = vim.bo.tabstop
+				if (tabstop == 8 or tabstop == conf.default.indent) and not vim.tbl_contains(conf.ignore, vim.bo.filetype) then
+					local defaults = conf.filetype[vim.bo.filetype] or conf.default
+					vim.bo.tabstop = defaults.indent
+					vim.bo.shiftwidth = defaults.indent
+					vim.bo.expandtab = defaults.spaces
 				end
 			elseif tabstop < shiftwidth then
 				vim.bo.shiftwidth = tabstop
