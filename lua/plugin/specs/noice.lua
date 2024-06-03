@@ -15,7 +15,7 @@ return {
 			},
 		},
 		cmdline = {
-			view = "cmdline",
+			view = "cmdline_popup", -- cmdline
 		},
 		lsp = {
 			override = {
@@ -28,7 +28,6 @@ return {
 			},
 			documentation = {
 				view = "hover",
-				---@type NoiceViewOptions
 				opts = {
 					lang = "markdown",
 					replace = true,
@@ -39,7 +38,7 @@ return {
 			},
 		},
 		presets = {
-			bottom_search = true,
+			bottom_search = false,
 			command_palette = false,
 			long_message_to_split = true,
 			inc_rename = true,
