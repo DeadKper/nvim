@@ -11,6 +11,10 @@ M.ensure_installed = {}
 ---@type table<string, MasonPackage>
 ---Packages that will be installed automatically when setting up mason
 M.filetype_install = {
+	bash = {
+		execs = { "bash", "node" },
+		packages = { "bash-language-server", "shellharden" },
+	},
 	c = {
 		execs = { "gcc" },
 		packages = { "clangd", "codelldb" },

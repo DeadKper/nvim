@@ -12,6 +12,7 @@ return { -- Formatter
 				go = { "gofmt" },
 				php = { "easy-coding-standard" },
 				json = { "jq" },
+				bash = { "shellharden" },
 			},
 		})
 
