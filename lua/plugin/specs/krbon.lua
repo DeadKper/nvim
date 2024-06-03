@@ -6,6 +6,7 @@ return {
 	config = function()
 		---@diagnostic disable:missing-fields
 		require("krbon").setup({
+			undercurl = vim.fn.executable("wsl.exe") == 0,
 			transparent = {
 				background = true,
 				statusline = true,
