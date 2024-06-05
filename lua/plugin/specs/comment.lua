@@ -4,6 +4,9 @@ return { -- Comment with 'gc' in visual mode or block comment with 'gb', support
 	dependencies = {
 		{ -- Update comment string based on treesitter
 			"JoosepAlviste/nvim-ts-context-commentstring",
+			init = function()
+				vim.g.skip_ts_context_commentstring_module = true
+			end,
 			opts = { enable_autocmd = false },
 		},
 	},
@@ -12,8 +15,6 @@ return { -- Comment with 'gc' in visual mode or block comment with 'gb', support
 		require("Comment").setup({
 			pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
 		})
-
-		require("nvim-ts-context-commentstring")
 
 		local cft = require("Comment.ft")
 		cft.kdl = { "// %s", "/* %s */" }
