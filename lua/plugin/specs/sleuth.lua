@@ -12,6 +12,18 @@ return { -- Auto detection for file indentation with custom logic in lua to add 
 					indent = 2,
 					spaces = false,
 				},
+				kdl = {
+					indent = 2,
+					spaces = false,
+				},
+				javascript = {
+					indent = 2,
+					spaces = false,
+				},
+				typescript = {
+					indent = 2,
+					spaces = false,
+				},
 			},
 		}
 
@@ -19,18 +31,17 @@ return { -- Auto detection for file indentation with custom logic in lua to add 
 			return vim.api.nvim_exec2(cmd, { output = true }).output
 		end
 
-		local function indent(sleuth)
+		---@param sleuth boolean
+		---@return number was_set
+		local function check_sleuth(sleuth)
 			if sleuth == true then
 				local text = exec("Sleuth")
 				if text:match("failed") then
-					vim.cmd("echohl WarningMsg")
-					vim.cmd("echo '" .. text .. "'")
-					vim.cmd("echohl NONE")
-					return
+					return 1
 				end
 			else
 				if not exec("verbose set ts sw"):match("sleuth[.]vim") then
-					return
+					return 2
 				end
 			end
 
@@ -52,14 +63,33 @@ return { -- Auto detection for file indentation with custom logic in lua to add 
 				end
 			end
 
-			if sleuth == true then
-				print(
-					":setlocal "
-						.. (vim.fn.eval("&et") == 1 and "et" or "noet")
-						.. (vim.fn.eval("&et") == 0 and " ts=" .. vim.fn.eval("&ts") or "")
-						.. " sw="
-						.. vim.fn.eval("&sw")
-				)
+			return 0
+		end
+
+		local function indent(use_sleuth)
+			local res = check_sleuth(use_sleuth)
+			if res ~= 0 and vim.bo.filetype and conf.filetype[vim.bo.filetype] then
+				local defaults = conf.filetype[vim.bo.filetype] or conf.default
+				vim.bo.tabstop = defaults.indent
+				vim.bo.shiftwidth = defaults.indent
+				vim.bo.expandtab = defaults.spaces
+				res = 0
+			end
+
+			if use_sleuth == true then
+				if res == 0 then
+					print(
+						":setlocal "
+							.. (vim.fn.eval("&et") == 1 and "et" or "noet")
+							.. (vim.fn.eval("&et") == 0 and " ts=" .. vim.fn.eval("&ts") or "")
+							.. " sw="
+							.. vim.fn.eval("&sw")
+					)
+				elseif res == 1 then
+					vim.cmd("echohl WarningMsg")
+					vim.cmd("echo ':Sleuth failed to detect indent settings'")
+					vim.cmd("echohl NONE")
+				end
 			end
 		end
 
@@ -77,13 +107,15 @@ return { -- Auto detection for file indentation with custom logic in lua to add 
 		vim.api.nvim_create_autocmd({ "BufNewFile" }, {
 			group = augroup,
 			callback = function()
-				indent()
+				indent(false)
 				vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 					group = augroup,
 					once = true,
 					buffer = vim.api.nvim_get_current_buf(),
 					callback = function()
-						vim.defer_fn(vim.cmd.Indent, 500)
+						vim.defer_fn(function()
+							indent(false)
+						end, 500)
 					end,
 				})
 			end,
