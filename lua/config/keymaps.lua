@@ -146,3 +146,6 @@ vim.keymap.set("n", "<leader><tab><tab>", ":tabnew<cr>", { desc = "New tab", sil
 vim.keymap.set("n", "<leader><tab>q", ":tabclose<cr>", { desc = "Close tab", silent = true })
 vim.keymap.set("n", "<leader><tab>n", ":tabnext<cr>", { desc = "[N]ext tab", silent = true })
 vim.keymap.set("n", "<leader><tab>p", ":tabprev<cr>", { desc = "[P]revious tab", silent = true })
+
+-- Marks are not latin american layout friendly
+vim.keymap.set("n", "|", "`")
