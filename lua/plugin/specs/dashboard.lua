@@ -14,8 +14,6 @@ return { -- Create a dashboard screen similar to the one in Doom Emacs
 ╚═════╝ ╚══════╝╚═╝  ╚═╝╚═════╝ ╚═╝  ╚═╝╚═╝     ╚══════╝╚═╝  ╚═╝
     ]]
 
-		logo = string.rep("\n", 5) .. logo .. "\n\n"
-
 		local opts = {
 			theme = "doom",
 			hide = {
@@ -24,7 +22,6 @@ return { -- Create a dashboard screen similar to the one in Doom Emacs
 				statusline = false,
 			},
 			config = {
-				header = vim.split(logo, "\n"),
 				center = {
 					{
 						action = "Telescope find_files",
@@ -64,20 +61,6 @@ return { -- Create a dashboard screen similar to the one in Doom Emacs
 					},
 					{ action = "qa", desc = " Quit", icon = require("config.icons").dashboard.exit, key = "q" },
 				},
-				footer = function()
-					local stats = require("lazy").stats()
-					local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-					return {
-						require("config.icons").dashboard.loadtime
-							.. " Neovim loaded "
-							.. stats.loaded
-							.. "/"
-							.. stats.count
-							.. " plugins in "
-							.. ms
-							.. "ms",
-					}
-				end,
 			},
 		}
 
@@ -105,6 +88,38 @@ return { -- Create a dashboard screen similar to the one in Doom Emacs
 					require("lazy").show()
 				end,
 			})
+		end
+
+		local height = vim.fn.winheight(0)
+		local lines = #vim.split(logo, "\n") + (#opts.config.center * 2) + 1
+
+		local footer_padding = math.floor((height - lines) / 3)
+
+		for i = 1, (height - lines - footer_padding - 1) do
+			if i % 3 == 0 then
+				logo = logo .. "\n"
+			else
+				logo = "\n" .. logo
+			end
+		end
+
+		footer_padding = string.rep("\n", footer_padding) ---@diagnostic disable-line:cast-local-type
+
+		opts.config.header = vim.split(logo, "\n")
+
+		opts.config.footer = function()
+			local stats = require("lazy").stats()
+			local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
+			local loadtime = require("config.icons").dashboard.loadtime
+				.. " Neovim loaded "
+				.. stats.loaded
+				.. "/"
+				.. stats.count
+				.. " plugins in "
+				.. ms
+				.. "ms"
+
+			return vim.split(footer_padding .. loadtime, "\n")
 		end
 
 		require("dashboard").setup(opts)
