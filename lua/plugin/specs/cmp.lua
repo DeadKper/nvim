@@ -124,5 +124,23 @@ return { -- Autocompletion
 			---@diagnostic disable-next-line:missing-fields
 			matching = { disallow_symbol_nonprefix_matching = false },
 		})
+
+		if vim.fn.eval("&ma") == 0 then -- will fail if not modifiable when asking for cmd completion
+			local augroup = vim.api.nvim_create_augroup("nvim-cmp", { clear = true })
+			vim.api.nvim_create_autocmd({ "CmdlineEnter" }, {
+				group = augroup,
+				once = true,
+				callback = function()
+					vim.cmd("set ma")
+				end,
+			})
+			vim.api.nvim_create_autocmd({ "CmdlineLeave" }, {
+				group = augroup,
+				once = true,
+				callback = function()
+					vim.cmd("set noma")
+				end,
+			})
+		end
 	end,
 }
