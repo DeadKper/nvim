@@ -24,6 +24,10 @@ return { -- Auto detection for file indentation with custom logic in lua to add 
 					indent = 2,
 					spaces = false,
 				},
+				python = {
+					indent = 4,
+					spaces = true,
+				},
 			},
 		}
 

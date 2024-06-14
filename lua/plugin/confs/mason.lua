@@ -61,7 +61,7 @@ M.filetype_install = {
 	},
 	python = {
 		execs = { { "python3", "python" } },
-		packages = { "pyright" },
+		packages = { "python-lsp-server" },
 	},
 	php = {
 		execs = { "composer" },
