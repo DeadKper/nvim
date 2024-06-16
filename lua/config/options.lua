@@ -82,3 +82,6 @@ vim.opt.sessionoptions = "curdir,folds,buffers,globals,help,tabpages,terminal,wi
 
 -- Enable mouse move event
 vim.opt.mousemoveevent = true
+
+-- Set conceal level
+vim.opt.conceallevel = 2
