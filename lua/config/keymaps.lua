@@ -17,7 +17,7 @@ vim.keymap.set("v", "K", ":m '<-2<cr>gv=gv", { silent = true })
 vim.keymap.set("v", "L", ">gv")
 vim.keymap.set("v", "H", "<gv")
 
--- Move in insertmode
+-- Move in insert mode
 vim.keymap.set("i", "<C-j>", function()
 	vim.cmd("normal j")
 end, { silent = true })
