@@ -149,3 +149,7 @@ vim.keymap.set("n", "<leader><tab>p", ":tabprev<cr>", { desc = "[P]revious tab",
 
 -- Marks are not latin american layout friendly
 vim.keymap.set("n", "|", "`")
+
+-- Quick replace
+vim.keymap.set("n", ";", ":%s///g<left><left><left>")
+vim.keymap.set("v", ";", ":s///g<left><left><left>")
