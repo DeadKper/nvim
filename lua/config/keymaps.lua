@@ -27,6 +27,12 @@ end, { silent = true })
 vim.keymap.set("i", "<C-l>", "<Right>", { silent = true })
 vim.keymap.set("i", "<C-h>", "<Left>", { silent = true })
 
+-- Move in command mode, lua version is not working
+vim.cmd("cnoremap <C-j> <Down>")
+vim.cmd("cnoremap <C-k> <Up>")
+vim.cmd("cnoremap <C-l> <Right>")
+vim.cmd("cnoremap <C-h> <Left>")
+
 -- Move through windows quickly
 vim.keymap.set("n", "<C-j>", "<C-w>j", { silent = true })
 vim.keymap.set("n", "<C-k>", "<C-w>k", { silent = true })
