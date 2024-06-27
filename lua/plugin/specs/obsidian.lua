@@ -4,16 +4,20 @@ return {
 	lazy = true,
 	-- stylua: ignore
   event = {
-    "BufReadPre " .. vim.fn.expand("~/Nextcloud/Apps/Obsidian") .. "/**.md",
-    "BufNewFile " .. vim.fn.expand("~/Nextcloud/Apps/Obsidian") .. "/**.md",
-  },
-	dependencies = { "nvim-lua/plenary.nvim" }, -- Required.
-	opts = {
-		workspaces = {
-			{
-				name = "Personal",
-				path = "~/Nextcloud/Apps/Obsidian/Personal/",
-			},
-		},
+		"BufReadPre " .. vim.fn.expand("~/Nextcloud/Apps/Obsidian") .. "/**",
+		"BufNewFile " .. vim.fn.expand("~/Nextcloud/Apps/Obsidian") .. "/**",
 	},
+	dependencies = { "nvim-lua/plenary.nvim" }, -- Required.
+	config = function()
+		require("obsidian").setup({
+			workspaces = {
+				{
+					name = "Personal",
+					path = "~/Nextcloud/Apps/Obsidian/Personal/",
+				},
+			},
+		})
+		vim.keymap.set("n", "<leader>sf", vim.cmd.ObsidianQuickSwitch, { desc = "[S]earch [F]iles in obsidian.md" })
+		vim.keymap.set("n", "<leader>st", vim.cmd.ObsidianTags, { desc = "[S]earch [T]ags in obsidian.md" })
+	end,
 }
