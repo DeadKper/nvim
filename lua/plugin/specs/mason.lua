@@ -52,8 +52,6 @@ return { -- Automatically install LSPs and related tools to stdpath for neovim
 			end,
 		})
 
-		vim.filetype.add({ extension = { templ = "templ" } }) -- Add templ as a file extension
-
 		-- Config mason-lspconfig
 		local has_neoconf, neoconf = pcall(require, "neoconf")
 		if has_neoconf then
