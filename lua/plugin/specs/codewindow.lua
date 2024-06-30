@@ -4,7 +4,7 @@ return {
 	config = function()
 		local codewindow = require("codewindow")
 		codewindow.setup({
-			auto_enable = true,
+			auto_enable = false,
 			minimap_width = 10,
 			window_border = "none",
 			exclude_filetypes = { "help", "dashboard" },
