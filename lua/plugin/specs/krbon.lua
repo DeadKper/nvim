@@ -3,6 +3,7 @@ return {
 	dir = vim.g.dev and "~/.config/themes/krbon.nvim/",
 	lazy = false,
 	priority = 1000,
+	cond = not vim.g.vscode,
 	config = function()
 		---@diagnostic disable:missing-fields
 		require("krbon").setup({

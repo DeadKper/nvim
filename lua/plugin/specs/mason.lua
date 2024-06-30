@@ -1,6 +1,7 @@
 return { -- Automatically install LSPs and related tools to stdpath for neovim
 	"williamboman/mason.nvim",
 	event = "VeryLazy",
+	cond = not vim.g.vscode,
 	dependencies = {
 		"neovim/nvim-lspconfig", -- LSP configuration
 		"williamboman/mason-lspconfig.nvim", -- Allow lspconfig integration to mason

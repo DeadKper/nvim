@@ -1,5 +1,6 @@
 return {
 	"tpope/vim-dadbod",
+	cond = not vim.g.vscode,
 	dependencies = {
 		"kristijanhusak/vim-dadbod-completion",
 		"kristijanhusak/vim-dadbod-ui",

@@ -1,6 +1,7 @@
 return { -- Create a dashboard screen similar to the one in Doom Emacs
 	"Shatur/neovim-session-manager",
 	event = "VeryLazy",
+	cond = not vim.g.vscode,
 	dependencies = {
 		"nvim-lua/plenary.nvim", -- Required
 	},

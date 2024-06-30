@@ -1,6 +1,7 @@
 return { -- Better folds
 	"kevinhwang91/nvim-ufo",
 	event = "UIEnter", -- Will be delayed due to the callback, UIEnter triggers before VeryLazy
+	cond = not vim.g.vscode,
 	dependencies = {
 		"kevinhwang91/promise-async", -- Required
 	},

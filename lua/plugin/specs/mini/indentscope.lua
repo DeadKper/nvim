@@ -1,6 +1,6 @@
 return { -- Add indentation guides on blank lines
 	"echasnovski/mini.indentscope",
-	cond = require("plugin.confs.indent-guides").enable,
+	cond = require("plugin.confs.indent-guides").enable and not vim.g.vscode,
 	event = "VeryLazy",
 	config = function()
 		local indentscope = require("mini.indentscope")

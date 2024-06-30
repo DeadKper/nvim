@@ -1,7 +1,7 @@
 return { -- Animations
 	"echasnovski/mini.animate",
 	event = "VeryLazy",
-	cond = false and vim.g.noiceui,
+	cond = false and vim.g.noiceui and not vim.g.vscode,
 	config = function()
 		local animate = require("mini.animate")
 		local max_time = 500

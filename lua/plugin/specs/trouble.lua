@@ -1,6 +1,7 @@
 return { -- List to show diagnostics, references, quickfixes and more
 	"folke/trouble.nvim",
 	event = "VeryLazy",
+	cond = not vim.g.vscode,
 	dependencies = {
 		"nvim-tree/nvim-web-devicons", -- Enable file icons
 	},

@@ -1,5 +1,6 @@
 return { -- Auto detection for file indentation with custom logic in lua to add default values
 	"tpope/vim-sleuth",
+	cond = not vim.g.vscode,
 	config = function()
 		local conf = {
 			ignore = { "", "text" },

@@ -18,5 +18,6 @@ return { -- Comment with 'gc' in visual mode or block comment with 'gb', support
 
 		local cft = require("Comment.ft")
 		cft.kdl = { "// %s", "/* %s */" }
+		cft.json = { "// %s", "/* %s */" }
 	end,
 }

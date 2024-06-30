@@ -1,6 +1,6 @@
 return { -- Add indent guides on blank lines
 	"lukas-reineke/indent-blankline.nvim",
-	cond = require("plugin.confs.indent-guides").enable,
+	cond = require("plugin.confs.indent-guides").enable and not vim.g.vscode,
 	event = "VeryLazy",
 	config = function()
 		local icons = require("config.icons")

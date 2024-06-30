@@ -1,6 +1,7 @@
 return { -- LSP configuration
 	"neovim/nvim-lspconfig",
 	lazy = true, -- Load this on mason
+	cond = not vim.g.vscode,
 	dependencies = {
 		{ -- Useful status updates for LSP
 			"j-hui/fidget.nvim",

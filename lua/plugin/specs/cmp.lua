@@ -1,6 +1,7 @@
 return { -- Autocompletion
 	"hrsh7th/nvim-cmp",
 	event = { "InsertEnter", "CmdlineEnter" },
+	cond = not vim.g.vscode,
 	dependencies = {
 		{
 			"saadparwaiz1/cmp_luasnip", -- LuaSnip completion source for nvim-cmp

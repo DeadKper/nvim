@@ -1,6 +1,7 @@
 return { -- Adds git related signs to the gutter, as well as utilities for managing changes
 	"lewis6991/gitsigns.nvim",
 	event = "VeryLazy",
+	cond = not vim.g.vscode,
 	config = function()
 		local signs = {}
 		for key, value in pairs(require("config.icons").git) do

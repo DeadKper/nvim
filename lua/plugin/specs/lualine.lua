@@ -1,6 +1,7 @@
 return { -- Set lualine as statusline
 	"nvim-lualine/lualine.nvim",
 	event = "VeryLazy",
+	cond = not vim.g.vscode,
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	init = function()
 		vim.g.lualine_laststatus = vim.o.laststatus

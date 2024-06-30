@@ -1,6 +1,7 @@
 return { -- Formatter
 	"stevearc/conform.nvim",
 	event = "VeryLazy",
+	cond = not vim.g.vscode,
 	config = function()
 		local conform = require("conform")
 

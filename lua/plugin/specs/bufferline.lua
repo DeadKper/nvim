@@ -1,6 +1,7 @@
 return { -- Buffer line
 	"akinsho/bufferline.nvim",
 	event = "UIEnter", -- Doesn't work correctly on VeryLazy
+	cond = not vim.g.vscode,
 	dependencies = {
 		"nvim-tree/nvim-web-devicons",
 	},

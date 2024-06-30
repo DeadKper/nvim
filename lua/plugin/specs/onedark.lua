@@ -1,6 +1,7 @@
 return { -- Theme inspired by Atom
 	"navarasu/onedark.nvim",
 	event = "VeryLazy",
+	cond = not vim.g.vscode,
 	config = function()
 		require("onedark").setup({
 			style = "darker",

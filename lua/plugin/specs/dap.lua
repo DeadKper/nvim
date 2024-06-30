@@ -1,6 +1,7 @@
 return { -- Debug adapter for neovim
 	"mfussenegger/nvim-dap",
 	lazy = true,
+	cond = not vim.g.vscode,
 	dependencies = {
 		"rcarriga/nvim-dap-ui", -- Creates debuger ui
 		"nvim-neotest/nvim-nio", -- Dependency

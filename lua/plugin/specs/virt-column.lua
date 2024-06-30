@@ -1,6 +1,6 @@
 return { -- virt-column for a better colorcolumn
 	"lukas-reineke/virt-column.nvim",
-	cond = require("plugin.confs.indent-guides").enable,
+	cond = require("plugin.confs.indent-guides").enable and not vim.g.vscode,
 	event = "VeryLazy",
 	config = function()
 		local guides = require("plugin.confs.indent-guides")
