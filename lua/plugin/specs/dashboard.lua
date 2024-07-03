@@ -92,7 +92,7 @@ return { -- Create a dashboard screen similar to the one in Doom Emacs
 		end
 
 		local height = vim.fn.winheight(0)
-		local lines = #vim.split(logo, "\n") + (#opts.config.center * 2) + 1
+		local lines = #vim.split(logo, "\n") + (#opts.config.center * 2)
 
 		local footer_padding = math.floor((height - lines) / 3)
 
