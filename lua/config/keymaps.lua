@@ -46,6 +46,7 @@ vim.keymap.set("n", "<M-w>", "<C-w>4>", { silent = true })
 vim.keymap.set("n", "<M-d>", "<C-w>4<", { silent = true }) -- should be M-s but it's already in use
 
 local scroll_up = "normal! " .. vim.api.nvim_replace_termcodes("<C-y>", true, true, true)
+local scroll_dw = "normal! " .. vim.api.nvim_replace_termcodes("<C-e>", true, true, true)
 local function adjust_view(do_zz)
 	vim.cmd("normal! m" .. vim.g.temp_mark)
 	if do_zz == nil or do_zz then
@@ -79,7 +80,11 @@ vim.keymap.set("n", "zz", adjust_view, { silent = true })
 local function jump(keycomb, do_zz)
 	local cmd = "normal! " .. vim.api.nvim_replace_termcodes(keycomb, true, true, true)
 	return function()
+		local curr = vim.fn.getpos(".")[2]
 		vim.cmd(cmd)
+		if curr == vim.fn.getpos(".")[2] then
+			vim.cmd(cmd)
+		end
 		adjust_view(do_zz)
 	end
 end
