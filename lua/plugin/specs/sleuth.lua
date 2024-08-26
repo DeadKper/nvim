@@ -63,13 +63,13 @@ return { -- Auto detection for file indentation with custom logic in lua to add 
 			local expandtab = vim.fn.eval("&et")
 
 			if expandtab == 0 then
-				if not vim.tbl_contains(tabstop, conf.valid_indents) then
+				if not vim.tbl_contains(conf.valid_indents, tabstop) then
 					set_defaults()
 				else
 					vim.bo.shiftwidth = tabstop
 				end
 			else
-				if not vim.tbl_contains(shiftwidth, conf.valid_indents) then
+				if not vim.tbl_contains(conf.valid_indents, shiftwidth) then
 					set_defaults()
 				else
 					vim.bo.tabstop = shiftwidth
