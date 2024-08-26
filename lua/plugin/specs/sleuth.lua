@@ -4,6 +4,7 @@ return { -- Auto detection for file indentation with custom logic in lua to add 
 	config = function()
 		local conf = {
 			ignore = { "", "text" },
+			valid_indents = { 2, 4 },
 			default = {
 				indent = 4,
 				spaces = false,
@@ -36,6 +37,13 @@ return { -- Auto detection for file indentation with custom logic in lua to add 
 			return vim.api.nvim_exec2(cmd, { output = true }).output
 		end
 
+		local function set_defaults()
+			local defaults = conf.filetype[vim.bo.filetype] or conf.default
+			vim.bo.tabstop = defaults.indent
+			vim.bo.shiftwidth = defaults.indent
+			vim.bo.expandtab = defaults.spaces
+		end
+
 		---@param sleuth boolean
 		---@return number was_set
 		local function check_sleuth(sleuth)
@@ -52,18 +60,18 @@ return { -- Auto detection for file indentation with custom logic in lua to add 
 
 			local tabstop = vim.fn.eval("&ts")
 			local shiftwidth = vim.fn.eval("&sw")
+			local expandtab = vim.fn.eval("&et")
 
-			if shiftwidth == 0 or tabstop == shiftwidth then
-				if (tabstop == 8 or tabstop == conf.default.indent) and not vim.tbl_contains(conf.ignore, vim.bo.filetype) then
-					local defaults = conf.filetype[vim.bo.filetype] or conf.default
-					vim.bo.tabstop = defaults.indent
-					vim.bo.shiftwidth = defaults.indent
-					vim.bo.expandtab = defaults.spaces
+			if expandtab == 0 then
+				if not vim.tbl_contains(tabstop, conf.valid_indents) then
+					set_defaults()
+				else
+					vim.bo.shiftwidth = tabstop
 				end
-			elseif tabstop < shiftwidth then
-				vim.bo.shiftwidth = tabstop
 			else
-				if vim.fn.eval("&et") == 1 then
+				if not vim.tbl_contains(shiftwidth, conf.valid_indents) then
+					set_defaults()
+				else
 					vim.bo.tabstop = shiftwidth
 				end
 			end
@@ -86,10 +94,7 @@ return { -- Auto detection for file indentation with custom logic in lua to add 
 
 			local res = check_sleuth(use_sleuth)
 			if res ~= 0 and vim.bo.filetype and conf.filetype[vim.bo.filetype] then
-				local defaults = conf.filetype[vim.bo.filetype] or conf.default
-				vim.bo.tabstop = defaults.indent
-				vim.bo.shiftwidth = defaults.indent
-				vim.bo.expandtab = defaults.spaces
+				set_defaults()
 				res = 0
 			end
 
@@ -99,10 +104,9 @@ return { -- Auto detection for file indentation with custom logic in lua to add 
 				if res == 0 then
 					print(
 						":setlocal "
-							.. (vim.fn.eval("&et") == 1 and "et" or "noet")
-							.. (vim.fn.eval("&et") == 0 and " ts=" .. vim.fn.eval("&ts") or "")
-							.. " sw="
-							.. vim.fn.eval("&sw")
+						.. (vim.fn.eval("&et") == 1 and "et" or "noet")
+						.. (vim.fn.eval("&et") == 0 and " ts=" .. vim.fn.eval("&ts") or "")
+						.. " sw=" .. vim.fn.eval("&sw")
 					)
 				elseif res == 1 then
 					vim.cmd("echohl WarningMsg")
