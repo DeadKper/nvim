@@ -81,7 +81,7 @@ M.filetype_install = {
 	},
 	yaml = {
 		execs = { "npm" },
-		packages = { "yaml-language-server", "ansible-language-server" },
+		packages = { "yaml-language-server", "ansible-lint", "ansible-language-server" },
 	},
 	zig = {
 		execs = { "zig" },
