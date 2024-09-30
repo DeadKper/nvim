@@ -35,7 +35,10 @@ vim.opt.scrolloff = vim.fn.winheight(0) / 5 + 0.5 > 4 and math.floor(vim.fn.winh
 -- NOTE: Make sure your terminal supports this
 vim.opt.termguicolors = true
 
--- Enable wordwrap and break indent
+-- Disable wordwrap by default
+vim.opt.wrap = false
+
+-- Configure wordwrap and break indent
 vim.opt.linebreak = true
 vim.opt.breakindent = true
 vim.opt.breakindentopt = { "shift:2", "sbr" }
