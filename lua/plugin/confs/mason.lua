@@ -79,6 +79,10 @@ M.filetype_install = {
 		execs = { "node" },
 		packages = { "biome" },
 	},
+	yaml = {
+		execs = { "npm" },
+		packages = { "yaml-language-server", "ansible-language-server" },
+	},
 	zig = {
 		execs = { "zig" },
 		packages = { "zls", "codelldb" },
