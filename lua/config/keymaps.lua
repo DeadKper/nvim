@@ -8,7 +8,7 @@ vim.keymap.set({ "n", "v" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, si
 
 -- File explorer
 vim.keymap.set("n", "<leader>fe", function()
-	vim.cmd(vim.g.explore)
+	vim.cmd(vim.g.explore or "Ex")
 end, { desc = "[F]ile [E]xplorer", silent = true })
 
 -- Move selection
@@ -48,7 +48,7 @@ vim.keymap.set("n", "<M-d>", "<C-w>4<", { silent = true }) -- should be M-s but 
 local scroll_up = "normal! " .. vim.api.nvim_replace_termcodes("<C-y>", true, true, true)
 local scroll_dw = "normal! " .. vim.api.nvim_replace_termcodes("<C-e>", true, true, true)
 local function adjust_view(do_zz)
-	vim.cmd("normal! m" .. vim.g.temp_mark)
+	vim.cmd("normal! m" .. (vim.g.temp_mark or "p"))
 	if do_zz == nil or do_zz then
 		vim.cmd("normal! zz")
 	end
@@ -64,8 +64,8 @@ local function adjust_view(do_zz)
 		curr = vim.fn.winline()
 	end
 
-	vim.cmd("normal! `" .. vim.g.temp_mark)
-	vim.cmd("delm " .. vim.g.temp_mark)
+	vim.cmd("normal! `" .. (vim.g.temp_mark or "p"))
+	vim.cmd("delm " .. (vim.g.temp_mark or "p"))
 
 	if vim.g.mini_animate then
 		local has_animate, animate = pcall(require, "mini.animate")
@@ -160,7 +160,3 @@ vim.keymap.set("n", "<leader><tab>p", ":tabprev<cr>", { desc = "[P]revious tab",
 
 -- Marks are not latin american layout friendly
 vim.keymap.set("n", "|", "`")
-
--- Quick replace
-vim.keymap.set("n", ";", ":%s///g<left><left><left>")
-vim.keymap.set("v", ";", ":s///g<left><left><left>")
