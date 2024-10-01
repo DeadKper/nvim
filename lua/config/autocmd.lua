@@ -107,3 +107,13 @@ vim.api.nvim_create_autocmd({ "FileType", "BufEnter" }, {
 		end
 	end,
 })
+
+-- Set word wrap for filetypes except plain text and no ft
+vim.api.nvim_create_autocmd({ "FileType" }, {
+	group = vim.api.nvim_create_augroup("detect-word-wrap", { clear = true }),
+	callback = function(args)
+		local ft = vim.bo[args.buf].filetype
+
+		vim.opt_local.wrap = ft ~= "" and not vim.tbl_contains({ "text", "txt", "log" }, ft)
+	end,
+})
