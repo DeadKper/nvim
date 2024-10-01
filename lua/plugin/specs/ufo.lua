@@ -62,6 +62,8 @@ return { -- Better folds
 			local filetypes = {
 				vim = "indent",
 				python = "indent",
+				yaml = "indent",
+
 				git = "",
 			}
 			---@diagnostic disable-next-line:missing-fields
