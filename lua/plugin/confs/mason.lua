@@ -43,6 +43,10 @@ M.filetype_install = {
 		execs = {},
 		packages = { "htmx-lsp" },
 	},
+	jinja = {
+		execs = { "cargo" },
+		packages = { "jinja-lsp" },
+	},
 	java = {
 		execs = { "java" },
 		packages = { "jdtls" },
