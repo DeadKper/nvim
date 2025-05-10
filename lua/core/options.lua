@@ -82,7 +82,7 @@ if vim.g.nerd_font then
 end
 
 -- Better session restore
-vim.opt.sessionoptions = "curdir,folds,buffers,globals,help,tabpages,terminal,winsize"
+vim.opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
 
 -- Enable mouse move event
 vim.opt.mousemoveevent = true
