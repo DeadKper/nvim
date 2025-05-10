@@ -9,13 +9,17 @@ vim.keymap.set({ "n", "v" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
 vim.keymap.set("n", "J", "m" .. vim.g.temp_mark .. "J`" .. vim.g.temp_mark)
 
 -- File explorer
-vim.keymap.set("n", "<leader>fe", function() vim.cmd(vim.g.file_explorer) end, { desc = "[F]ile [E]xplorer" })
+vim.keymap.set("n", "<leader>fe", function()
+	vim.cmd(vim.g.file_explorer)
+end, { desc = "[F]ile [E]xplorer" })
 
 -- Make current file executable
 vim.keymap.set("n", "<leader>fx", ":!chmod +x %<CR>", { desc = "[F]ile grant e[X]ecute" })
 
 -- Copy file path to clipboard
-vim.keymap.set("n", "<leader>fp", function() vim.fn.setreg("+", vim.fn.expand("%:p")) end, { desc = "[F]ile [P]ath to clipboard" })
+vim.keymap.set("n", "<leader>fp", function()
+	vim.fn.setreg("+", vim.fn.expand("%:p"))
+end, { desc = "[F]ile [P]ath to clipboard" })
 
 -- Move selection
 vim.keymap.set("v", "J", ":m '>+1<cr>gv=gv", { desc = "Move selection down", silent = true })
@@ -24,8 +28,12 @@ vim.keymap.set("v", "L", ">gv", { desc = "Increase selection indent", silent = t
 vim.keymap.set("v", "H", "<gv", { desc = "Decrease selection indent", silent = true })
 
 -- Move in insert mode
-vim.keymap.set("i", "<C-j>", function() vim.cmd("normal j") end)
-vim.keymap.set("i", "<C-k>", function() vim.cmd("normal k") end)
+vim.keymap.set("i", "<C-j>", function()
+	vim.cmd("normal j")
+end)
+vim.keymap.set("i", "<C-k>", function()
+	vim.cmd("normal k")
+end)
 vim.keymap.set("i", "<C-l>", "<Right>")
 vim.keymap.set("i", "<C-h>", "<Left>")
 
@@ -49,7 +57,6 @@ vim.keymap.set("n", "<M-d>", "<C-w>4<") -- should be M-s but it's already in use
 
 -- Scroll helper
 local scroll_up = "normal! " .. vim.api.nvim_replace_termcodes("<C-y>", true, true, true)
-local scroll_dw = "normal! " .. vim.api.nvim_replace_termcodes("<C-e>", true, true, true)
 
 local function adjust_view(do_zz)
 	vim.cmd("normal! m" .. vim.g.temp_mark)
@@ -114,8 +121,12 @@ vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set("n", "x", '"_x', { noremap = true, silent = true })
 
 -- Paste from system clipboard
-vim.keymap.set({ "n", "i", "v" }, "<M-p>", function() vim.cmd('normal! "+p') end)
-vim.keymap.set({ "n", "i", "v" }, "<M-S-P>", function() vim.cmd('normal! "+P') end)
+vim.keymap.set({ "n", "i", "v" }, "<M-p>", function()
+	vim.cmd('normal! "+p')
+end)
+vim.keymap.set({ "n", "i", "v" }, "<M-S-P>", function()
+	vim.cmd('normal! "+P')
+end)
 
 -- Delete without saving contents to a delete register
 vim.keymap.set({ "n", "v" }, "<leader>d", '"_d')
@@ -162,22 +173,17 @@ vim.keymap.set("n", "<leader><tab>n", ":tabnext<cr>", { desc = "[N]ext tab", sil
 vim.keymap.set("n", "<leader><tab>p", ":tabprev<cr>", { desc = "[P]revious tab", silent = true })
 
 -- Quick terminal
-vim.keymap.set(
-	"n",
-	"<leader>qt",
-	function()
-		local height = math.min(math.max(math.floor(vim.fn.winheight(0) / 3), 8), 16)
-		vim.cmd.vnew()
-		vim.cmd.term()
-		vim.cmd.wincmd("J")
-		vim.api.nvim_win_set_height(0, height)
-		vim.cmd.normal("a")
+vim.keymap.set("n", "<leader>qt", function()
+	local height = math.min(math.max(math.floor(vim.fn.winheight(0) / 3), 8), 16)
+	vim.cmd.vnew()
+	vim.cmd.term()
+	vim.cmd.wincmd("J")
+	vim.api.nvim_win_set_height(0, height)
+	vim.cmd.normal("a")
 
-		-- Exit terminal with <C-q>
-		vim.keymap.set("n", "<C-q>", ":bd<cr>:exit<cr>", { buffer = vim.api.nvim_get_current_buf(), silent = true })
-	end,
-	{ desc = "[Q]uick [T]erminal" }
-)
+	-- Exit terminal with <C-q>
+	vim.keymap.set("n", "<C-q>", ":bd<cr>:exit<cr>", { buffer = vim.api.nvim_get_current_buf(), silent = true })
+end, { desc = "[Q]uick [T]erminal" })
 
 -- Exit terminal insert mode with <C-q>
 vim.keymap.set("t", "<C-q>", [[<C-\><C-n>]])

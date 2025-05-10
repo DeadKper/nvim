@@ -1,6 +1,6 @@
 -- Set leader key
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 -- Enable editorconfig
 vim.g.editorconfig = true

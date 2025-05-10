@@ -5,7 +5,7 @@ return {
 		column = "▏",
 	},
 	listchars = {
-		tab = "» ",
+		tab = "  ",
 		trail = "·",
 		nbsp = "␣",
 	},
@@ -20,6 +20,7 @@ return {
 		hint = " ",
 		info = " ",
 	},
+	virtual_text = "■",
 	git = {
 		add = "┃",
 		change = "┃",
