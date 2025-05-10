@@ -188,7 +188,10 @@ vim.keymap.set("n", "<leader>qt", function()
 		vim.opt_local.spell = false
 
 		-- Exit terminal with <C-q>
-		vim.keymap.set("n", "<C-q>", ":exit!<cr>", { buffer = term_buf, silent = true })
+		vim.keymap.set("n", "<C-q>", function()
+			vim.cmd(":exit!<cr>")
+			adjust_view()
+		end, { buffer = term_buf, silent = true })
 	else
 		vim.cmd.vnew()
 		vim.cmd.wincmd("J")
