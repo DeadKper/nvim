@@ -183,7 +183,7 @@ vim.keymap.set("n", "<leader>qt", function()
 	vim.opt_local.spell = false
 
 	-- Exit terminal with <C-q>
-	vim.keymap.set("n", "<C-q>", ":bd<cr>:exit<cr>", { buffer = vim.api.nvim_get_current_buf(), silent = true })
+	vim.keymap.set("n", "<C-q>", ":bd!<cr>", { buffer = vim.api.nvim_get_current_buf(), silent = true })
 end, { desc = "[Q]uick [T]erminal" })
 
 -- Exit terminal insert mode with <C-q>
