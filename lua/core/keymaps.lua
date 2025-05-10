@@ -173,17 +173,29 @@ vim.keymap.set("n", "<leader><tab>n", ":tabnext<cr>", { desc = "[N]ext tab", sil
 vim.keymap.set("n", "<leader><tab>p", ":tabprev<cr>", { desc = "[P]revious tab", silent = true })
 
 -- Quick terminal
+local term_buf = -1
+
 vim.keymap.set("n", "<leader>qt", function()
 	local height = math.min(math.max(math.floor(vim.fn.winheight(0) / 3), 8), 16)
-	vim.cmd.vnew()
-	vim.cmd.term()
-	vim.cmd.wincmd("J")
-	vim.api.nvim_win_set_height(0, height)
-	vim.cmd.normal("a")
-	vim.opt_local.spell = false
 
-	-- Exit terminal with <C-q>
-	vim.keymap.set("n", "<C-q>", ":bd!<cr>", { buffer = vim.api.nvim_get_current_buf(), silent = true })
+	if term_buf == -1 then
+		vim.cmd.vnew()
+		vim.cmd.term()
+		vim.cmd.wincmd("J")
+		term_buf = vim.api.nvim_get_current_buf()
+		vim.api.nvim_win_set_height(0, height)
+		vim.cmd.normal("a")
+		vim.opt_local.spell = false
+
+		-- Exit terminal with <C-q>
+		vim.keymap.set("n", "<C-q>", ":exit!<cr>", { buffer = term_buf, silent = true })
+	else
+		vim.cmd.vnew()
+		vim.cmd.wincmd("J")
+		vim.api.nvim_win_set_height(0, height)
+		vim.api.nvim_set_current_buf(term_buf)
+		vim.cmd.normal("a")
+	end
 end, { desc = "[Q]uick [T]erminal" })
 
 -- Exit terminal insert mode with <C-q>
