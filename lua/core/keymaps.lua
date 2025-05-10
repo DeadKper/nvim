@@ -178,7 +178,7 @@ local term_buf = -1
 vim.keymap.set("n", "<leader>qt", function()
 	local height = math.min(math.max(math.floor(vim.fn.winheight(0) / 3), 8), 16)
 
-	if term_buf == -1 then
+	if not vim.api.nvim_buf_is_valid(term_buf) then
 		vim.cmd.vnew()
 		vim.cmd.term()
 		vim.cmd.wincmd("J")
