@@ -200,7 +200,3 @@ end, { desc = "[Q]uick [T]erminal" })
 
 -- Exit terminal insert mode with <C-q>
 vim.keymap.set("t", "<C-q>", [[<C-\><C-n>]])
-
-vim.keymap.set("c", "<C-e>", function()
-	vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<C-y>", true, true, true))
-end)
