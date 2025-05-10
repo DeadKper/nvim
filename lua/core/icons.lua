@@ -1,0 +1,58 @@
+return {
+	other = {
+		diff = "╱",
+		indent = "│",
+		column = "▏",
+	},
+	listchars = {
+		tab = "» ",
+		trail = "·",
+		nbsp = "␣",
+	},
+	fold = {
+		open = "",
+		close = "",
+		folded = "󰁂",
+	},
+	diagnostics = {
+		error = " ",
+		warn = " ",
+		hint = " ",
+		info = " ",
+	},
+	git = {
+		add = "┃",
+		change = "┃",
+		delete = "▁",
+		topdelete = "▔",
+		changedelete = "┇",
+		untracked = "┇",
+	},
+	comments = {
+		fix = " ",
+		todo = " ",
+		hack = " ",
+		warn = " ",
+		perf = "󰓅 ",
+		note = " ",
+		test = " ",
+	},
+	dap = {
+		paused = "󰏥 ",
+		breakpoint = " ",
+		condition = "󰍶 ",
+		rejected = "󱑙 ",
+		log = " ",
+	},
+	dashboard = {
+		find = " ",
+		explorer = " ",
+		newfile = " ",
+		oldfiles = " ",
+		grep = " ",
+		config = " ",
+		exit = " ",
+		loadtime = "󰔛 ",
+		lastsession = " ",
+	},
+}
