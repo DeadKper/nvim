@@ -73,24 +73,29 @@ return {
 
 				local executables = conf.executables
 
-				if type(executables) == "string" then
-					executables = { executables }
-				end
-
-				local total = #executables
+				local total = 0
 				local count = 0
 
-				--- @diagnostic disable-next-line: redefined-local
-				for _, executables in ipairs(executables) do
+				if type(executables) == "string" or type(executables) == "table" then
 					if type(executables) == "string" then
-						--- @diagnostic disable-next-line: cast-local-type
 						executables = { executables }
 					end
 
-					for _, exec in ipairs(executables) do
-						if vim.fn.executable(exec) == 1 then
-							count = count + 1
-							break
+					total = #executables
+					count = 0
+
+					---@diagnostic disable-next-line: redefined-local
+					for _, executables in ipairs(executables) do
+						if type(executables) == "string" then
+							---@diagnostic disable-next-line: cast-local-type
+							executables = { executables }
+						end
+
+						for _, exec in ipairs(executables) do
+							if vim.fn.executable(exec) == 1 then
+								count = count + 1
+								break
+							end
 						end
 					end
 				end

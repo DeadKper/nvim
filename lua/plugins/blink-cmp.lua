@@ -24,9 +24,9 @@ return {
 		},
 		"folke/lazydev.nvim",
 	},
-	--- @module 'blink.cmp'
-	--- @diagnostic disable-next-line: undefined-doc-name
-	--- @type blink.cmp.Config
+	---@module 'blink.cmp'
+	---@diagnostic disable-next-line: undefined-doc-name
+	---@type blink.cmp.Config
 	opts = {
 		keymap = {
 			preset = "default",

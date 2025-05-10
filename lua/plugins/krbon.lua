@@ -5,7 +5,7 @@ return {
 	priority = 1000,
 	cond = not vim.g.vscode,
 	config = function()
-		--- @diagnostic disable:missing-fields
+		---@diagnostic disable:missing-fields
 		require("krbon").setup({
 			undercurl = vim.fn.executable("wsl.exe") == 0,
 			transparent = {
