@@ -110,7 +110,7 @@ vim.keymap.set("n", "<C-f>", jump("<C-f>", false))
 vim.keymap.set("n", "<C-b>", jump("<C-b>", false))
 
 -- Yank to system clipboard
-vim.keymap.set({ "n", "v" }, "<leader>y", '"+y')
+vim.keymap.set({ "n", "v" }, "<leader>y", '"+y', { desc = "[Y]ank to system clipboard" })
 vim.keymap.set("n", "<leader>fy", ":%y+<cr>", { desc = "[F]ile [Y]ank", silent = true })
 
 -- Paste over selected contents without overriding " register
@@ -129,7 +129,7 @@ vim.keymap.set({ "n", "i", "v" }, "<M-S-P>", function()
 end)
 
 -- Delete without saving contents to a delete register
-vim.keymap.set({ "n", "v" }, "<leader>d", '"_d')
+vim.keymap.set({ "n", "v" }, "<leader>d", '"_d', { desc = "[D]elete to void buffer" })
 
 -- Set C-c as Esc
 vim.keymap.set("i", "<C-c>", "<Esc>")
@@ -180,6 +180,7 @@ vim.keymap.set("n", "<leader>qt", function()
 	vim.cmd.wincmd("J")
 	vim.api.nvim_win_set_height(0, height)
 	vim.cmd.normal("a")
+	vim.opt_local.spell = false
 
 	-- Exit terminal with <C-q>
 	vim.keymap.set("n", "<C-q>", ":bd<cr>:exit<cr>", { buffer = vim.api.nvim_get_current_buf(), silent = true })
@@ -187,3 +188,7 @@ end, { desc = "[Q]uick [T]erminal" })
 
 -- Exit terminal insert mode with <C-q>
 vim.keymap.set("t", "<C-q>", [[<C-\><C-n>]])
+
+vim.keymap.set("c", "<C-e>", function()
+	vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<C-y>", true, true, true))
+end)

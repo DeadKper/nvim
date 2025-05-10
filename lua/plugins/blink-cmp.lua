@@ -33,6 +33,11 @@ return {
 			["<C-e>"] = { "select_and_accept" },
 		},
 
+		cmdline = {
+			keymap = { preset = "inherit" },
+			completion = { menu = { auto_show = true } },
+		},
+
 		appearance = {
 			nerd_font_variant = "normal",
 		},

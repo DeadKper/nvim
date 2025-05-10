@@ -15,7 +15,7 @@ return {
 			signs = signs,
 			attach_to_untracked = true,
 			on_attach = function(bufnr)
-				if not vim.tbl_contains({ "", "netrw" }, vim.bo[bufnr].filetype) then
+				if not vim.tbl_contains({ "", "netrw", "oil" }, vim.bo[bufnr].filetype) then
 					vim.opt_local.signcolumn = "yes"
 				end
 

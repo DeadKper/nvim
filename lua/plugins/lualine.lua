@@ -1,19 +1,18 @@
 return { -- Set lualine as statusline
 	"nvim-lualine/lualine.nvim",
 	event = "VeryLazy",
-	dependencies = { "nvim-tree/nvim-web-devicons" },
+	dependencies = {
+		{ "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
+	},
 	init = function()
 		vim.g.lualine_laststatus = vim.o.laststatus
 		if vim.fn.argc(-1) > 0 then
-			-- set an empty statusline till lualine loads
 			vim.o.statusline = " "
 		else
-			-- hide the statusline on the starter page
 			vim.o.laststatus = 0
 		end
 	end,
 	config = function()
-		-- Don't show the mode, since it's already in lua line
 		vim.opt.showmode = false
 
 		local icons = require("core.icons")
@@ -22,7 +21,7 @@ return { -- Set lualine as statusline
 
 		local diags = {}
 
-		if vim.g.nerd_font then -- Set diagnostics icons when using nerdfonts
+		if vim.g.nerd_font then
 			diags = { "diagnostics", symbols = icons.diagnostics }
 		else
 			diags = { "diagnostics" }

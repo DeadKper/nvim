@@ -1,9 +1,11 @@
-return { -- Automatically install LSPs and related tools to stdpath for neovim
+return {
 	"williamboman/mason.nvim",
 	event = "VeryLazy",
 	dependencies = {
-		"mfussenegger/nvim-dap", -- Debug configuration
-		"jay-babu/mason-nvim-dap.nvim", -- Allow dap integration to mason
+		"mfussenegger/nvim-dap",
+
+		"folke/neoconf.nvim",
+		"saghen/blink.cmp",
 	},
 	config = function()
 		require("mason").setup()
@@ -18,7 +20,7 @@ return { -- Automatically install LSPs and related tools to stdpath for neovim
 			if to_install == 0 then
 				vim.defer_fn(function()
 					skip_next_ammount = skip_next_ammount + 1
-					-- trigger FileType event to possibly load this newly installed LSP server
+
 					require("lazy.core.handler.event").trigger({
 						event = "FileType",
 						buf = vim.api.nvim_get_current_buf(),
@@ -29,6 +31,19 @@ return { -- Automatically install LSPs and related tools to stdpath for neovim
 
 		local lsp_conf = {}
 		local lsp_filetypes = {}
+
+		local capabilities = vim.lsp.protocol.make_client_capabilities()
+		capabilities = vim.tbl_deep_extend("force", {}, capabilities, require("blink.cmp").get_lsp_capabilities())
+		capabilities = vim.tbl_deep_extend("force", {}, capabilities, {
+			textDocument = {
+				foldingRange = { dynamicRegistration = false, lineFoldingOnly = true },
+			},
+		})
+
+		vim.lsp.config("*", {
+			capabilities = capabilities,
+			root_markers = { ".editorconfig", ".git", ".jj" },
+		})
 
 		for _, lsp in pairs(vim.split(vim.fn.glob(vim.fn.stdpath("config") .. "/lsp/*.lua"), "\n", { trimempty = true })) do
 			local conf = dofile(lsp)
@@ -44,17 +59,6 @@ return { -- Automatically install LSPs and related tools to stdpath for neovim
 				vim.lsp.enable(lsp:match("lsp/(.+)%.lua$"))
 			end
 		end
-
-		--- @diagnostic disable-next-line:missing-fields
-		require("mason-nvim-dap").setup({
-			-- Makes a best effort to setup the various debuggers with
-			-- reasonable debug configurations
-			automatic_setup = true,
-
-			-- You can provide additional configuration to the handlers,
-			-- see mason-nvim-dap README for more information
-			handlers = {},
-		})
 
 		vim.api.nvim_create_autocmd("FileType", {
 			pattern = lsp_filetypes,
@@ -104,7 +108,6 @@ return { -- Automatically install LSPs and related tools to stdpath for neovim
 			end,
 		})
 
-		-- Trigger FileType event to load lsps or autoinstall if needed
 		require("lazy.core.handler.event").trigger({
 			event = "FileType",
 			buf = vim.api.nvim_get_current_buf(),

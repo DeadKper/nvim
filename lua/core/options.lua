@@ -101,3 +101,7 @@ vim.opt.background = "dark"
 
 -- Allow uncommon file names to show up
 vim.opt.isfname:append("@-@")
+
+-- Enable spell checker
+vim.opt.spell = true
+vim.opt.spelllang = "en_us"
