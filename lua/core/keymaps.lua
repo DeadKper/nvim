@@ -135,11 +135,6 @@ vim.keymap.set({ "n", "v" }, "<leader>d", '"_d', { desc = "[D]elete to void buff
 vim.keymap.set("i", "<C-c>", "<Esc>")
 vim.keymap.set("n", "<C-c>", ":nohl<CR>", { desc = "Clear highlight with C-c", silent = true })
 
--- Buffer keymaps
-vim.keymap.set("n", "<C-n>", ":bnext<cr>", { silent = true })
-vim.keymap.set("n", "<C-p>", ":bprevious<cr>", { silent = true })
-vim.keymap.set("n", "<C-q>", ":bdelete<cr>", { silent = true })
-
 -- Rename word
 vim.keymap.set("n", "<leader>rw", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Rename word" })
 
