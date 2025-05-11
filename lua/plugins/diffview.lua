@@ -4,7 +4,7 @@ return {
 	dependencies = {
 		{ "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
 	},
-	config = {
+	opts = {
 		view = {
 			merge_tool = {
 				layout = "diff3_mixed",
