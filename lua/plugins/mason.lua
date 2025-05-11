@@ -2,7 +2,6 @@ return {
 	"williamboman/mason.nvim",
 	event = "VeryLazy",
 	dependencies = {
-		"mfussenegger/nvim-dap",
 		"neovim/nvim-lspconfig",
 
 		"folke/neoconf.nvim",
