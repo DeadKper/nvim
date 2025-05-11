@@ -1,7 +1,6 @@
 return {
 	"folke/snacks.nvim",
-	priority = 1000,
-	lazy = false,
+	event = "UIEnter",
 	---@diagnostic disable-next-line: undefined-doc-name
 	---@type snacks.Config
 	dependencies = {

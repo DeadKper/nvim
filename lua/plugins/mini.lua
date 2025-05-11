@@ -1,6 +1,6 @@
 return {
 	"echasnovski/mini.nvim",
-	event = "VeryLazy",
+	event = "UIEnter",
 	config = function()
 		require("mini.ai").setup({ n_lines = 500 })
 

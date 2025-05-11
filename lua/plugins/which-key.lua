@@ -1,6 +1,6 @@
 return {
 	"folke/which-key.nvim",
-	event = "VimEnter",
+	event = "UIEnter",
 	opts = {
 		preset = "modern",
 		delay = 300,
