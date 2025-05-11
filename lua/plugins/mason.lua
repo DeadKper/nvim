@@ -56,7 +56,9 @@ return {
 					mason_packages = conf.mason_packages,
 				}
 
-				vim.lsp.enable(lsp:match("lsp/(.+)%.lua$"))
+				if conf.enabled ~= false then
+					vim.lsp.enable(lsp:match("lsp/(.+)%.lua$"))
+				end
 			end
 		end
 
