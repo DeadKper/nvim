@@ -1,7 +1,6 @@
 return {
 	"epwalsh/obsidian.nvim",
 	version = "*",
-	lazy = true,
 	-- stylua: ignore
   event = {
 		"BufReadPre " .. vim.fn.expand("~/Nextcloud/Apps/Obsidian") .. "/**",
