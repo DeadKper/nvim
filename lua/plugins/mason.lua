@@ -3,6 +3,7 @@ return {
 	event = "VeryLazy",
 	dependencies = {
 		"mfussenegger/nvim-dap",
+		"neovim/nvim-lspconfig",
 
 		"folke/neoconf.nvim",
 		"saghen/blink.cmp",
@@ -29,9 +30,6 @@ return {
 			end
 		end)
 
-		local lsp_conf = {}
-		local lsp_filetypes = {}
-
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
 		capabilities = vim.tbl_deep_extend("force", {}, capabilities, require("blink.cmp").get_lsp_capabilities())
 		capabilities = vim.tbl_deep_extend("force", {}, capabilities, {
@@ -45,25 +43,11 @@ return {
 			root_markers = { ".editorconfig", ".git", ".jj" },
 		})
 
-		for _, lsp in pairs(vim.split(vim.fn.glob(vim.fn.stdpath("config") .. "/lsp/*.lua"), "\n", { trimempty = true })) do
-			local conf = dofile(lsp)
-
-			for _, ft in ipairs(conf.filetypes) do
-				lsp_filetypes[#lsp_filetypes + 1] = ft
-
-				lsp_conf[ft] = {
-					executables = conf.executables,
-					mason_packages = conf.mason_packages,
-				}
-
-				if conf.enabled ~= false then
-					vim.lsp.enable(lsp:match("lsp/(.+)%.lua$"))
-				end
-			end
-		end
+		local lspconfig = require("core.lspconfig")
+		lspconfig.enable_lsps()
 
 		vim.api.nvim_create_autocmd("FileType", {
-			pattern = lsp_filetypes,
+			pattern = lspconfig.get_filetypes(),
 			group = vim.api.nvim_create_augroup("mason-autoinstall", { clear = true }),
 			callback = function()
 				if skip_next_ammount > 0 then
@@ -71,45 +55,12 @@ return {
 					return
 				end
 
-				local conf = lsp_conf[vim.bo.filetype]
+				for _, mason_package in ipairs(lspconfig.get_mason_packages(vim.bo.filetype)) do
+					local package = registry.get_package(mason_package)
 
-				local executables = conf.executables
-
-				local total = 0
-				local count = 0
-
-				if type(executables) == "string" or type(executables) == "table" then
-					if type(executables) == "string" then
-						executables = { executables }
-					end
-
-					total = #executables
-					count = 0
-
-					---@diagnostic disable-next-line: redefined-local
-					for _, executables in ipairs(executables) do
-						if type(executables) == "string" then
-							---@diagnostic disable-next-line: cast-local-type
-							executables = { executables }
-						end
-
-						for _, exec in ipairs(executables) do
-							if vim.fn.executable(exec) == 1 then
-								count = count + 1
-								break
-							end
-						end
-					end
-				end
-
-				if count == total then
-					for _, mason_package in ipairs(conf.mason_packages) do
-						local package = registry.get_package(mason_package)
-
-						if not package:is_installed() then
-							package:install()
-							to_install = to_install + 1
-						end
+					if not package:is_installed() then
+						package:install()
+						to_install = to_install + 1
 					end
 				end
 			end,

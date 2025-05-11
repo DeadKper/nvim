@@ -2,6 +2,8 @@
 vim.api.nvim_create_autocmd("LspAttach", {
 	group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
 	callback = function(event)
+		vim.opt_local.signcolumn = "yes"
+
 		if vim.g.nerd_font then -- Set diagnostics icons when using nerdfonts
 			local icons = require("core.icons")
 			vim.diagnostic.config({
@@ -27,8 +29,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		local map = function(keys, func, desc)
 			vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
 		end
-
-		vim.opt_local.signcolumn = "yes"
 
 		map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
 		map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
