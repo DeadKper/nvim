@@ -52,7 +52,6 @@ return {
 			git = "",
 		}
 
-		---@diagnostic disable-next-line:missing-fields
 		ufo.setup({
 			fold_virt_text_handler = handler,
 			---@diagnostic disable-next-line:unused-local

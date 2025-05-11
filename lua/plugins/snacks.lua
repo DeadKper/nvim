@@ -1,8 +1,6 @@
 return {
 	"folke/snacks.nvim",
 	event = "UIEnter",
-	---@diagnostic disable-next-line: undefined-doc-name
-	---@type snacks.Config
 	dependencies = {
 		{ "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
 	},
