@@ -20,7 +20,21 @@ return {
 					end,
 				},
 			},
-			opts = {},
+			config = function()
+				require("luasnip").setup({})
+				require("luasnip.loaders.from_lua").load({ paths = vim.fn.stdpath("config") .. "/lua/luasnip" })
+
+				vim.cmd([[
+					" Use <C-e> to expand and <C-e>/<C-f> jump through snippets
+					imap <silent><expr> <C-e> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<C-e>'
+					smap <silent><expr> <C-e> luasnip#jumpable(1) ? '<Plug>luasnip-jump-next' : '<C-e>'
+					smap <silent><expr> <C-f> luasnip#jumpable(1) ? '<Plug>luasnip-jump-next' : '<C-f>'
+
+					" Use <C-b> to jump backwards through snippets
+					imap <silent><expr> <C-b> luasnip#jumpable(-1) ? '<Plug>luasnip-jump-prev' : '<C-b>'
+					smap <silent><expr> <C-b> luasnip#jumpable(-1) ? '<Plug>luasnip-jump-prev' : '<C-b>'
+					]])
+			end,
 		},
 		"folke/lazydev.nvim",
 	},
