@@ -124,10 +124,17 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
 	callback = function(event)
 		if vim.g.nerd_font then -- Set diagnostics icons when using nerdfonts
-			for name, icon in pairs(require("core.icons").diagnostics) do
-				name = "DiagnosticSign" .. name:sub(1, 1):upper() .. name:sub(2)
-				vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
-			end
+			local icons = require("core.icons")
+			vim.diagnostic.config({
+				signs = {
+					text = {
+						[vim.diagnostic.severity.ERROR] = icons.diagnostics.error,
+						[vim.diagnostic.severity.WARN] = icons.diagnostics.warn,
+						[vim.diagnostic.severity.INFO] = icons.diagnostics.info,
+						[vim.diagnostic.severity.HINT] = icons.diagnostics.hint,
+					},
+				},
+			})
 		end
 
 		vim.diagnostic.config({
