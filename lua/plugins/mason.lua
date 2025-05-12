@@ -42,7 +42,7 @@ return {
 			root_markers = { ".editorconfig", ".git", ".jj" },
 		})
 
-		local lspconfig = require("core.lspconfig")
+		local lspconfig = require("core.masonconf")
 		lspconfig.enable_lsps()
 
 		vim.api.nvim_create_autocmd("FileType", {

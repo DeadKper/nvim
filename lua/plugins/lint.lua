@@ -4,7 +4,7 @@ return {
 	config = function()
 		local lint = require("lint")
 
-		lint.linters_by_ft = {}
+		lint.linters_by_ft = require("core.masonconf").linters_by_ft()
 
 		vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
 			group = vim.api.nvim_create_augroup("lint", { clear = true }),

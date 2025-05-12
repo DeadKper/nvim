@@ -1,18 +1,18 @@
 local M = {}
 
----@class core.lspconfig.package
+---@class core.masonconf.package
 ---@field [1] string
 ---@field reqs nil|string|table<string>|table<table<string>>
 
----@class core.lspconfig
+---@class core.masonconf
 ---@field enabled nil|boolean
 ---@field ft string|table<string>
----@field lsp nil|string|core.lspconfig.package
----@field formatter nil|string|core.lspconfig.package
----@field linter nil|string|core.lspconfig.package
----@field debugger nil|string|core.lspconfig.package
+---@field lsp nil|string|core.masonconf.package
+---@field formatter nil|string|core.masonconf.package
+---@field linter nil|string|core.masonconf.package
+---@field debugger nil|string|core.masonconf.package
 
----@type table<string, core.lspconfig>
+---@type table<string, core.masonconf>
 M.config = {
 	lua_ls = {
 		ft = "lua",
@@ -67,7 +67,7 @@ local check_reqs_helper = function(reqs)
 	return #reqs == count
 end
 
----@param data string|core.lspconfig.package
+---@param data string|core.masonconf.package
 ---@return any
 local get_valid_packages = function(data)
 	if type(data) == "string" then
@@ -104,6 +104,52 @@ function M.get_mason_packages(ft)
 	end
 
 	return packages
+end
+
+---@return table<string, table<string>>
+function M.formatters_by_ft()
+	local formatters = {}
+	local filetypes = {}
+	local fmt
+	for _, value in pairs(M.config) do
+		filetypes = value.ft ---@diagnostic disable-line: cast-local-type
+		if type(filetypes) == "string" then
+			filetypes = { filetypes }
+		end
+		for _, ft in ipairs(filetypes) do ---@diagnostic disable-line: param-type-mismatch
+			fmt = get_valid_packages(value.formatter)
+			if fmt ~= nil then
+				if formatters[ft] == nil then
+					formatters[ft] = {}
+				end
+				formatters[ft][#formatters[ft] + 1] = fmt
+			end
+		end
+	end
+	return formatters
+end
+
+---@return table<string, table<string>>
+function M.linters_by_ft()
+	local linters = {}
+	local filetypes = {}
+	local fmt
+	for _, value in pairs(M.config) do
+		filetypes = value.ft ---@diagnostic disable-line: cast-local-type
+		if type(filetypes) == "string" then
+			filetypes = { filetypes }
+		end
+		for _, ft in ipairs(filetypes) do ---@diagnostic disable-line: param-type-mismatch
+			fmt = get_valid_packages(value.linter)
+			if fmt ~= nil then
+				if linters[ft] == nil then
+					linters[ft] = {}
+				end
+				linters[ft][#linters[ft] + 1] = fmt
+			end
+		end
+	end
+	return linters
 end
 
 ---@return table<string>

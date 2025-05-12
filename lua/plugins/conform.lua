@@ -25,8 +25,6 @@ return {
 				}
 			end
 		end,
-		formatters_by_ft = {
-			lua = { "stylua" },
-		},
+		formatters_by_ft = require("core.masonconf").formatters_by_ft(),
 	},
 }
