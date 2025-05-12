@@ -5,8 +5,11 @@ vim.keymap.set("n", "|", "`")
 vim.keymap.set({ "n", "v" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
 vim.keymap.set({ "n", "v" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
 
--- Don't move cursor que doing "J"
-vim.keymap.set("n", "J", "m" .. vim.g.temp_mark .. "J`" .. vim.g.temp_mark)
+-- Don't move cursor doing "J"
+vim.keymap.set("n", "J", function()
+	vim.cmd("normal! m" .. vim.g.temp_mark .. "J`" .. vim.g.temp_mark)
+	vim.api.nvim_buf_del_mark(vim.api.nvim_get_current_buf(), vim.g.temp_mark)
+end)
 
 -- File explorer
 vim.keymap.set("n", "<leader>fe", function()
