@@ -4,14 +4,22 @@ return {
 	dependencies = {
 		{ "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
 	},
-	opts = {
-		bigfile = { enable = true },
-		image = { enabled = true },
-		quickfile = { enabled = true },
-		statuscolumn = {
-			enabled = true,
-			left = { "mark", "sign" }, -- priority of signs on the left (high to low)
-			right = { "fold", "git" }, -- priority of signs on the right (high to low)
-		},
-	},
+	config = function()
+		require("snacks").setup({
+			bigfile = { enable = true },
+			image = { enabled = true },
+			quickfile = { enabled = true },
+			statuscolumn = {
+				enabled = true,
+				left = {}, -- no sign, always "  "
+				right = { "sign", "fold", "git" },
+			},
+		})
+
+		local stc = require("snacks.statuscolumn")
+		local stc_get = stc._get
+		function stc._get() -- remove left column
+			return stc_get():gsub("  +", "", 1)
+		end
+	end,
 }
