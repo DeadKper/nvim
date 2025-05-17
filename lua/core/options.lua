@@ -104,7 +104,7 @@ vim.opt.isfname:append("@-@")
 
 -- Enable spell checker
 vim.opt.spell = true
-vim.opt.spelllang = "en_us"
+vim.opt.spelllang = "en_us,es_mx"
 
 -- Add missing filetypes
 vim.filetype.add({
