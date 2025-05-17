@@ -117,3 +117,11 @@ vim.api.nvim_create_autocmd("TermOpen", {
 		vim.opt.relativenumber = false
 	end,
 })
+
+-- Add ansible ft detection
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+	pattern = { "*/ansible/*.yml", "*/ansible/*.yaml", "*/.ansible/*.yml", "*/.ansible/*.yaml" },
+	callback = function()
+		vim.bo.filetype = "yaml.ansible"
+	end,
+})

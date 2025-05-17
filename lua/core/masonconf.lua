@@ -14,6 +14,15 @@ local M = {}
 
 ---@type table<string, core.masonconf>
 M.config = {
+	yamlls = {
+		ft = "yaml",
+		lsp = { "yaml-language-server", reqs = { { "python", "python3" } } },
+	},
+	ansiblels = {
+		ft = "yaml",
+		lsp = { "ansible-language-server", reqs = { { "python", "python3" } } },
+		formatter = { "ansible-lint", reqs = { { "python", "python3" } } },
+	},
 	lua_ls = {
 		ft = "lua",
 		lsp = "lua-language-server",
