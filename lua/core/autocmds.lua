@@ -123,5 +123,6 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 	pattern = { "*/ansible/*.yml", "*/ansible/*.yaml", "*/.ansible/*.yml", "*/.ansible/*.yaml" },
 	callback = function()
 		vim.bo.filetype = "yaml.ansible"
+		vim.opt_local.colorcolumn = "160"
 	end,
 })
