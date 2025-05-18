@@ -93,7 +93,7 @@ vim.opt.conceallevel = 2
 -- Dialog prompt instead of failing an operation
 vim.opt.confirm = true
 
--- Configure backspace behaviour
+-- Configure backspace behavior
 vim.opt.backspace = { "start", "eol", "indent" }
 
 -- Set background color
