@@ -111,6 +111,10 @@ return {
 				for opt, value in pairs(config.on_tab_options) do
 					set_buffer_opt(bufnr, opt, value)
 				end
+				if by_ft[filetype] ~= nil then
+					set_buffer_opt(bufnr, "tabstop", by_ft[filetype].shiftwidth)
+					set_buffer_opt(bufnr, "shiftwidth", by_ft[filetype].shiftwidth)
+				end
 				notification = "Did set indentation to tabs."
 			elseif type(indentation) == "number" and indentation > 0 then
 				for opt, value in pairs(config.on_space_options) do
