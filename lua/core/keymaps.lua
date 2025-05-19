@@ -1,5 +1,7 @@
 -- Better mark usage for la-latin1 keys
-vim.keymap.set("n", "|", "`")
+vim.keymap.set("n", "|", function()
+	vim.fn.feedkeys(vim.api.nvim_replace_termcodes("`", true, true, true))
+end)
 
 -- Remap for dealing with word wrap
 vim.keymap.set({ "n", "v" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
