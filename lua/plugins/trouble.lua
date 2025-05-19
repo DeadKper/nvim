@@ -5,6 +5,7 @@ return {
 		{ "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
 	},
 	config = function()
+		---@diagnostic disable-next-line: missing-fields
 		require("trouble").setup({
 			use_diagnostic_signs = true,
 		})
