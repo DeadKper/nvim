@@ -57,7 +57,7 @@ vim.opt.inccommand = "split"
 
 -- Sets how neovim will display certain whitespace in the editor
 vim.opt.list = true
-vim.opt.listchars = require("core.icons").listchars
+vim.opt.listchars = vim.tbl_extend("force", require("core.icons").listchars, { lead = " ", tab = "  " })
 
 -- Set default indentation
 vim.opt.tabstop = 4
