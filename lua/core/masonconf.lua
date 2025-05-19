@@ -14,14 +14,15 @@ local M = {}
 
 ---@type table<string, core.masonconf>
 M.config = {
-	yamlls = {
-		ft = "yaml",
-		lsp = { "yaml-language-server", reqs = { { "python", "python3" } } },
-	},
 	ansiblels = {
 		ft = "yaml",
 		lsp = { "ansible-language-server", reqs = { { "python", "python3" } } },
 		linter = { "ansible-lint", enabled = false, reqs = { { "python", "python3" } } },
+	},
+	clangd = {
+		ft = { "cpp", "c" },
+		lsp = "clangd",
+		debugger = "codelldb",
 	},
 	lua_ls = {
 		ft = "lua",
@@ -40,6 +41,10 @@ M.config = {
 	taplo = {
 		ft = "toml",
 		lsp = "taplo",
+	},
+	yamlls = {
+		ft = "yaml",
+		lsp = { "yaml-language-server", reqs = { { "python", "python3" } } },
 	},
 	zls = {
 		ft = "zig",
