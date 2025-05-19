@@ -105,6 +105,7 @@ vim.opt.isfname:append("@-@")
 -- Enable spell checker
 vim.opt.spell = true
 vim.opt.spelllang = "en_us,es_mx"
+vim.opt.spellfile = vim.fn.stdpath("config") .. "/spell/custom.utf-8.add"
 
 -- Add missing filetypes
 vim.filetype.add({
