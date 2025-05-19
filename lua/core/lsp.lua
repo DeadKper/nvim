@@ -21,7 +21,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.diagnostic.config({
 			virtual_text = {
 				source = "if_many",
-				prefix = require("core.icons").virtual_text,
+				prefix = require("core.icons").lsp.virtual_text,
 			},
 			severity_sort = true,
 		})

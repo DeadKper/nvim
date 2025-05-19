@@ -21,7 +21,9 @@ return {
 		hint = " ",
 		info = " ",
 	},
-	virtual_text = "■",
+	lsp = {
+		virtual_text = "■",
+	},
 	git = {
 		add = "┃",
 		change = "┃",
