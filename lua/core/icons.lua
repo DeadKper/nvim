@@ -5,9 +5,10 @@ return {
 		column = "▏",
 	},
 	listchars = {
-		tab = "  ",
+		tab = "» ",
 		trail = "·",
 		nbsp = "␣",
+		lead = "·",
 	},
 	fold = {
 		open = "",
