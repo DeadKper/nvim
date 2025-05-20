@@ -1,9 +1,7 @@
 return {
-	not vim.g.dev and "deadkper/krbon.nvim",
-	dir = vim.g.dev and "~/.config/themes/krbon.nvim/",
+	"deadkper/krbon.nvim",
 	lazy = false,
 	priority = 1000,
-	cond = not vim.g.vscode,
 	config = function()
 		---@diagnostic disable:missing-fields
 		require("krbon").setup({
