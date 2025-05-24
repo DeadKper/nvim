@@ -35,6 +35,8 @@ return {
 			["<C-e>"] = { "select_and_accept", "snippet_forward", "fallback" },
 			["<C-f>"] = { "snippet_forward", "fallback" },
 			["<C-b>"] = { "snippet_backward", "fallback" },
+			["<Tab>"] = {},
+			["<S-Tab>"] = {},
 		},
 
 		cmdline = {
