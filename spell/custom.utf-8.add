@@ -13,3 +13,7 @@ swapfile
 neovim
 treesitter
 stylua
+cterm
+if
+latin1
+lua
