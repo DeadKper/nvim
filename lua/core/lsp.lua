@@ -90,7 +90,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 		if vim.fn.has("nvim-0.10") and client.server_capabilities.inlayHintProvider then
 			vim.lsp.inlay_hint.enable(true)
-			vim.cmd.hi("LspInlayHint guifg=#888888 gui=italic")
 		end
 	end,
 })
