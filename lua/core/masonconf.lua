@@ -24,6 +24,11 @@ M.config = {
 		lsp = "clangd",
 		debugger = "codelldb",
 	},
+	gopls = {
+		ft = "go",
+		lsp = { "gopls", reqs = "go" },
+		formatter = { "gopls", reqs = "go" },
+	},
 	lua_ls = {
 		ft = "lua",
 		lsp = "lua-language-server",

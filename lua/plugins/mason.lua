@@ -54,12 +54,16 @@ return {
 					return
 				end
 
+				local installing = {}
 				for _, mason_package in ipairs(lspconfig.get_mason_packages(vim.bo.filetype)) do
-					local package = registry.get_package(mason_package)
+					if not vim.tbl_contains(installing, mason_package) then
+						installing[#installing + 1] = mason_package
+						local package = registry.get_package(mason_package)
 
-					if not package:is_installed() then
-						package:install()
-						to_install = to_install + 1
+						if not package:is_installed() then
+							package:install()
+							to_install = to_install + 1
+						end
 					end
 				end
 			end,
