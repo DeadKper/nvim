@@ -19,8 +19,6 @@ return {
 					bg3 = "#292929", -- Gray 100 Hover
 				},
 			})
-
-			vim.cmd.colorscheme("krbon")
 		end,
 	},
 }
