@@ -127,3 +127,16 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 		vim.opt_local.colorcolumn = "160"
 	end,
 })
+
+-- Set cwd on load if given path is a directory
+vim.api.nvim_create_autocmd({ "VimEnter" }, {
+	once = true,
+	group = vim.api.nvim_create_augroup("auto-chdir", { clear = true }),
+	callback = function()
+		local path = vim.api.nvim_buf_get_name(0)
+
+		if vim.fn.isdirectory(path) == 1 then
+			vim.fn.chdir(path)
+		end
+	end,
+})
