@@ -121,6 +121,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
 -- Add ansible ft detection
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 	pattern = { "*/ansible/*.yml", "*/ansible/*.yaml", "*/.ansible/*.yml", "*/.ansible/*.yaml" },
+	group = vim.api.nvim_create_augroup("yaml-ansible", { clear = true }),
 	callback = function()
 		vim.bo.filetype = "yaml.ansible"
 		vim.opt_local.colorcolumn = "160"
