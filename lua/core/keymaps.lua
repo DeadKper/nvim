@@ -175,7 +175,7 @@ vim.keymap.set("n", "<leader><tab>p", ":tabprev<cr>", { desc = "[P]revious tab",
 -- Quick terminal
 local term_buf = -1
 
-vim.keymap.set("n", "<leader>qt", function()
+vim.keymap.set("n", "<leader>qq", function()
 	local height = math.min(math.max(math.floor(vim.fn.winheight(0) / 3), 8), 16)
 
 	if not vim.api.nvim_buf_is_valid(term_buf) then
@@ -199,7 +199,7 @@ vim.keymap.set("n", "<leader>qt", function()
 		vim.api.nvim_set_current_buf(term_buf)
 		vim.cmd.normal("a")
 	end
-end, { desc = "[Q]uick [T]erminal" })
+end, { desc = "[Q]uick Terminal" })
 
 -- Exit terminal insert mode with <C-q>
 vim.keymap.set("t", "<C-q>", [[<C-\><C-n>]])
