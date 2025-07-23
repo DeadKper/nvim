@@ -33,6 +33,11 @@ return {
 				expandtab = false,
 				shiftwidth = 2,
 			},
+			{
+				ft = { "js", "ts", "javascript", "typescript", "json", "jsonc" },
+				expandtab = false,
+				shiftwidth = 2,
+			},
 		}
 
 		local by_ft = {}

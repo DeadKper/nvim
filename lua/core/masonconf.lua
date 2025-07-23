@@ -47,6 +47,11 @@ M.config = {
 		ft = "toml",
 		lsp = "taplo",
 	},
+	ts_ls = {
+		ft = { "js", "javascript", "ts", "typescript" },
+		lsp = { "typescript-language-server", reqs = { "npm" } },
+		formatter = { "biome", reqs = { "npm" } },
+	},
 	yamlls = {
 		ft = "yaml",
 		lsp = { "yaml-language-server", reqs = { { "python", "python3" } } },
