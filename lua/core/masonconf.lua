@@ -29,6 +29,10 @@ M.config = {
 		lsp = { "gopls", reqs = "go" },
 		formatter = { "gopls", reqs = "go" },
 	},
+	hyprls = {
+		ft = "hyprlang",
+		lsp = "hyprls",
+	},
 	lua_ls = {
 		ft = "lua",
 		lsp = "lua-language-server",
