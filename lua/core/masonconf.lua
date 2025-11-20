@@ -42,6 +42,10 @@ M.config = {
 		ft = "markdown",
 		lsp = "marksman",
 	},
+	pylsp = {
+		ft = "python",
+		lsp = { "python-lsp-server", reqs = { { "python", "python3" } } },
+	},
 	rust_analyzer = {
 		ft = "rust",
 		lsp = "rust-analyzer",
