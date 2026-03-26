@@ -107,6 +107,27 @@ vim.opt.spell = true
 vim.opt.spelllang = "en_us,es_mx"
 vim.opt.spellfile = vim.fn.stdpath("config") .. "/spell/custom.utf-8.add"
 
+local en_us = {
+	[[`1234567890-=qwertyuiop[]asdfghjkl;'\\zxcvbm,./]],
+	[[~!@#$%^&*()_+QWERTYUIOP{}ASDFGHJKL:"|ZXCVBNM<>?]],
+}
+
+local es_mx = {
+	[[|1234567890'¿qwertyuiop´+asdfghjklñ{}zxcvbnm,.-]],
+	[[°!"#$%&/()=?¡QWERTYUIOP¨*ASDFGHJKLÑ[]ZXCVBNM;:_]],
+}
+
+local function escape(str)
+	-- You need to escape these characters to work correctly
+	local escape_chars = [[;,."|\]]
+	return vim.fn.escape(str, escape_chars)
+end
+
+vim.opt.langmap = vim.fn.join({
+	escape(es_mx[2]) .. ";" .. escape(en_us[2]),
+	escape(es_mx[1]) .. ";" .. escape(en_us[1]),
+}, ",")
+
 -- Add missing filetypes
 vim.filetype.add({
 	extension = {
