@@ -108,7 +108,7 @@ vim.opt.spelllang = "en_us,es_mx"
 vim.opt.spellfile = vim.fn.stdpath("config") .. "/spell/custom.utf-8.add"
 
 local en_us = {
-	[[`1234567890-=qwertyuiop[]asdfghjkl;'\\zxcvbm,./]],
+	[[`1234567890-=qwertyuiop[]asdfghjkl;'\zxcvbnm,./]],
 	[[~!@#$%^&*()_+QWERTYUIOP{}ASDFGHJKL:"|ZXCVBNM<>?]],
 }
 
