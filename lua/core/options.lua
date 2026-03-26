@@ -88,7 +88,7 @@ vim.opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "
 vim.opt.mousemoveevent = true
 
 -- Set default conceal level
-vim.opt.conceallevel = 2
+vim.opt.conceallevel = 1
 
 -- Dialog prompt instead of failing an operation
 vim.opt.confirm = true
