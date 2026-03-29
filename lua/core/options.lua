@@ -107,26 +107,33 @@ vim.opt.spell = true
 vim.opt.spelllang = "en_us,es_mx"
 vim.opt.spellfile = vim.fn.stdpath("config") .. "/spell/custom.utf-8.add"
 
-local en_us = {
-	[[`1234567890-=qwertyuiop[]asdfghjkl;'\zxcvbnm,./]],
-	[[~!@#$%^&*()_+QWERTYUIOP{}ASDFGHJKL:"|ZXCVBNM<>?]],
-}
+local en_us = [[
+	`1234567890-=
+	qwertyuiop[]
+	asdfghjkl;'\
+	zxcvbnm,./
 
-local es_mx = {
-	[[|1234567890'¿qwertyuiop´+asdfghjklñ{}zxcvbnm,.-]],
-	[[°!"#$%&/()=?¡QWERTYUIOP¨*ASDFGHJKLÑ[]ZXCVBNM;:_]],
-}
+	~!@#$%^&*()_+
+	QWERTYUIOP{}
+	ASDFGHJKL:"|
+	ZXCVBNM<>?
+]]
 
-local function escape(str)
-	-- You need to escape these characters to work correctly
-	local escape_chars = [[;,."|\]]
-	return vim.fn.escape(str, escape_chars)
-end
+local es_mx = [[
+	|1234567890'¿
+	qwertyuiop´+
+	asdfghjklñ{}
+	zxcvbnm,.-
 
-vim.opt.langmap = vim.fn.join({
-	escape(es_mx[2]) .. ";" .. escape(en_us[2]),
-	escape(es_mx[1]) .. ";" .. escape(en_us[1]),
-}, ",")
+	°!"#$%&/()=?¡
+	QWERTYUIOP¨*
+	ASDFGHJKLÑ[]
+	ZXCVBNM;:_
+]]
+
+local escape_chars = [[;,."|\]]
+
+vim.opt.langmap = vim.fn.join({ vim.fn.escape(es_mx, escape_chars) .. ";" .. vim.fn.escape(en_us, escape_chars) }, ",")
 
 -- Add missing filetypes
 vim.filetype.add({
