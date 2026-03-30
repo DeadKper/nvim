@@ -12,7 +12,7 @@ return {
 			statuscolumn = {
 				enabled = true,
 				left = {}, -- no sign, always "  "
-				right = { "sign", "fold", "git" },
+				right = { "sign", "fold", "mark", "git" },
 			},
 		})
 
