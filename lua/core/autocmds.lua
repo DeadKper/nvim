@@ -99,6 +99,15 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
+-- Set colorcolumn for python
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "python" },
+	group = vim.api.nvim_create_augroup("python-colorcolumn", { clear = true }),
+	callback = function()
+		vim.opt_local.colorcolumn = "80"
+	end,
+})
+
 -- Set word wrap for filetypes except plain text and no ft
 vim.api.nvim_create_autocmd({ "FileType" }, {
 	pattern = { "", "text", "txt", "log" },
