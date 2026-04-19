@@ -34,5 +34,8 @@ else
 		lazy = false,
 		build = ":TSUpdate",
 		branch = "main",
+		init = function()
+			pcall(vim.treesitter.start)
+		end,
 	}
 end

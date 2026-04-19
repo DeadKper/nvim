@@ -23,26 +23,5 @@ return {
 			auto_install = true,
 			highlight = true,
 		})
-
-		vim.api.nvim_create_autocmd("FileType", {
-			pattern = {
-				"bash",
-				"sh",
-				"c",
-				"diff",
-				"html",
-				"lua",
-				"luadoc",
-				"markdown",
-				"markdown_inline",
-				"query",
-				"regex",
-				"vim",
-				"vimdoc",
-			},
-			callback = function()
-				vim.treesitter.start()
-			end,
-		})
 	end,
 }
