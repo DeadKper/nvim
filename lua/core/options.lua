@@ -107,6 +107,11 @@ vim.opt.spell = true
 vim.opt.spelllang = "en_us,es_mx"
 vim.opt.spellfile = vim.fn.stdpath("config") .. "/spell/custom.utf-8.add"
 
+-- Enable osc52 on ssh for clipboard
+if vim.env.SSH_TTY then
+	vim.g.clipboard = "osc52"
+end
+
 -- Add missing filetypes
 vim.filetype.add({
 	extension = {
@@ -116,5 +121,7 @@ vim.filetype.add({
 		jinja = "jinja",
 		jinja2 = "jinja",
 		j2 = "jinja",
+		sh = "bash",
+		["in"] = "yaml",
 	},
 })

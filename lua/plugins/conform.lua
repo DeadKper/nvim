@@ -15,6 +15,10 @@ return {
 	opts = {
 		notify_on_error = false,
 		format_on_save = function(bufnr)
+			if vim.env.SSH_TTY then
+				return nil
+			end
+
 			local exclude_filetypes = { "c", "cpp" }
 			if vim.tbl_contains(exclude_filetypes, vim.bo[bufnr].filetype) then
 				return nil

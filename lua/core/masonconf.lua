@@ -55,6 +55,10 @@ M.config = {
 		ft = "toml",
 		lsp = "taplo",
 	},
+	terraformls = {
+		ft = "terraform",
+		lsp = "terraform-ls",
+	},
 	ts_ls = {
 		ft = { "js", "javascript", "ts", "typescript" },
 		lsp = { "typescript-language-server", reqs = { "npm" } },
